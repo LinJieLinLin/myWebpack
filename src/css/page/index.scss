@@ -1,20 +1,26 @@
-.text{
-	padding: 20px 0;
-	font-size: 18px;
-	color:#f63;
+.text {
+    padding: 20px 0;
+    font-size: 18px;
+    color: #f63;
 }
-.btn{
-	width: 120px;
-	height: 36px;
-	line-height: 36px;
-	background-color: #677D7C;
-	color:#fff;
-	text-align: center;
-	border:none;
-	box-shadow: 0 1px 3px #999;
-	font-size: 16px;
-	cursor: pointer;
+
+.btn {
+    width: 120px;
+    height: 36px;
+    line-height: 36px;
+    background-color: #677D7C;
+    color: #fff;
+    text-align: center;
+    border: none;
+    box-shadow: 0 1px 3px #999;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
 }
-.img{
-	margin-top: 20px;
+
+.img {
+    margin-top: 20px;
 }

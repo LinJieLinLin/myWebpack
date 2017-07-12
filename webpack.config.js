@@ -58,7 +58,7 @@ module.exports = {
             use: 'file-loader?name=./fonts/[name].[ext]'
         }, {
             //图片加载器，雷同file-loader，更适合图片，可以将较小的图片转成base64，减少http请求
-            //如下配置，将小于8192byte的图片转成base64码
+            //如下配置，将小于18192byte的图片转成base64码
             test: /\.(png|jpg|gif)$/,
             use: 'url-loader?limit=18192&name=./img/[hash].[ext]'
         }]
