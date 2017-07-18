@@ -26,7 +26,7 @@ module.exports = {
   dev: {
     env: require('./dev.env'),
     // 端口
-    port: 1234,
+    port: 2223,
     // 自动打开浏览器
     autoOpenBrowser: false,
     // 资源子目录 除了index.html，其余的js img css都分在这里

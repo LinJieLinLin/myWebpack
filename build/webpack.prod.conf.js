@@ -6,11 +6,11 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-    /*
-    extract-text-webpack-plugin插件，
-    有了它就可以将你的样式提取到单独的css文件里，
-    妈妈再也不用担心样式会被打包到js文件里了。
-     */
+/*
+extract-text-webpack-plugin插件，
+有了它就可以将你的样式提取到单独的css文件里，
+妈妈再也不用担心样式会被打包到js文件里了。
+ */
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
@@ -34,18 +34,6 @@ var webpackConfig = merge(baseWebpackConfig, {
         new webpack.ProvidePlugin({
             $: 'jquery'
         }),
-        // new webpack.LoaderOptionsPlugin({
-        //     options: {
-        //         postcss: function() {
-        //             return [
-        //                 require("autoprefixer")({
-        //                     browsers: ['chrome > 35', 'ff > 10', 'opera > 10', 'ie > 6']
-        //                 })
-        //             ]
-        //         }
-        //     }
-        // }),
-        // http://vuejs.github.io/vue-loader/en/workflow/production.html
         new webpack.DefinePlugin({
             'process.env': env
         }),
@@ -61,7 +49,12 @@ var webpackConfig = merge(baseWebpackConfig, {
         }),
         // Compress extracted CSS. We are using this plugin so that possible
         // duplicated CSS from different components can be deduped.
-        new OptimizeCSSPlugin(),
+        new OptimizeCSSPlugin({
+            cssProcessor: require('autoprefixer'),
+            cssProcessorOptions: {
+                browsers: ['chrome > 35', 'ff > 10', 'opera > 10', 'ie > 8']
+            },
+        }),
         new webpack.optimize.CommonsChunkPlugin({
             // 将公共模块提取，生成名为`vendors`的chunk
             name: 'vendors',

@@ -24,18 +24,6 @@ module.exports = merge(baseWebpackConfig, {
     // cheap-module-eval-source-map is faster for development
     devtool: '#cheap-module-eval-source-map',
     plugins: [
-        // 处理
-        // new webpack.LoaderOptionsPlugin({
-        //     options: {
-        //         postcss: function() {
-        //             return [
-        //                 require("autoprefixer")({
-        //                     browsers: ['ie>=8', '>1% in CN']
-        //                 })
-        //             ]
-        //         }
-        //     }
-        // }),
         // 加载jq
         new webpack.ProvidePlugin({
             $: 'jquery'
@@ -47,7 +35,7 @@ module.exports = merge(baseWebpackConfig, {
             // 将公共模块提取，生成名为`vendors`的chunk
             name: 'vendors',
             //提取哪些模块共有的部分
-            chunks: ['index', 'list', 'about'],
+            chunks: ['index'],
             // 提取至少3个模块共有的部分
             minChunks: 3
         }),
@@ -60,7 +48,7 @@ module.exports = merge(baseWebpackConfig, {
             //favicon路径，通过webpack引入同时可以生成hash值
             favicon: './src/img/favicon.ico',
             //生成的html存放路径，相对于path
-            filename: './view/index.html',
+            filename: './index.html',
             //html模板路径
             template: './src/view/index.html',
             //js插入的位置，true/'head'/'body'/false
@@ -80,11 +68,11 @@ module.exports = merge(baseWebpackConfig, {
         //根据模板插入css/js等生成最终HTML
         new HtmlWebpackPlugin({
             favicon: './src/img/favicon.ico',
-            filename: './view/list.html',
+            filename: './list.html',
             template: './src/view/list.html',
             inject: true,
             hash: true,
-            chunks: ['vendors', 'list'],
+            chunks: ['vendors', 'index'],
             minify: {
                 removeComments: true,
                 collapseWhitespace: false
@@ -92,11 +80,11 @@ module.exports = merge(baseWebpackConfig, {
         }),
         new HtmlWebpackPlugin({
             favicon: './src/img/favicon.ico',
-            filename: './view/about.html',
+            filename: './about.html',
             template: './src/view/about.html',
             inject: true,
             hash: true,
-            chunks: ['vendors', 'about'],
+            chunks: ['vendors', 'index'],
             minify: {
                 removeComments: true,
                 collapseWhitespace: false

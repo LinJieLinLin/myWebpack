@@ -2,6 +2,8 @@
  * @author linj
  * eg:
  *let option = {
+ * // 挂载id,无则挂在body下 no
+ *  fatherId: null,
  * // 实例id yes
  * id: null,
  * // 播放地址 yes
@@ -10,6 +12,8 @@
  * type: 'audio/video'
  * // 是否自动播放
  * autoPlay: false, auto
+ * // 播放器style
+ * videoStyle: '',
  * // 实例obj
  * obj: null, no
  * // id对应element no
@@ -29,6 +33,7 @@
  * }
  * let linVideo = LinPlayer(option, 'video');
  */
+require('../common/lin-video.scss');
 let LinPlayer = (argOption, argType) => {
     let video = {};
     let audio = {};
@@ -47,12 +52,16 @@ let LinPlayer = (argOption, argType) => {
         getElementLeft: '获取元素绝对位置的横坐标'
     };
     let O = {
+        // 挂载id,无则挂在body下
+        fatherId: null,
         // 实例id
         id: null,
         // 实例obj
         obj: null,
         // 是否自动播放
         autoPlay: false,
+        // 播放器style
+        videoStyle: '',
         // 是否可以播放
         canplay: false,
         // 总时长 秒
@@ -61,6 +70,8 @@ let LinPlayer = (argOption, argType) => {
         currentTime: 0,
         // 播放地址
         src: null,
+        // 是否全屏
+        isFull: false,
         // 相关函数
         f: f
     };
@@ -94,6 +105,7 @@ let LinPlayer = (argOption, argType) => {
                 console.log('status:', f.get('Player').readyState);
                 if (f.get('Player').readyState <= 2) {
                     console.log('暂时播放不了，请等待');
+                    f.get('HasPlay').style.width = '0px';
                     if (!O.canplay) {
                         return;
                     }
@@ -115,6 +127,19 @@ let LinPlayer = (argOption, argType) => {
                     f.get('Player').volume = 1;
                 }
             };
+            //  全屏/退出全屏
+            f.get('Expand').onclick = () => {
+                if (!O.isFull) {
+                    console.log('全屏');
+                    O.videoStyle = f.get('Player').getAttribute('style');
+                    f.get('Player').setAttribute('style', '');
+                    f.addClass(f.get(), 'full-video');
+                } else {
+                    f.get('Player').setAttribute('style', O.videoStyle);
+                    f.removeClass(f.get(), 'full-video');
+                }
+                O.isFull = !O.isFull;
+            };
             // 进度拖拽
             f.get('PlayProgress').onmousedown = function(argEvent) {
                 var temThis = this;
@@ -135,11 +160,17 @@ let LinPlayer = (argOption, argType) => {
             };
             // 停止拖拽
             document.onmouseup = () => {
-                f.get('PlayProgress').onmousemove = null;
-                f.get('VolumeProgress').onmousemove = null;
+                console.log('停止拖拽');
+                let len = document.getElementsByClassName('play-progress').length;
+                for (let i = 0; i < len; i++) {
+                    document.getElementsByClassName('play-progress')[i].onmousemove = null;
+                }
+                len = document.getElementsByClassName('volume-progress').length;
+                for (let i = 0; i < len; i++) {
+                    document.getElementsByClassName('volume-progress')[i].onmousemove = null;
+                }
             };
         }
-        console.info('FUCK');
         console.log(O);
         return O;
     };
@@ -154,53 +185,58 @@ let LinPlayer = (argOption, argType) => {
          * @return {[type]}         [description]
          */
         f.initHtml = (argType) => {
-            var html = {
+            let html = {
                 audio: ``,
                 video: `
-            <div id="linVideo" class="lin-video">
-                <video id="linVideo-player" preload="auto" poster="https://s.cdpn.io/6035/vp_poster.jpg" src="">
+            <div id="${O.id}" class="lin-video">
+                <video id="${O.id}-player" preload="auto" style="${O.videoStyle}" poster="https://s.cdpn.io/6035/vp_poster.jpg" src="">
                     <p>你的浏览器不支持视频播放.</p>
                 </video>
                 <div class="video-bar">
-                    <div id="linVideo-play" class="v-play">
-                        <i id="linVideo-play-btn" class="fa fa-play" aria-hidden="true"></i>
-                        <i id="linVideo-pause-btn" class="fa fa-pause hide" aria-hidden="true"></i>
+                    <div id="${O.id}-play" class="v-play">
+                        <i id="${O.id}-play-btn" class="fa fa-play" aria-hidden="true"></i>
+                        <i id="${O.id}-pause-btn" class="fa fa-pause hide" aria-hidden="true"></i>
                     </div>
                     <div class="v-time">
-                        <span id="linVideo-currentTime" class="currentTime">00:00</span>
+                        <span id="${O.id}-currentTime" class="currentTime">00:00</span>
                         <span>/</span>
-                        <span id="linVideo-duration" class="duration">00:00</span>
+                        <span id="${O.id}-duration" class="duration">00:00</span>
                     </div>
                     <div class="v-progress">
-                        <div id="linVideo-play-progress" class="play-progress">
-                            <div id="linVideo-has-play" class="has-play"></div>
-                            <div id="linVideo-has-load" class="has-load"></div>
+                        <div id="${O.id}-play-progress" class="play-progress">
+                            <div id="${O.id}-has-play" class="has-play"></div>
+                            <div id="${O.id}-has-load" class="has-load"></div>
                         </div>
                     </div>
-                    <div id="linVideo-right-bar" class="right-bar">
-                        <div id="linVideo-volume" class="v-volume">
+                    <div id="${O.id}-right-bar" class="right-bar">
+                        <div id="${O.id}-volume" class="v-volume">
                             <div class="v-volume-btn">
-                                <i id="linVideo-volumeoff-btn" class="fa fa-volume-off hide" aria-hidden="true"></i>
-                                <i id="linVideo-volumedown-btn" class="fa fa-volume-down hide" aria-hidden="true"></i>
-                                <i id="linVideo-volumeup-btn" class="fa fa-volume-up" aria-hidden="true"></i>
+                                <i id="${O.id}-volumeoff-btn" class="fa fa-volume-off hide" aria-hidden="true"></i>
+                                <i id="${O.id}-volumedown-btn" class="fa fa-volume-down hide" aria-hidden="true"></i>
+                                <i id="${O.id}-volumeup-btn" class="fa fa-volume-up" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="v-volume-progress">
-                            <div id="linVideo-volume-progress" class="volume-progress">
-                                <div id="linVideo-now-volume" class="now-volume"></div>
+                            <div id="${O.id}-volume-progress" class="volume-progress">
+                                <div id="${O.id}-now-volume" class="now-volume"></div>
                             </div>
                         </div>
-                        <div class="v-expand">
-                            <i id="linVideo-expand" class="fa fa-expand" aria-hidden="true"></i>
+                        <div class="v-expand" id="${O.id}-expand">
+                            <i class="fa fa-expand" aria-hidden="true"></i>
                         </div>
                     </div>
                 </div>
             </div>`
-            }
-            let e = document.createElement('div');
-            let element = document.getElementsByTagName('body')[0];
+            };
+            let e = document.createElement('div'),
+                element;
             e.innerHTML = html[argType];
-            f.addClass(e, 'v-player');
+            if (O.fatherId) {
+                element = document.getElementById(O.fatherId);
+            } else {
+                f.addClass(e, 'v-player');
+                element = document.getElementsByTagName('body')[0];
+            }
             element.appendChild(e);
             // while (e.firstChild) {
             //     element.appendChild(e.firstChild);
@@ -254,6 +290,7 @@ let LinPlayer = (argOption, argType) => {
                     [id + 'VolumeoffBtn']: document.getElementById(id + '-volumeoff-btn'),
                     [id + 'VolumedownBtn']: document.getElementById(id + '-volumedown-btn'),
                     [id + 'VolumeupBtn']: document.getElementById(id + '-volumeup-btn'),
+                    [id + 'Expand']: document.getElementById(id + '-expand'),
                     'end': null
                 };
                 return ids;
@@ -413,7 +450,6 @@ let LinPlayer = (argOption, argType) => {
             let count = 0;
             console.log(f.get('Player').buffered);
             if (f.get('Player').buffered.length) {
-                console.log('FUCK');
                 console.log(f.get('Player').buffered.length);
                 for (let i = 0; i < f.get('Player').buffered.length; i++) {
                     count += f.get('Player').buffered.end(i) - f.get('Player').buffered.start(i);

@@ -10,9 +10,7 @@ function resolve(dir) {
 console.log('---------------\n', JSON.stringify(cssConfig));
 module.exports = {
     entry: {
-        index: './src/js/page/index.js',
-        list: './src/js/page/list.js',
-        about: './src/js/page/about.js',
+        index: './src/js/page',
     },
     output: {
         path: config.build.assetsRoot,
@@ -43,12 +41,6 @@ module.exports = {
             // 包括目录
             include: [resolve('src'), resolve('test')]
         }, {
-            // test: /\.scss$/,
-            // loader: 'style!css!sass!postcss'
-        }, {
-            // test: /\.(css|scss)$/,
-            // use: cssConfig.loaders1
-        }, {
             //html模板加载器，可以处理引用的静态资源，默认配置参数attrs=img:src，处理图片的src引用的资源
             //比如你配置，attrs=img:src img:data-src就可以一并处理data-src引用的资源了，就像下面这样
             test: /\.html$/,
@@ -71,4 +63,4 @@ module.exports = {
             }
         }]
     }
-}
+};
