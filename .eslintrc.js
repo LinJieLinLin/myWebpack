@@ -15,6 +15,10 @@ module.exports = {
     plugins: [
         'html'
     ],
+    "globals": {
+        "$": true,
+        "var2": false
+    },
     // add your custom rules here
     'rules': {
         // allow paren-less arrow functions
@@ -29,6 +33,7 @@ module.exports = {
         'semi': 0,
         // 关 不允许 var a,b 形式
         'one-var': 0,
+        'no-unused-vars':0,
         //关 缩进
         'indent': 0
     }

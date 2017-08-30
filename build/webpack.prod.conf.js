@@ -69,7 +69,7 @@ var webpackConfig = merge(baseWebpackConfig, {
             //favicon路径，通过webpack引入同时可以生成hash值
             favicon: './src/img/favicon.ico',
             //生成的html存放路径，相对于path
-            filename: './view/index.html',
+            filename: './index.html',
             //html模板路径
             template: './src/view/index.html',
             //js插入的位置，true/'head'/'body'/false
@@ -89,7 +89,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         //根据模板插入css/js等生成最终HTML
         new HtmlWebpackPlugin({
             favicon: './src/img/favicon.ico',
-            filename: './view/list.html',
+            filename: './list.html',
             template: './src/view/list.html',
             inject: true,
             hash: true,
@@ -101,7 +101,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         }),
         new HtmlWebpackPlugin({
             favicon: './src/img/favicon.ico',
-            filename: './view/about.html',
+            filename: './about.html',
             template: './src/view/about.html',
             inject: true,
             hash: true,

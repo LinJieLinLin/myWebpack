@@ -1,9 +1,10 @@
-import $ from 'jquery';
 import LinPlayer from '../common/lin-video.js';
+require('../common/test.js');
 require('../../css/lib/reset.css');
 require('../../css/common/global.css');
 require('../../css/common/grid.css');
 require('../../css/page/index.scss');
+require('font-awesome/css/font-awesome.css');
 $('.g-bd').append('<p class="text">这是由js生成的一句话。</p>');
 let temId = 'linVideo';
 let option = {

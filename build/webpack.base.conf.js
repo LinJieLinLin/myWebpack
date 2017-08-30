@@ -7,10 +7,12 @@ var cssConfig = require('./css-loader.conf')
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
-console.log('---------------\n', JSON.stringify(cssConfig));
+// console.log('---------------\n', JSON.stringify(cssConfig));
 module.exports = {
     entry: {
-        index: './src/js/page',
+        index: './src/js/page/index.js',
+        about: './src/js/page/about.js',
+        list: './src/js/page/list.js',
     },
     output: {
         path: config.build.assetsRoot,

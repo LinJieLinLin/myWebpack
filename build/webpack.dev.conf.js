@@ -34,10 +34,10 @@ module.exports = merge(baseWebpackConfig, {
         new webpack.optimize.CommonsChunkPlugin({
             // 将公共模块提取，生成名为`vendors`的chunk
             name: 'vendors',
-            //提取哪些模块共有的部分
-            chunks: ['index'],
-            // 提取至少3个模块共有的部分
-            minChunks: 3
+            //提取哪些模块共有的部分不填默认提取全部
+            chunks: ['index', 'list', 'about'],
+            // 提取至少3个模块共有的部分不填默认提取所有公共的部分
+            minChunks: 4
         }),
         // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
         new webpack.HotModuleReplacementPlugin(),
