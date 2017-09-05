@@ -1,22 +1,23 @@
-var path = require('path')
-var utils = require('./utils')
-var webpack = require('webpack')
-var config = require('../config')
-var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.conf')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+let path = require('path');
+let utils = require('./utils');
+let webpack = require('webpack');
+let config = require('../config');
+let merge = require('webpack-merge');
+let baseWebpackConfig = require('./webpack.base.conf');
+let CopyWebpackPlugin = require('copy-webpack-plugin');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+
 /*
 extract-text-webpack-plugin插件，
 有了它就可以将你的样式提取到单独的css文件里，
 妈妈再也不用担心样式会被打包到js文件里了。
  */
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 
-var env = config.build.env
+let env = config.build.env;
 
-var webpackConfig = merge(baseWebpackConfig, {
+let webpackConfig = merge(baseWebpackConfig, {
     module: {
         rules: utils.styleLoaders({
             sourceMap: config.build.productionSourceMap,
@@ -38,8 +39,20 @@ var webpackConfig = merge(baseWebpackConfig, {
             'process.env': env
         }),
         new webpack.optimize.UglifyJsPlugin({
+            // 最紧凑的输出
+            beautify: false,
+            // 删除所有的注释
+            comments: false,
             compress: {
-                warnings: false
+                // 在UglifyJs删除没有用到的代码时不输出警告  
+                warnings: false,
+                // 删除所有的 `console` 语句
+                // 还可以兼容ie浏览器
+                // drop_console: true,
+                // 内嵌定义了但是只用到一次的变量
+                // collapse_lets: true,
+                // 提取出出现多次但是没有定义成变量去引用的静态值
+                // reduce_lets: true,
             },
             sourceMap: true
         }),
@@ -118,10 +131,10 @@ var webpackConfig = merge(baseWebpackConfig, {
             ignore: ['.*']
         }])
     ]
-})
+});
 
 if (config.build.productionGzip) {
-    var CompressionWebpackPlugin = require('compression-webpack-plugin')
+    let CompressionWebpackPlugin = require('compression-webpack-plugin');
 
     webpackConfig.plugins.push(
         new CompressionWebpackPlugin({
@@ -135,12 +148,12 @@ if (config.build.productionGzip) {
             threshold: 10240,
             minRatio: 0.8
         })
-    )
+    );
 }
 
 if (config.build.bundleAnalyzerReport) {
-    var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-    webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+    let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+    webpackConfig.plugins.push(new BundleAnalyzerPlugin());
 }
 
-module.exports = webpackConfig
+module.exports = webpackConfig;

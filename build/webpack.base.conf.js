@@ -1,12 +1,18 @@
-var path = require('path')
-var utils = require('./utils')
-var config = require('../config')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var cssConfig = require('./css-loader.conf')
+var path = require('path');
+var utils = require('./utils');
+var config = require('../config');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var cssConfig = require('./css-loader.conf');
+let minimist = require('minimist');
+let argv = minimist(process.argv.slice(2));
+console.log('--------------');
+console.log(argv);
 
+// 获取正确路径
 function resolve(dir) {
-    return path.join(__dirname, '..', dir)
+    return path.join(__dirname, '..', dir);
 }
+
 // console.log('---------------\n', JSON.stringify(cssConfig));
 module.exports = {
     entry: {
@@ -21,11 +27,16 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.json'],
+        // 指定node_modules路径，防止向上查找
+        modules: [resolve('node_modules')],
+        // 配置路径映射
         alias: {
             '@': resolve('src'),
         }
     },
     module: {
+        // 不解析这些文件的依赖
+        noParse: /node_modules\/(jquey|moment|chart\.js)/,
         rules: [{
             test: /\.js$/,
             loader: 'eslint-loader',
@@ -37,7 +48,8 @@ module.exports = {
             }
         }, {
             test: /\.js$/,
-            loader: 'babel-loader',
+            // 开启 babel-loader 缓存
+            loader: 'babel-loader?cacheDirectory',
             // 不包括目录
             // exclude: [],
             // 包括目录

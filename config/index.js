@@ -1,5 +1,5 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
+var path = require('path');
 
 module.exports = {
   build: {
@@ -21,12 +21,13 @@ module.exports = {
     // View the bundle analyzer report after build finishes:
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
-    bundleAnalyzerReport: process.env.npm_config_report
+    bundleAnalyzerReport: process.env.npm_config_report,
+    pages: require('./page.js').build
   },
   dev: {
     env: require('./dev.env'),
     // 端口
-    port: 2223,
+    port: 1001,
     // 自动打开浏览器
     autoOpenBrowser: false,
     // 资源子目录 除了index.html，其余的js img css都分在这里
@@ -39,6 +40,7 @@ module.exports = {
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
-    cssSourceMap: false
+    cssSourceMap: false,
+    pages: require('./page.js').dev
   }
-}
+};
