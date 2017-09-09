@@ -15,9 +15,12 @@ module.exports = {
     plugins: [
         'html'
     ],
-    "globals": {
-        "$": true,
-        "var2": false
+    'globals': {
+        '$': true,
+        'UINFO': true,
+        'DYCONFIG': true,
+        'rcpAid': true,
+        'angular': true
     },
     // add your custom rules here
     'rules': {
@@ -33,8 +36,16 @@ module.exports = {
         'semi': 0,
         // 关 不允许 var a,b 形式
         'one-var': 0,
-        'no-unused-vars':0,
+        'no-unused-vars': 0,
+        // 关 不允许obj有多余,
+        'comma-dangle': 0,
+        // 关 最后一行必须留空
+        'eol-last':0,
+        // 关 禁止在条件中使用常量表达式
+        'no-constant-condition': 0,
+        // 关 禁止在字符串和注释之外不规则的空白
+        'no-irregular-whitespace': 0,
         //关 缩进
         'indent': 0
     }
-}
+};

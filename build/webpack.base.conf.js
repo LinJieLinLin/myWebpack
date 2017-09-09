@@ -5,6 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var cssConfig = require('./css-loader.conf');
 let minimist = require('minimist');
 let argv = minimist(process.argv.slice(2));
+let entryObj = config.getEntry(argv._);
 console.log('--------------');
 console.log(argv);
 
@@ -15,11 +16,7 @@ function resolve(dir) {
 
 // console.log('---------------\n', JSON.stringify(cssConfig));
 module.exports = {
-    entry: {
-        index: './src/js/page/index.js',
-        about: './src/js/page/about.js',
-        list: './src/js/page/list.js',
-    },
+    entry: entryObj,
     output: {
         path: config.build.assetsRoot,
         filename: '[name].js',

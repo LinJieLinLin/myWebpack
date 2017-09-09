@@ -22,7 +22,8 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report,
-    pages: require('./page.js').build
+    // 获取构建页面
+    pages: require('./page.js').dev
   },
   dev: {
     env: require('./dev.env'),
@@ -32,7 +33,7 @@ module.exports = {
     autoOpenBrowser: false,
     // 资源子目录 除了index.html，其余的js img css都分在这里
     assetsSubDirectory: '.',
-    // 项目目录 一个杠杠 啥意思呢，是根目录的意思
+    // 项目目录,根目录
     assetsPublicPath: '/',
     proxyTable: {},
     // CSS Sourcemaps off by default because relative paths are "buggy"
@@ -42,5 +43,7 @@ module.exports = {
     // just be aware of this issue when enabling this option.
     cssSourceMap: false,
     pages: require('./page.js').dev
-  }
+  },
+  // 获取chunks列表
+  getEntry: require('./page.js').getEntry
 };
