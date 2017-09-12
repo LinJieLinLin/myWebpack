@@ -20,6 +20,7 @@ module.exports = {
         'UINFO': true,
         'DYCONFIG': true,
         'rcpAid': true,
+        'moment': true,
         'angular': true
     },
     // add your custom rules here
