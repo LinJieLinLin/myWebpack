@@ -1,4 +1,4 @@
-let HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
 // 页面配置obj
 let pageObj = {},
     // 页面配置arr
@@ -9,30 +9,29 @@ let pageObj = {},
         'service': './src/common/service.js',
     };
 pageObj = {
-    // 首页 key为chunksName;
-    'index': {
-        main: './src/js/page/index.js',
+    // UI库
+    'ui': {
+        main: './src/ui/src/index.js',
         filename: './index.html',
-        template: './src/view/index.html',
-        chunks: ['vendors', 'index', 'jquery'],
+        template: './src/ui/src/index.html',
+        chunks: ['libs', 'service', 'ui'],        
     },
-    // 登陆页
-    'login': {
-        main: './src/sso/login/login.js',
-        filename: './login.html',
-        template: './src/sso/index.html',
-        chunks: ['libs', 'service', 'login'],
-    },
-    // 列表页
-    'list': {
-        main: './src/js/page/list.js',
-        filename: './list.html',
-        template: './src/view/list.html',
-        chunks: ['vendors', 'list', 'jquery'],
+    // test
+    'test': {
+        main: './src/directive/test.js',
+        filename: './test.html',
+        template: './src/directive/test.html',
+        chunks: ['libs', 'service', 'test'],
     }
 };
+// 获取正确路径
+function resolve(dir) {
+    return path.join(__dirname, '..', dir);
+}
 // 获取页面配置arr
 Object.keys(pageObj).forEach(function(key) {
+    pageObj[key].main = resolve(pageObj[key].main);
+    console.log(pageObj[key].main);
     pageArr.push(pageObj[key]);
 });
 let entryFn = (argPageList) => {

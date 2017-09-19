@@ -16,7 +16,11 @@ module.exports = {
         'html'
     ],
     'globals': {
+        'DY': true,
+        'DYC': true,
+        'DIR': true,
         '$': true,
+        'ars': true,
         'UINFO': true,
         'DYCONFIG': true,
         'rcpAid': true,
@@ -41,11 +45,13 @@ module.exports = {
         // 关 不允许obj有多余,
         'comma-dangle': 0,
         // 关 最后一行必须留空
-        'eol-last':0,
+        'eol-last': 0,
         // 关 禁止在条件中使用常量表达式
         'no-constant-condition': 0,
         // 关 禁止在字符串和注释之外不规则的空白
         'no-irregular-whitespace': 0,
+        // 关 禁用行尾空格
+        'no-trailing-spaces': 0,
         //关 缩进
         'indent': 0
     }

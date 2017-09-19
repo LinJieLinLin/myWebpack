@@ -1,13 +1,15 @@
-var path = require('path');
-var utils = require('./utils');
-var config = require('../config');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var cssConfig = require('./css-loader.conf');
+let path = require('path');
+let webpack = require('webpack');
+let utils = require('./utils');
+let config = require('../config');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+let sprite = require('sprite-webpack-plugin');
+let cssConfig = require('./css-loader.conf');
 let minimist = require('minimist');
 let argv = minimist(process.argv.slice(2));
 let entryObj = config.getEntry(argv._);
-console.log('--------------');
-console.log(argv);
+console.log('cmd:', argv);
 
 // 获取正确路径
 function resolve(dir) {
@@ -29,6 +31,8 @@ module.exports = {
         // 配置路径映射
         alias: {
             '@': resolve('src'),
+            'lib': resolve('node_modules'),
+            'ui': resolve('src/ui/src')
         }
     },
     module: {
@@ -36,26 +40,33 @@ module.exports = {
         noParse: /node_modules\/(jquey|moment|chart\.js)/,
         rules: [{
             test: /\.js$/,
-            loader: 'eslint-loader',
-            enforce: "pre",
-            include: [resolve('src'), resolve('test')],
-            options: {
-                formatter: require('eslint-friendly-formatter'),
-                // loaders: cssConfig.cssLoaders1
-            }
-        }, {
-            test: /\.js$/,
-            // 开启 babel-loader 缓存
-            loader: 'babel-loader?cacheDirectory',
+            use: [{
+                loader: 'ng-annotate-loader',
+                options: {
+                    add: true,
+                    map: false,
+                }
+            }, {
+                // 开启 babel-loader 缓存
+                loader: 'babel-loader?cacheDirectory',
+            }, {
+                loader: 'eslint-loader',
+                options: {
+                    formatter: require('eslint-friendly-formatter'),
+                    // loaders: cssConfig.cssLoaders1
+                }
+            }],
             // 不包括目录
             // exclude: [],
             // 包括目录
             include: [resolve('src'), resolve('test')]
         }, {
-            //html模板加载器，可以处理引用的静态资源，默认配置参数attrs=img:src，处理图片的src引用的资源
-            //比如你配置，attrs=img:src img:data-src就可以一并处理data-src引用的资源了，就像下面这样
+            // html模板加载器，可以处理引用的静态资源，默认配置参数attrs=img:src，处理图片的src引用的资源
+            // 比如你配置，attrs=img:src img:data-src就可以一并处理data-src引用的资源了，就像下面这样
             test: /\.html$/,
-            use: "html-loader?attrs=img:src img:data-src"
+            use: [
+                { loader: 'html-loader?attrs=img:src img:data-src' }
+            ]
         }, {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
             loader: 'url-loader',
@@ -73,5 +84,25 @@ module.exports = {
                 name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
             }
         }]
-    }
+    },
+    'plugins': [
+        // 雪碧图
+        new sprite({
+            'source': resolve('src/static/sprite/common'),
+            'imgPath': resolve('src/static/sprite'),
+            'cssPath': resolve('src/static/sprite'),
+            'baseName': 'common',
+        }),
+        // 加载jq
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            'window.jQuery': 'jquery',
+            jQuery: 'jquery',
+            _: 'lodash'
+        }),
+        new LodashModuleReplacementPlugin({
+            'collections': true,
+            'paths': true
+        })
+    ]
 };
