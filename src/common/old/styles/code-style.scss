@@ -1,0 +1,16 @@
+// 文本过长自动换行
+body {
+    word-break: break-all;
+}
+//处理在移动端的移动
+div.sourceCode {
+    overflow-x: inherit;
+}
+// 处理背景
+pre.sourceCode {
+    display: inline-block;
+    min-width: 100%;
+}
+img{
+    max-width: 100%;
+}

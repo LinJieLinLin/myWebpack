@@ -1,0 +1,9 @@
+.icon-chat {
+  display: inline-block;
+  background-position: -2px -2px;
+  background-repeat: no-repeat;
+  width: 29px;
+  height: 26px;
+  background-image: url('sprite-common.png');
+}
+

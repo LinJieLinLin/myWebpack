@@ -1,0 +1,24 @@
+.dy-g-tips {
+    position: fixed;
+    left: 50%;
+    top: 4px;
+    z-index: 1000000;
+    transform: translate(-50%, 0);
+    max-width: 90%;
+    .t-m {
+        padding: 10px 20px;
+        min-height: 20px;
+        min-width: 200px;
+        max-width: 90%;
+        border-radius: 4px;
+        animation-duration: 1s;
+        background-color: #fff;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.20);
+        border-radius: 4px;
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+    .msg {
+        font-size: 16px;
+    }
+}

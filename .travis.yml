@@ -1,0 +1,32 @@
+language: node_js
+node_js: stable
+# Travis-CI Caching
+cache:
+  directories:
+    - node_modules
+    # - libs
+# S: Build Lifecycle
+before_install:
+  - ls
+  - pwd
+install:
+  - yarn
+script:
+  - npm run build
+after_script:
+  - cd dist
+  - git init
+  - git config user.name "LinJieLinLin"
+  - git config user.email "993353454@qq.com"
+  - git add .
+  - git commit -m "auto build"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_URL}" master:gh-pages
+# E: Build LifeCycle
+
+branches:
+  only:
+    - master
+env:
+ global:
+  - GH_URL: "github.com/LinJieLinLin/myWebpack.git"
+  - secure: "sxoBD3YVje59Tubvv2qHa0ZFs0pICeiq3dncct8XqcRS4E9iRZC0CKfC2uG59AmcuEjGbwgIekw7GaFkJGLFjlhggBU3EIqS/iGRlE7Z2cB6udlx4CE7vNtxMaAtJ0pXgkTH4wqD2QIClXHLdOLVLKhcI/sVzfMBLB/zg1lLsNbhqU2gKNHux3BgLSVAgqdUpnYmhJO4WSobgZprswrc1eyVZVAbakzDoHGPlTMntzmkLwMrLP8c35YU2Pea5E2ohVYorLgDmYRfNjJopyuV0WYuacXURCkK9EX29gOZg4Ih1qIXPBqDIIQjTO7ypQFra6g0q4MGFA1Tbc04hdcBwFcJPCUqPKF+ERbCxponsGvO6MpGCoUBkxIWxKf/QRpfSNh3SWavGRAzWfXqsscCeN9g0+ODp7V6wfDoz1gGeBgzMyM0JUL58tH7I0lBp1ryk7UjU2z7NTfoe+5PzF+TQVwQtMOiFNcwVmtXMLc2JDJee7pGz2Aw+VgsT+wsXL3Fg/jerW+z+r/dk2LsVL6qqP51wuaGyncOeOy/cwWwOgipZgWyunweeGJdpXFeBumlp8SgUSzbWIuKn8r2QqBIC4z+7gPHTFPNC7Ted+nU9lQW2Kbwt8zJsfxNNtXc1uDgQUUYySwGWIyQ43RF9+MAN/eOgnyGMj0Hqv/weyEAtgc="

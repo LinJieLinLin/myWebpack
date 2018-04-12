@@ -1,0 +1,9 @@
+node_modules/
+dist/
+/src/ui
+/src/directive
+/src/static/sprite/sprite-*.*
+/*.log
+/*.log.*
+/.vscode
+/yarn.*

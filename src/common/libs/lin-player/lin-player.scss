@@ -1,0 +1,626 @@
+// lin-video
+@mixin iCB($old:false) {
+    @if $old {
+        &:before,
+        &:after {
+            content: "";
+            display: table;
+            font: 0/0 a;
+        }
+    }
+    @else {
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    }
+}
+
+// 播放条颜色
+$playColor:#4493F7;
+// 已加载进度颜色
+$loadColor: #ccc;
+// 进度条底色
+$progressColor: #DADADA;
+$fontColor: #fff;
+// 工具栏高度 
+$barHeight: 40px;
+// 音频 左下角样式
+$audioHeight:30px;
+$audioHeight50:50px;
+// 进度条
+%playProgress {
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    &::before {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 0;
+        width: 100%;
+        height: 2px;
+        transform: translate(-50%, -50%);
+        background-color: $progressColor;
+        content: "";
+    }
+    // 已经播放
+    .has-play {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        z-index: 2;
+        width: 0%;
+        height: 2px;
+        transform: translate(0, -50%);
+        background-color: $playColor;
+        &:before {
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            z-index: 1;
+            transform: translate(0, -50%);
+            height: 10px;
+            width: 10px;
+            border-radius: 100%;
+            background-color: $playColor;
+            content: "";
+        }
+    }
+    // 已加载
+    .has-load {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        z-index: 1;
+        width: 0%;
+        height: 2px;
+        transform: translate(0, -50%);
+        background-color: $loadColor;
+    }
+}
+
+// 音频通用样式
+.lin-audio {
+    height: 30px;
+    line-height: 30px;
+    .hide {
+        display: none;
+    }
+    .loading {
+        position: absolute;
+        right: -10px;
+        top: 50%;
+        z-index: 1;
+        border-radius: 100%;
+        transform: translate(0, -50%);
+        height: 20px;
+        width: 20px;
+        span {
+            border-radius: 20px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            border: 2px solid #4b9cdb;
+            opacity: 0;
+            animation: Cscale 3s ease-out infinite;
+            &:nth-child(2) {
+                animation-delay: 2s;
+            }
+            &:nth-child(3) {
+                animation-delay: 1s;
+            }
+        }
+    }
+    @keyframes Cscale {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        70% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            transform: scale(1);
+        }
+    }
+}
+
+// 视频通用样式
+.lin-video {
+    min-width: 320px;
+    min-height: 240px;
+    >video {
+        width: 480px;
+        height: 240px;
+        background-color: #000;
+    }
+    .hide {
+        display: none;
+    }
+    .loading {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 100;
+        transform: translate(-50%, -50%);
+        >span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            margin: 0 2px;
+            background-color: #fff;
+            &:nth-last-child(1) {
+                animation: Cloading .6s .1s linear infinite;
+            }
+            &:nth-last-child(2) {
+                animation: Cloading .6s .2s linear infinite;
+            }
+            &:nth-last-child(3) {
+                animation: Cloading .6s .3s linear infinite;
+            }
+        }
+    }
+    @keyframes Cloading {
+        0% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(0, 15px);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+}
+
+// 默认主题
+%linDef,
+.lin-def {
+    user-select: none;
+    position: relative;
+    height: inherit;
+    // 视频全屏样式
+    &.lin-full-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999999999;
+        >video {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    // 工具条样式
+    .tool-bar {
+        display: none;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 0.5);
+        height: $barHeight;
+        line-height: $barHeight;
+        width: 100%;
+        color: $fontColor;
+        >div {
+            height: 100%;
+        }
+    }
+    &:hover {
+        .tool-bar {
+            display: block;
+        }
+    }
+    i {
+        vertical-align: baseline;
+    }
+    // 播放
+    .l-play {
+        position: absolute;
+        z-index: 1;
+        cursor: pointer;
+        width: 30px;
+        text-align: right;
+    }
+    // 时间显示
+    .l-time {
+        position: absolute;
+        left: 40px;
+        z-index: 1;
+        width: 90px;
+        text-align: center;
+        font-size: 14px;
+    }
+    // 进度条父元素
+    .l-progress {
+        padding-left: 142px;
+        padding-right: 30%;
+        position: relative;
+    }
+    // 错误提示语样式
+    .l-msg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1001;
+        transform: translate(-50%, -50%);
+        font-size: 26px;
+        color: $fontColor;
+    }
+    // 进度条样式
+    .play-progress {
+        @extend %playProgress;
+    }
+    // 右边工具条
+    .right-bar {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        width: 29%;
+    }
+    // 音量
+    .l-volume {
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        cursor: pointer;
+        width: 30px;
+        height: 100%;
+        text-align: right;
+    }
+    // 音量按钮
+    .l-volume-btn {
+        width: 15px;
+        text-align: left;
+        display: inline-block;
+    }
+    // 音量进度条父
+    .l-volume-progress {
+        padding-left: 40px;
+        padding-right: 50px;
+        height: 100%;
+        position: relative;
+    }
+    // 音量进度条父
+    .volume-progress {
+        cursor: pointer;
+        height: 100%;
+        padding: 0;
+        position: relative;
+        &::before {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 0;
+            width: 100%;
+            height: 2px;
+            transform: translate(-50%, -50%);
+            background-color: #666;
+            content: "";
+        }
+        .now-volume {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            z-index: 2;
+            width: 100%;
+            height: 2px;
+            transform: translate(0, -50%);
+            background-color: $playColor;
+            &:before {
+                position: absolute;
+                right: -5px;
+                top: 50%;
+                z-index: 1;
+                transform: translate(0, -50%);
+                height: 10px;
+                width: 10px;
+                border-radius: 100%;
+                background-color: $playColor;
+                content: "";
+            }
+        }
+    }
+    // 视频全屏
+    .l-expand {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        cursor: pointer;
+        width: 30px;
+        height: 100%;
+        text-align: left;
+    }
+    &.lin-audio {
+        height: $audioHeight;
+        line-height: $audioHeight;
+        .l-volume-progress {
+            padding-right: 20px;
+        }
+        .tool-bar {
+            display: block;
+            background-color: #FAFAFA;
+            color: #5A5A5A;
+            height: $audioHeight;
+            line-height: $audioHeight;
+        }
+        .play-progress::before {
+            background-color: #dadada;
+        }
+        .play-progress .has-load {
+            background-color: #5A5A5A;
+        }
+        .l-msg {
+            display: none;
+        }
+    }
+}
+
+// 右下角播放器样式
+$bgc:#12232E;
+.lin-a-mutl {
+    user-select: none;
+    width: 400px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 9999;
+    background-color: $bgc;
+    height: $audioHeight50;
+    color: $fontColor;
+    padding-left: 15px;
+    padding-right: 30px;
+    i {
+        cursor: pointer;
+        display: inline-block;
+        min-width: 30px;
+    }
+    .hide {
+        display: none;
+    }
+    .a-body {
+        height: 30px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 45px;
+        padding-right: 80px;
+        position: relative;
+    }
+    .a-face {
+        position: absolute;
+        left: 0px;
+        top: 0;
+        z-index: 0;
+        width: 30px;
+        height: 100%;
+        >img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .a-content {
+        position: relative;
+        height: 100%;
+    }
+    .a-title {
+        padding-right: 90px;
+        position: relative;
+        font-size: 14px;
+        line-height: 19px;
+    }
+    .a-time {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 0;
+        font-size: 14px;
+        color: #576168;
+    }
+    .a-msg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        background-color: $bgc;
+    }
+    .a-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        cursor: pointer;
+        border-radius: 2px;
+        width: 100%;
+        height: 2px;
+        background-color: #595959;
+        >div:first-child {
+            position: absolute;
+            left: 0;
+            z-index: 1;
+            height: 100%;
+            width: 0px;
+            background-color: $playColor;
+            &:before {
+                position: absolute;
+                right: -5px;
+                top: 50%;
+                z-index: 1;
+                transform: translate(0, -50%);
+                height: 10px;
+                width: 10px;
+                border-radius: 100%;
+                background-color: $playColor;
+                content: "";
+            }
+        }
+        .load {
+            position: absolute;
+            left: 0;
+            z-index: 0;
+            height: 100%;
+            width: 0px;
+            background-color: #9c9c9c;
+        }
+    }
+    .play-progress {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 50%;
+        &::before {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #666;
+            content: "";
+        }
+        .has-play {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 2;
+            width: 0%;
+            height: 2px;
+            background-color: $playColor;
+            &:before {
+                position: absolute;
+                right: -5px;
+                top: 50%;
+                z-index: 1;
+                height: 10px;
+                width: 10px;
+                border-radius: 100%;
+                transform: translate(0, -50%);
+                background-color: $playColor;
+                content: "";
+            }
+        }
+        .has-load {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 1;
+            width: 0%;
+            height: 2px;
+            background-color: #ccc;
+        }
+    }
+    .a-toolbar {
+        position: absolute;
+        right: 0px;
+        top: 0;
+        z-index: 0;
+        >div {
+            float: left;
+            line-height: 30px;
+        }
+    }
+    .a-close {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        z-index: 100;
+        transform: translate(0, -50%);
+        font-size: 20px;
+        width: 20px;
+        text-align: center;
+        background-color: #03080B;
+        height: 100%;
+        line-height: $audioHeight50;
+        cursor: pointer;
+    }
+    .a-volume {
+        position: relative;
+        .volume {
+            display: none;
+            // display: block;
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            z-index: 0;
+            cursor: pointer;
+            height: 110px;
+            width: 25px;
+            background-color: #03080B;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            &:hover {
+                display: block;
+            }
+        }
+        .volume-progress {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100px;
+            transform: translate(0, -50%);
+            >div {
+                position: absolute;
+                left: 50%;
+                bottom: 0px;
+                z-index: 0;
+                transform: translate(-50%, 0%);
+                height: 100%;
+                width: 2px;
+                margin: auto;
+                background-color: $playColor;
+                &:before {
+                    position: absolute;
+                    top: -5px;
+                    left: 50%;
+                    z-index: 1;
+                    transform: translate(-50%, 0);
+                    height: 10px;
+                    width: 10px;
+                    border-radius: 100%;
+                    background-color: $playColor;
+                    content: "";
+                }
+            }
+        }
+        &:hover {
+            .volume {
+                display: block;
+            }
+        }
+    }
+}
+
+// 只有进度条和时间的样式，要放在fid的class里
+.lin-a-min {
+    .l-time {
+        left: auto;
+        right: 0;
+    }
+    .l-progress {
+        padding-left: 5px;
+        padding-right: 100px;
+    }
+    .l-play,
+    .right-bar {
+        display: none;
+    }
+    .lin-audio .tool-bar {
+        background-color: transparent;
+    }
+}

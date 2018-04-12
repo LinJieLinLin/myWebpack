@@ -1,0 +1,600 @@
+@mixin triangle($position, $size, $color) {
+    &:after {
+        position: absolute;
+    }
+}
+
+@mixin border ($position, $color) {
+    @if $position==full {
+        border: 1px solid $color;
+    }
+    @else {
+        border-#{$position}: 1px solid $color;
+    }
+}
+
+@mixin course-card($item-width:220px, $item-min-height:180px, $item-margin:0 0 18px 25px, $mgw-margin-left:-25px, $img-width:100%, $img-height:124px) {
+    .c {
+        padding: 2px 5px;
+        box-sizing: border-box;
+        position: relative;
+    }
+    .mgw {
+        margin-left: $mgw-margin-left;
+    }
+    .item {
+        position: relative;
+        float: left;
+        width: $item-width;
+        min-height: $item-min-height;
+        line-height: 20px;
+        cursor: default;
+        margin: $item-margin;
+        transition: transform .3s ease-out, background .3s, box-shadow .3s;
+    }
+    .img {
+        width: $img-width;
+        height: $img-height;
+        cursor: pointer;
+    }
+    .title {
+        display: block;
+        font-size: 14px;
+        color: #333;
+        padding: 3px 0;
+        cursor: pointer;
+        >a {
+            color: #333;
+            &:hover {
+                color: #0095CE;
+                text-decoration: underline;
+            }
+        }
+    }
+    .uname {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: top;
+        max-width: 35%;
+        text-overflow: ellipsis;
+        word-wrap: normal;
+        white-space: nowrap;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .big-c {
+        float: left;
+        width: 465px;
+        min-height: 378px;
+        background-color: #f2f2f2;
+        position: relative;
+        transition: transform .3s ease-out, background .3s, box-shadow .3s;
+        cursor: default;
+        .c {
+            padding: 18px 20px 0;
+            box-sizing: border-box;
+            font-size: 16px;
+            line-height: 25px;
+            position: relative;
+        }
+        .img {
+            width: 100%;
+            height: 262px;
+        }
+        .title {
+            font-size: 20px;
+            padding: 8px 0;
+        }
+    }
+    .list {
+        margin-left: 465px;
+    }
+    .item:hover,
+    .big-c:hover {
+        background: white;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .3);
+        z-index: 2;
+        .echo-img.visible,
+        .echo-img.visible {
+            background: #014588;
+        }
+    }
+    .shadow {
+        position: absolute;
+        left: -10px;
+        top: -10px;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        background: white;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .3), 0 -1px 0 rgba(0, 0, 0, .1);
+        transition: opacity .35s, transform .35s;
+        display: none;
+    }
+}
+
+// linjie add
+
+/**
+ * 设置上传相关
+ * @return {[type]}
+ */
+
+@mixin oUploadStyle() {
+    .percent-bar {
+        width: 400px;
+        height: 30px;
+        border: 1px solid #27dea3;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+        >span {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #4493f7;
+        }
+        >div {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            line-height: 30px;
+            text-align: center;
+            color: #444;
+        }
+        .control-text {
+            position: absolute;
+            z-index: 1;
+            left: 100%;
+            top: 0;
+            width: 40px;
+            height: 30px;
+            line-height: 30px;
+        }
+    }
+    .control-text {
+        margin-left: 20px;
+        color: #2da4ff;
+        cursor: pointer;
+    }
+    .upload-cancel {
+        position: absolute;
+        top: 0;
+        right: -80px;
+        z-index: 1;
+        height: 30px;
+        line-height: 30px;
+    }
+    // 下载预览按钮
+    .control-text {
+        margin-left: 20px;
+        color: #2da4ff;
+        cursor: pointer;
+        vertical-align: baseline;
+    }
+    .line-height-30 {
+        min-height: 30px;
+        line-height: 30px;
+    }
+    // 换行
+    .name-break{
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+}
+
+
+/**
+ * 设置input hover and focus
+ * @param  {[type]} $hColor:#4d90fe [description]
+ * @param  {[type]} $fColor:$hColor [description]
+ * @return {[type]}                 [description]
+ */
+
+@mixin iHoverBorder($hColor:#4d90fe, $fColor:$hColor) {
+    box-shadow: 0 0 0 gray;
+    &.ng-invalid-max,
+    &.ng-invalid-min,
+    &.ng-invalid-number,
+    &.ng-invalid-pattern {
+        border: 1px solid #f83030;
+    }
+    &:hover {
+        border: 1px solid $hColor;
+        &.ng-invalid-max,
+        &.ng-invalid-min,
+        &.ng-invalid-number,
+        &.ng-invalid-pattern {
+            border: 1px solid #f83030;
+        }
+    }
+    &:focus {
+        border: 1px solid $fColor;
+        &.ng-invalid-max,
+        &.ng-invalid-min,
+        &.ng-invalid-number,
+        &.ng-invalid-pattern {
+            border: 1px solid #f83030;
+        }
+    }
+}
+
+
+/**
+ * [oFsSet 设置12到40px 的字体大小相隔2pxeg:fs-12]
+ * @param  {[type]} $l:14    [长度]
+ * @param  {[type]} $mul:2   [间隔]
+ * @param  {[type]} $unit:px [单位]
+ * @param  {[type]} $d:12    [最小字体大小]
+ * @return {[type]}          [description]
+ */
+
+@mixin oFsSet($l:14, $mul:2, $unit:px, $d:12) {
+    @for $fs from 0 through $l {
+        .fs-#{$d+$fs*$mul} {
+            font-size: $d+$fs*$mul+$unit;
+        }
+    }
+}
+
+
+/**
+ * [oPdMgSet 默认设置10到40的各个ppadding margin]
+ * @param  {[type]} $max:4   [基数]
+ * @param  {[type]} $mul:10  [倍数]
+ * @param  {[type]} $unit:px [单位]
+ * @return {[type]}          [description]
+ */
+
+@mixin oPdMgSet($max:4, $mul:10, $unit:px) {
+    @for $padding-size from 1 through $max {
+        .pd-t#{$padding-size*$mul} {
+            padding-top: $padding-size * $mul+$unit;
+        }
+        .pd-r#{$padding-size*$mul} {
+            padding-right: $padding-size * $mul+$unit;
+        }
+        .pd-b#{$padding-size*$mul} {
+            padding-bottom: $padding-size * $mul+$unit;
+        }
+        .pd-l#{$padding-size*$mul} {
+            padding-left: $padding-size * $mul+$unit;
+        }
+        .pd-x#{$padding-size*$mul} {
+            padding: 0 $padding-size * $mul+$unit;
+        }
+        .pd-y#{$padding-size*$mul} {
+            padding: $padding-size * $mul+$unit 0;
+        }
+        .pd-f#{$padding-size*$mul} {
+            padding: $padding-size * $mul+$unit;
+        }
+        .mg-t#{$padding-size*$mul} {
+            margin-top: $padding-size * $mul+$unit;
+        }
+        .mg-r#{$padding-size*$mul} {
+            margin-right: $padding-size * $mul+$unit;
+        }
+        .mg-l#{$padding-size*$mul} {
+            margin-left: $padding-size * $mul+$unit;
+        }
+        .mg-b#{$padding-size*$mul} {
+            margin-bottom: $padding-size * $mul+$unit;
+        }
+        .mg-x#{$padding-size*$mul} {
+            margin: 0 $padding-size * $mul+$unit;
+        }
+        .mg-y#{$padding-size*$mul} {
+            margin: $padding-size * $mul+$unit 0;
+        }
+        .mg-f#{$padding-size*$mul} {
+            margin: $padding-size * $mul+$unit;
+        }
+    }
+}
+
+
+/**
+ * [iBtnBgColor 设置btn背景加hover,active时变亮变暗]
+ * @param  {[type]} $color:gray     [初始颜色]
+ * @param  {[type]} $hover:2        [hover颜色或百分比]
+ * @param  {[type]} $active:10      [active颜色或百分比]
+ * @param  {[type]} $type:1         [=0使用传入的颜色，>1变亮，<1变暗]
+ * @param  {[type]} $time:1         [动画时间 eg:0.3s]
+ * @param  {[type]} $animation:1    [动画属性 eg: ease]
+ * @return {[type]}             [description]
+ */
+
+@mixin iBtnBgColor($color:gray, $hover:2, $active:10, $type:1, $time:0.3s, $animation:ease) {
+    background-color: $color;
+    &:hover {
+        @if $type==0 {
+            background-color: $hover
+        }
+        @if $type>0 {
+            background-color: lighten($color, $hover)
+        }
+        @if $type<0 {
+            background-color: darken($color, $hover)
+        }
+        transition: all $time $animation;
+    }
+    &:active {
+        @if $type==0 {
+            background-color: $active
+        }
+        @if $type>0 {
+            background-color: lighten($color, $active)
+        }
+        @if $type<0 {
+            background-color: darken($color, $active)
+        }
+    }
+}
+
+
+/**
+ * [iBorder 设置BORDER]
+ * @param  {[type]} $p:full      [description]
+ * @param  {[type]} $c:gray      [description]
+ * @param  {[type]} $style:solid [dotted solid double dashed;]
+ * @param  {[type]} $width:1px   [description]
+ * @return {[type]}              [description]
+ */
+
+@mixin iBorder ($p:all, $width:1px, $style:solid, $c:gray) {
+    @if $p==all {
+        border: $width $style $c;
+    }
+    @else {
+        border-#{$p}: $width $style $c;
+    }
+}
+
+
+/**
+ * [initCSS 我的常用样式]
+ * @return {[type]} [description]
+ */
+
+@mixin initCSS() {
+    .f-l {
+        float: left;
+    }
+    .f-r {
+        float: right;
+    }
+    .clear {
+        clear: both;
+    }
+    .p-a {
+        position: absolute;
+    }
+    .p-r {
+        position: relative;
+    }
+    .p-f {
+        position: fixed;
+    }
+    .ng-cloak {
+        display: none;
+    }
+    .text-of {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: normal;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+}
+
+
+/**
+ * [iCB clear both清除浮动]
+ * @param  {[type]} $old:false [true为生成兼容低版本的浏览器]
+ * @return {[type]}            [description]
+ */
+
+@mixin iCB($old:false) {
+    @if $old {
+        &:before,
+        &:after {
+            content: "";
+            display: table;
+            font: 0/0 a;
+        }
+    }
+    @else {
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    }
+}
+
+
+/**
+ * 按钮
+ */
+
+@mixin oBtn() {
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        outline: none;
+        &[disabled] {
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: .65;
+        }
+    }
+}
+
+
+/**
+ * [reset 我的reset]
+ * @return {[type]} [description]
+ */
+
+@mixin reset() {
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+    }
+    body {
+        line-height: 1;
+    }
+    ol,
+    ul {
+        list-style: none;
+    }
+    blockquote,
+    q {
+        quotes: none;
+    }
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+        content: '';
+        content: none;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    i {
+        display: inline-block;
+    }
+    input[type=button] {
+        -webkit-appearance: none;
+        outline: none
+    }
+}
+
+@mixin init() {
+    @include reset();
+    @include initCSS();
+    @include oPdMgSet();
+    @include oFsSet();
+}
