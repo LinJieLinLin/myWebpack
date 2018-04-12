@@ -1,0 +1,580 @@
+@mixin oNg() {
+    .ng-hide {
+        opacity: 0;
+    }
+    // .ng-hide-add {}
+    .ng-hide-remove {
+        transition: all ease-out 0.5s;
+    }
+}
+
+
+/**
+* 旋转角度
+**/
+
+@mixin oRotate() {
+    @for $r from 0 through 24 {
+        .rot-#{15*$r} {
+            transform: rotate(15*$r+deg);
+        }
+    }
+}
+
+
+/**
+ * [oFsSet 设置12到40px 的字体大小相隔2pxeg:fs-12]
+ * @param  {[type]} $l:14    [长度]
+ * @param  {[type]} $mul:2   [间隔]
+ * @param  {[type]} $unit:px [单位]
+ * @param  {[type]} $d:12    [最小字体大小]
+ * @return {[type]}          [description]
+ */
+
+@mixin oFsSet($l:14, $mul:2, $unit:px, $d:12) {
+    @for $fs from 0 through $l {
+        .fs-#{$d+$fs*$mul} {
+            font-size: $d+$fs*$mul+$unit;
+        }
+    }
+}
+
+
+/**
+ * [oPdMgSet 默认设置10到40的各个padding margin]
+ * @param  {[type]} $max:4   [基数]
+ * @param  {[type]} $mul:10  [倍数]
+ * @param  {[type]} $unit:px [单位]
+ * @return {[type]}          [description]
+ */
+
+@mixin oPdMgSet($max:4, $mul:10, $unit:px) {
+    @for $padding-size from 1 through $max {
+        .pd-t#{$padding-size*$mul} {
+            padding-top: $padding-size * $mul+$unit;
+        }
+        .pd-r#{$padding-size*$mul} {
+            padding-right: $padding-size * $mul+$unit;
+        }
+        .pd-b#{$padding-size*$mul} {
+            padding-bottom: $padding-size * $mul+$unit;
+        }
+        .pd-l#{$padding-size*$mul} {
+            padding-left: $padding-size * $mul+$unit;
+        }
+        .pd-x#{$padding-size*$mul} {
+            padding: 0 $padding-size * $mul+$unit;
+        }
+        .pd-y#{$padding-size*$mul} {
+            padding: $padding-size * $mul+$unit 0;
+        }
+        .pd-f#{$padding-size*$mul} {
+            padding: $padding-size * $mul+$unit;
+        }
+        .mg-t#{$padding-size*$mul} {
+            margin-top: $padding-size * $mul+$unit;
+        }
+        .mg-r#{$padding-size*$mul} {
+            margin-right: $padding-size * $mul+$unit;
+        }
+        .mg-l#{$padding-size*$mul} {
+            margin-left: $padding-size * $mul+$unit;
+        }
+        .mg-b#{$padding-size*$mul} {
+            margin-bottom: $padding-size * $mul+$unit;
+        }
+        .mg-x#{$padding-size*$mul} {
+            margin: 0 $padding-size * $mul+$unit;
+        }
+        .mg-y#{$padding-size*$mul} {
+            margin: $padding-size * $mul+$unit 0;
+        }
+        .mg-f#{$padding-size*$mul} {
+            margin: $padding-size * $mul+$unit;
+        }
+    }
+}
+
+
+/**
+* css reset
+ */
+
+@mixin oReset() {
+    * {
+        font-family: 'Microsoft YaHei', arial, sans-serif, "Open Sans", sans-serif;
+        padding: 0;
+        margin: 0;
+        word-wrap: break-word;
+    }
+    body {
+        -webkit-text-size-adjust: none;
+    }
+    img {
+        border: 0;
+        vertical-align: middle;
+    }
+    ul,
+    li {
+        list-style: none
+    }
+    a {
+        color: inherit;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    a,
+    button,
+    select,
+    input {
+        -webkit-tap-highlight-color: transparent;
+        vertical-align: middle;
+        outline: none;
+    }
+    textarea {
+        resize: none;
+        outline: none;
+    }
+    article,
+    aside,
+    dialog,
+    footer,
+    header,
+    section,
+    footer,
+    nav,
+    figure,
+    menu,
+    main {
+        display: block
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    input[type=button] {
+        -webkit-appearance: none;
+        outline: none
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.1;
+        color: inherit;
+    }
+    h1 {
+        font-size: 36px;
+    }
+    h2 {
+        font-size: 30px;
+    }
+    h3 {
+        font-size: 24px;
+    }
+    h4 {
+        font-size: 18px;
+    }
+    h5 {
+        font-size: 14px;
+    }
+    h6 {
+        font-size: 12px;
+    }
+    a[title="站长统计"] {
+        display: none;
+    }
+}
+
+
+/**
+* loading
+**/
+
+@mixin iLoading($type:load1) {
+    // 默认loading样式
+    /**
+    <div class="loading-1">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    </div>
+    **/
+    @if $type==load1 {
+        text-align: center;
+        padding: 10px;
+        user-select: none;
+        >div {
+            background-color: #4493f7;
+            width: 4px;
+            height: 35px;
+            border-radius: 2px;
+            margin: 2px;
+            animation-fill-mode: both;
+            display: inline-block;
+            &:nth-child(1) {
+                animation: Cscale 1s 0.1s infinite cubic-bezier(.2, .68, .18, 1.08);
+            }
+            &:nth-child(2) {
+                animation: Cscale 1s 0.2s infinite cubic-bezier(.2, .68, .18, 1.08);
+            }
+            &:nth-child(3) {
+                animation: Cscale 1s 0.3s infinite cubic-bezier(.2, .68, .18, 1.08);
+            }
+            &:nth-child(4) {
+                animation: Cscale 1s 0.4s infinite cubic-bezier(.2, .68, .18, 1.08);
+            }
+            &:nth-child(5) {
+                animation: Cscale 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08);
+            }
+        }
+    }
+    // 默认音频loading
+    /**
+    <div class="loading-2">
+    <span></span>
+    <span></span>
+    <span></span>
+    </div>
+    **/
+    @if $type==load2 {
+        position: absolute;
+        right: -10px;
+        top: 50%;
+        z-index: 1;
+        border-radius: 100%;
+        transform: translate(0, -50%);
+        height: 20px;
+        width: 20px;
+        span {
+            border-radius: 20px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            border: 2px solid #4b9cdb;
+            opacity: 0;
+            animation: Cscale1 3s ease-out infinite;
+            &:nth-child(2) {
+                animation-delay: 2s;
+            }
+            &:nth-child(3) {
+                animation-delay: 1s;
+            }
+        }
+    }
+    // 默认视频loading
+    @if $type==load3 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 100;
+        transform: translate(-50%, -50%);
+        >span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            margin: 0 2px;
+            background-color: #fff;
+            &:nth-last-child(1) {
+                animation: Cloading .6s .1s linear infinite;
+            }
+            &:nth-last-child(2) {
+                animation: Cloading .6s .2s linear infinite;
+            }
+            &:nth-last-child(3) {
+                animation: Cloading .6s .3s linear infinite;
+            }
+        }
+    }
+    //loading动画
+    @keyframes Cscale {
+        0% {
+            transform: scaley(1);
+        }
+        50% {
+            transform: scaley(0.4);
+        }
+        100% {
+            transform: scaley(1);
+        }
+    }
+    @keyframes Cscale1 {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        70% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            transform: scale(1);
+        }
+    }
+    @keyframes Cloading {
+        0% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(0, 15px);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+}
+
+
+/**
+ * 设置input hover and focus
+ * @param  {[type]} $hColor:#4d90fe [description]
+ * @param  {[type]} $fColor:$hColor [description]
+ * @return {[type]}                 [description]
+ */
+
+@mixin iHoverBorder($hColor:#4d90fe, $fColor:$hColor) {
+    box-shadow: 0 0 0 gray;
+    &.ng-invalid-max,
+    &.ng-invalid-min,
+    &.ng-invalid-number,
+    &.ng-invalid-pattern {
+        border: 1px solid #f83030;
+    }
+    &:hover {
+        border: 1px solid $hColor;
+        &.ng-invalid-max,
+        &.ng-invalid-min,
+        &.ng-invalid-number,
+        &.ng-invalid-pattern {
+            border: 1px solid #f83030;
+        }
+    }
+    &:focus {
+        border: 1px solid $fColor;
+        &.ng-invalid-max,
+        &.ng-invalid-min,
+        &.ng-invalid-number,
+        &.ng-invalid-pattern {
+            border: 1px solid #f83030;
+        }
+    }
+}
+
+
+/**
+ * [iCB clear both清除浮动]
+ * @param  {[type]} $old:false [true为生成兼容低版本的浏览器]
+ * @return {[type]}            [description]
+ */
+
+@mixin iCB($old:false) {
+    @if $old {
+        &:before,
+        &:after {
+            content: "";
+            display: table;
+            font: 0/0 a;
+        }
+    }
+    @else {
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    }
+}
+
+
+/**
+ * [iBtnBgColor 设置btn背景加hover,active时变亮变暗]
+ * @param  {[type]} $color:gray     [初始颜色]
+ * @param  {[type]} $type:1         [=0使用传入的颜色，>1变亮，<1变暗]
+ * @param  {[type]} $hover:2        [hover颜色或百分比]
+ * @param  {[type]} $active:10      [active颜色或百分比]
+ * @param  {[type]} $time:1         [动画时间 eg:0.3s]
+ * @param  {[type]} $animation:1    [动画属性 eg: ease]
+ * @return {[type]}             [description]
+ */
+
+@mixin iBtnBgColor($color:gray, $type:-1, $hover:2, $active:8, $time:0.3s, $animation:ease) {
+    background-color: $color;
+    &:hover {
+        @if $type==0 {
+            background-color: $color
+        }
+        @if $type>0 {
+            background-color: lighten($color, $hover)
+        }
+        @if $type<0 {
+            background-color: darken($color, $hover)
+        }
+        transition: all $time $animation;
+    }
+    &:active {
+        @if $type==0 {
+            background-color: $color
+        }
+        @if $type>0 {
+            background-color: lighten($color, $active)
+        }
+        @if $type<0 {
+            background-color: darken($color, $active)
+        }
+    }
+}
+
+
+/**
+ *按钮样式
+ *$bgcol: 背景颜色
+ *$col: 颜色
+ *$h: 高度
+ *$w: 宽
+ *$br: border-radius
+ *$fs: 字体大小
+ *$bbgcol: disabled的情况下的背景色
+ *$bbcol: disabled的color
+ *$bcol: border颜色
+ */
+
+@mixin btnStyle($bgcol, $col, $h, $w, $br, $fs, $bcol:transparent, $bbgcol:'', $bbcol: '') {
+    background-color: $bgcol;
+    color: $col;
+    height: $h;
+    width: $w;
+    line-height: $h;
+    border-radius: $br;
+    font-size: $fs;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    display: inline-block;
+    border: 1px solid $bcol;
+    box-sizing: border-box;
+    &[disabled] {
+        cursor: not-allowed;
+        box-shadow: none;
+        background-color: $bbgcol;
+        border-color: transparent;
+        color: $bbcol;
+        @include btnHover($bbgcol, $bbgcol, $bbcol);
+    }
+}
+
+
+/**
+ *按钮hover样式
+ *$bgcol: 背景颜色
+ *$bcol: 边框颜色
+ *$col: 颜色
+ */
+
+@mixin btnHover($bgcol, $bcol, $col) {
+    &:hover {
+        background-color: $bgcol;
+        border: 1px solid $bcol;
+        color: $col;
+        text-decoration: none;
+    }
+}
+
+
+/**
+居中样式
+$w: 宽度
+$h: 高度
+ */
+
+@mixin posMid($w, $h) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    overflow: auto;
+    height: $h;
+    width: $w;
+}
+
+//高度自适应
+@mixin hAdapt($t, $b) {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: absolute;
+    top: $t;
+    bottom: $b;
+    left: 0;
+    right: 0;
+    background: #fff;
+}
+
+
+/**
+placeholder占位文本修改
+$col: 指定颜色
+ */
+
+@mixin plhdFixed($col) {
+    &::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: $col;
+    }
+    &::-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: $col;
+    }
+    &::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: $col;
+    }
+    &:-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: $col;
+    }
+}
+
+
+/**
+角标生成器
+$w: 宽度,
+$h: 高度,
+$bg: 背景色,
+$col: color颜色
+ */
+
+@mixin cnCreate($w, $h, $bg, $col) {
+    width: $w;
+    height: $h;
+    line-height: $h;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    color: $col;
+    background-color: $bg;
+    &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-width: 2px 0 0 3px;
+        border-style: solid;
+        border-color: transparent transparent transparent $bg;
+        right: -3px;
+        background: transparent;
+    }
+}

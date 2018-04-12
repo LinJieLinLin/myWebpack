@@ -1,0 +1,10 @@
+[DEFAULT]
+BASEURL=https://www.baidu.com/?tn=80035161_1_dg
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+IDList=
+URL=https://jk.gdy.io/view/web/job/web_ui/build?token=ui
+IconFile=C:\WINDOWS\system32\shell32.dll
+IconIndex=46
+HotKey=0

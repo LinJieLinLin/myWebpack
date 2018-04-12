@@ -1,0 +1,231 @@
+@import "../../ui/src/styles/module/index.scss";
+.dy-tab {
+    %active {
+        color: $themeCol;
+    }
+    .tab-line {
+        border-bottom: 1px solid $borderCol;
+        color: $fontCol1;
+        font-size: 14px;
+        li {
+            position: relative;
+            display: inline-block;
+            margin-right: 20px;
+            padding-bottom: 20px;
+            text-align: center;
+            min-width: 68px;
+            cursor: pointer;
+            height: 20px;
+            >i {
+                margin-right: 2px;
+                vertical-align: middle;
+            }
+            .bar {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                height: 3px;
+                width: 100%;
+                background-color: transparent;
+            }
+            .num {
+                color: #96A3AD;
+            }
+            &:hover {
+                @extend %active;
+                .msg-num {
+                    border-color: $themeCol;
+                }
+            }
+        }
+        .active {
+            @extend %active;
+            .bar {
+                background-color: $themeCol;
+            }
+            .msg-num {
+                border-color: $themeCol;
+            }
+        }
+        .disabled {
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: .65;
+        }
+        .msg-tip {
+            display: inline-block;
+            vertical-align: top;
+            width: 6px;
+            height: 6px;
+            background-color: $errorCol;
+            border-radius: 100%;
+        }
+        .msg-num {
+            transform: scale(.8);
+            border: 1px solid #ECF0F1;
+            border-radius: 16px;
+        }
+    }
+    .tab-btn {
+        .msg-tip {
+            display: inline-block;
+            vertical-align: middle;
+            width: 6px;
+            height: 6px;
+            background-color: $errorCol;
+            border-radius: 100%;
+        }
+    }
+    &.tab-gray {
+        .btn {
+            background-color: $cutCol;
+            border-color: $cutCol;
+            color: $fontCol;
+            i {
+                color: $fontCol;
+            }
+        }
+        .btn-def {
+            @include iBtnBgColor(#fff, -1, 0, 4);
+            border-color: $borderCol;
+            color: $fontCol2;
+            >i {
+                color: $fontCol2;
+            }
+            &[disabled] {
+                @include iBtnBgColor(#fff, 0);
+            }
+        }
+    }
+    .tab-menu {
+        width: 100%;
+        background-color: #fff;
+        font-size: 14px;
+        color: #96A3AD;
+        li {
+            position: relative;
+            padding: 12px 30px;
+            border-top: 1px solid #f7f7f7;
+            cursor: pointer;
+            >div {
+                position: relative;
+                padding-left: 32px;
+                padding-right: 10px;
+                text-align: left;
+                >div {
+                    line-height: 30px;
+                    height: 30px;
+                }
+            }
+            .no-icon {
+                padding-left: 0;
+            }
+            .no-ricon {
+                padding-right: 25px;
+                .msg-num {
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translate(0, -50%);
+                }
+            }
+            .i-l {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                z-index: 1;
+                transform: translate(0, -50%);
+            }
+            .i-r {
+                position: absolute;
+                top: 50%;
+                right: 0;
+                z-index: 1;
+                transform: translate(0, -50%);
+            }
+            &:hover {
+                @extend %active;
+            }
+        }
+        .active {
+            @extend %active;
+            .bar {
+                background-color: $themeCol;
+            }
+        }
+        .msg-tip {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            z-index: 1;
+            transform: translate(0, -50%);
+            width: 6px;
+            height: 6px;
+            background-color: $errorCol;
+            border-radius: 100%;
+        }
+    }
+    .msg-num {
+        padding: 0 3px;
+        display: inline-block;
+        font-size: 12px;
+        height: 16px;
+        line-height: 16px;
+    }
+    &.adm-tab {
+        .tab-line {
+            position: relative;
+            li {
+                padding-left: 15px;
+                padding-right: 15px;
+                padding-bottom: 0;
+                margin-right: 5px;
+                border-top: 1px solid $borderCol;
+                border-left: 1px solid $borderCol;
+                border-right: 1px solid $borderCol;
+                border-bottom: 1px solid #fff;
+                border-top-left-radius: 4px;
+                border-top-right-radius: 4px;
+                height: 30px;
+                line-height: 30px;
+                background-color: #F5F8FA;
+            }
+            .msg-num {
+                background-color: #fff;
+                border-width: 0;
+                padding-left: 4px;
+                padding-right: 4px;
+            }
+            .active {
+                background-color: #fff;
+                .msg-num {
+                    background-color: #F5F8FA;
+                }
+                &::before {
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    z-index: 1;
+                    height: 1px;
+                    width: 100%;
+                    background-color: #fff;
+                    content: "";
+                }
+                .bar {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1240px) {
+    .dy-tab {
+        .tab-menu {
+            li {
+                padding: 12px 20px;
+            }
+        }
+    }
+}

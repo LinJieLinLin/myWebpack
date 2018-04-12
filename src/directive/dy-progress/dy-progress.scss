@@ -1,0 +1,36 @@
+@import "../../ui/src/styles/module/index.scss";
+.dy-progress {
+    height: 5px;
+    overflow: unset;
+    cursor: pointer;
+    .progress-bar {
+        position: relative;
+        transition: unset;
+        &::before {
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            z-index: 1;
+            transform: translate(0, -50%);
+            height: 10px;
+            width: 10px;
+            border-radius: 100%;
+            background-color: $themeCol;
+            content: "";
+        }
+    }
+}
+
+.dy-progress-y {
+    width: 5px;
+    overflow: unset;
+    cursor: pointer;
+    .progress-bar {
+        &::before {
+            left: 50%;
+            top: -5px;
+            right: auto;
+            transform: translate(-50%, 0);
+        }
+    }
+}

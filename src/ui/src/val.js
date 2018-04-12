@@ -1,0 +1,39 @@
+// 这里复制 ./style/module/_val.scss里的内容转化为json显示
+window.scss = `
+// 屏幕分割点大小
+$winWidLim: 1240px;
+// 页面显示内容最大宽度
+$winWidMax: 1200px;
+// 页面内容最小宽度
+$winWidMin: 1000px;
+// 主题色
+$themeCol: #4493f7;
+// hover背景色
+$hoverBgCol: #E6F3FC;
+// 分割线颜色
+$cutCol: #EBEFEF;
+// border
+$borderCol: #ECF0F1;
+// 字体颜色列表
+$fontCol: #284050;
+// 字体颜色1
+$fontCol1: #6D8392;
+// 字体颜色2
+$fontCol2: #96a3ad;
+// 字体颜色3
+$fontCol3: #BCC5CC;
+// 图标颜色
+$iconCol: #A0AEB9;
+// 错误颜色
+$errorCol: #F53200;
+// 警告颜色
+$warnCol: #FFBF00;
+// 成功提示颜色
+$successCol: #52C41A;
+// 三种规格：大
+$lg: 38px;
+// 三种规格：中（默认）
+$def: 30px;
+// 三种规格：小
+$sm: 22px;
+`;

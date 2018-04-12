@@ -1,0 +1,17 @@
+<div class="load-data" ng-class="{'load-mh':c.empty&&!c.load}">
+    <div ng-class="c.imgClass||'img-0'" ng-show="c.empty&&!c.load">
+        <img ng-src="{{c.img||'../imgs/g-empty.png'}}" />
+        <span class="load-tip" ng-show="c.tip" ng-bind="c.tip"></span>
+    </div>
+    <div ng-hide="c.empty" ng-transclude></div>
+    <!-- 显示loading -->
+    <div ng-class="c.posClass||'c-default'" ng-show="c.load">
+        <div class="loading-1">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>

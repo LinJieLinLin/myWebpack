@@ -1,0 +1,307 @@
+@import "./styles/module/index.scss";
+body {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ng-cloak {
+    display: none;
+}
+
+input {
+    color: $fontCol1;
+    border: 1px solid $borderCol;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-indent: 10px;
+    border-radius: 4px;
+    &::-webkit-inner-spin-button {
+        height: $def;
+    }
+}
+
+.ui-t-head {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 60px;
+    border-bottom: 1px solid #404553;
+    background-color: #393D49;
+    color: #ffffff;
+    line-height: 60px;
+    text-align: center;
+    width: 100%;
+}
+
+.ui-t-content {
+    overflow: hidden;
+    padding-left: 20px;
+    padding-top: 20px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    .g-m-w {
+        width: 980px;
+    }
+    .utc-title {
+        margin-bottom: 20px;
+        line-height: 60px;
+        padding-bottom: 10px;
+        color: #393D49;
+        border-bottom: 1px solid #eee;
+        font-size: 28px;
+        font-weight: 300;
+    }
+    .utc-title-second {
+        margin-bottom: 20px;
+        line-height: 30px;
+        padding-bottom: 10px;
+        color: #393D49;
+        font-size: 18px;
+        font-weight: 300;
+        position: relative;
+        background: white;
+        >span {
+            background: white;
+            display: inline-block;
+            z-index: 1;
+            position: relative;
+            margin-left: 20px;
+            font-size: 22px;
+            padding: 0 10px;
+        }
+        &:after {
+            content: "";
+            display: block;
+            border-bottom: 1px dashed #e5e5e5;
+            height: 15px;
+            position: absolute;
+            width: 100%;
+            top: 0;
+        }
+    }
+    .utc-col-info {
+        display: inline-block;
+        vertical-align: middle;
+        background-color: $themeCol;
+        width: 240px;
+        height: 35px;
+    }
+    .utc-cut-bg {
+        background-color: $cutCol;
+    }
+    p {
+        margin-bottom: 30px;
+    }
+    .utc-tip {
+        margin-right: 20px;
+        display: inline-block;
+        width: 60px;
+    }
+    .utc-btn-div {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 50px;
+    }
+    .utc-center {
+        text-align: center;
+        font-size: 12px;
+        color: gray;
+    }
+}
+
+.ui-t-chose {
+    background: $themeCol;
+    color: #fff;
+}
+
+.ui-t-table {
+    margin-bottom: 20px;
+    th {
+        padding: 6px 15px;
+        min-height: 20px;
+        line-height: 20px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        font-weight: 400;
+    }
+}
+
+.ui {
+    overflow: hidden;
+    //  ::-webkit-scrollbar {
+    //     display: none;
+    // }
+    //  ::-webkit-scrollbar-track {
+    //     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    // }
+    //  ::-webkit-scrollbar-thumb {
+    //     border-radius: 10px;
+    //     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.50);
+    // }
+    #iconfontDemo {
+        .main {
+            padding: 0;
+        }
+    }
+    .icon_lists {
+        li {
+            height: 140px;
+            cursor: pointer;
+        }
+        .icon {
+            line-height: 50px;
+        }
+        .name {
+            display: none;
+        }
+    }
+    .img-demo0 {
+        width: 100px;
+        height: 100px;
+    }
+    .img-demo1 {
+        width: 200px;
+        height: 200px;
+    }
+    .ui-left {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        overflow-y: auto;
+        width: 200px;
+        border-right: 1px solid #e5e5e5;
+        height: 100%;
+        .utm-ul {
+            h2 {
+                line-height: 36px;
+                border-left: 5px solid $themeCol;
+                margin: 15px 0 5px;
+                padding: 0 10px;
+                background-color: #f2f2f2;
+                font-size: 14px;
+                font-weight: 400;
+            }
+            span {
+                padding: 0 6px;
+                font-size: 14px;
+            }
+            li {
+                cursor: pointer;
+                line-height: 36px;
+                height: 36px;
+                &:hover {
+                    background-color: $hoverBgCol;
+                    color: $themeCol;
+                }
+            }
+        }
+    }
+    .ui-right {
+        position: relative;
+        margin-left: 200px;
+        height: 100%;
+        overflow-y: auto;
+        z-index: 2;
+    }
+    .ui-body {
+        position: absolute;
+        top: 70px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+    }
+    .lazy-img-s {
+        width: 500px;
+        height: 640px;
+        margin-bottom: 20px;
+    }
+    .video-1 {
+        width: 640px;
+        height: 320px;
+    }
+    .video-2 {
+        width: 320px;
+        height: 240px;
+    }
+    .drag-0 {
+        position: relative;
+        min-height: 200px;
+        width: 100%;
+        background-color: aliceblue;
+    }
+    .drag-1 {
+        width: 100px;
+        background-color: rgb(253, 218, 218);
+    }
+    .menu-demo {
+        width: 250px;
+        border: 1px solid $borderCol;
+    }
+    .val {
+        th {
+            width: 25%;
+        }
+    }
+    .cp {
+        cursor: copy;
+    }
+    .dy-step {
+        margin-left: 100px;
+        width: 800px;
+    }
+    .dy-form {
+        width: 90%;
+    }
+    .dy-progressbar {
+        width: 500px;
+    }
+    .dy-search-light {
+        width: 200px;
+    }
+    .tips-demo {
+        position: relative;
+        >div {
+            display: inline-block;
+            width: 100px;
+            position: relative;
+            margin-right: 20px;
+            button {
+                width: 100%;
+            }
+        }
+        .pos-tip {
+            display: block;
+            position: absolute;
+            width: 100%;
+            padding-top: 100px;
+            >div {
+                display: inline-block;
+                width: 150px;
+            }
+        }
+    }
+}
+
+.ui-corner-red {
+    @include cnCreate(51px, 21px, red, white);
+}
+
+.ui-t-pos {
+    background-color: yellow;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    .utp-abpos {
+        @include posMid(100px, 100px);
+        background-color: red;
+    }
+}
+
+a:hover {
+    text-decoration: none;
+}

@@ -1,0 +1,973 @@
+@import './sprite.scss';
+$blue-c:#02c0b9;
+$gray-c:#c8c8c8;
+$gray-1-c:#f9f9f9;
+$yellow-c: #f8b551;
+@mixin iCB() {
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+@for $gap-size from 1 through 6 {
+    .gap-#{$gap-size*5} {
+        height: $gap-size * 5px;
+        overflow: hidden;
+    }
+}
+
+body {
+    display: block;
+}
+
+.m-banner {
+    clear: both;
+    position: relative;
+    min-height: 326px;
+    position: relative;
+    background-color: #D7F5FF;
+}
+
+.mban-key {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    margin-left: -50px;
+    //width: 100px;
+    text-align: center;
+    height: 12px;
+    z-index: 1;
+    .key {
+        vertical-align: top;
+        width: 10px;
+        height: 10px;
+        line-height: 10px;
+        overflow: hidden;
+        display: inline-block;
+        margin: 0 6px;
+        opacity: .3;
+        background: black;
+        border-radius: 10px;
+        transition: .3s ease-in-out;
+    }
+    .active {
+        width: 30px;
+        background: white;
+        opacity: .8;
+    }
+}
+
+.mban-container {
+    overflow: hidden;
+    height: 326px;
+    position: relative;
+    background-color: #D7F5FF;
+    transition: all 1.3s ease;
+    .mban-item {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        cursor: default;
+        background-size: auto 100%;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1.3s ease-out;
+        &.active {
+            z-index: 2;
+            opacity: 1;
+        }
+    }
+    .transt {
+        transition: all .5s ease-out;
+    }
+}
+
+.downl-app {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    margin: -130px 0 0 400px;
+    height: 260px;
+    width: 200px;
+    background: rgba(250, 250, 250, .7) url(/rcp-common/imgs/icon/download-app.png) no-repeat center bottom;
+    cursor: default;
+    .img {
+        width: 180px;
+        height: 180px;
+        overflow: hidden;
+        margin: 0 auto;
+        position: relative;
+        top: 9px;
+    }
+    .bm {
+        color: white;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        line-height: 60px;
+        font-size: 14px;
+        text-indent: 85px;
+    }
+}
+
+.follow-subscription {
+    @extend .downl-app;
+    background: rgba(250, 250, 250, .7) url(/rcp-common/imgs/icon/follow-subscription.png) no-repeat center bottom;
+    .bm {
+        text-indent: 65px;
+    }
+}
+
+
+/**
+ * [iBtnBgColor 设置btn背景加hover,active时变亮变暗]
+ * @param  {[type]} $color:gray     [初始颜色]
+ * @param  {[type]} $hover:2        [hover颜色或百分比]
+ * @param  {[type]} $active:10      [active颜色或百分比]
+ * @param  {[type]} $type:1         [=0使用传入的颜色，>1变亮，<1变暗]
+ * @param  {[type]} $time:1         [动画时间 eg:0.3s]
+ * @param  {[type]} $animation:1    [动画属性 eg: ease]
+ * @return {[type]}             [description]
+ */
+
+@mixin iBtnBgColor($color:gray, $hover:2, $active:10, $type:1, $time:0.3s, $animation:ease) {
+    background-color: $color;
+    &:hover {
+        @if $type==0 {
+            background-color: $hover
+        }
+        @if $type>0 {
+            background-color: lighten($color, $hover)
+        }
+        @if $type<0 {
+            background-color: darken($color, $hover)
+        }
+        transition: all $time $animation;
+    }
+    &:active {
+        @if $type==0 {
+            background-color: $active
+        }
+        @if $type>0 {
+            background-color: lighten($color, $active)
+        }
+        @if $type<0 {
+            background-color: darken($color, $active)
+        }
+    }
+}
+
+body {
+    font-size: 14px;
+}
+
+.mg-b15 {
+    margin-bottom: 15px;
+}
+
+.blue-c {
+    color: $blue-c;
+}
+
+.yellow-c {
+    color: $yellow-c;
+}
+
+//背景
+.bg-gray {
+    background-color: #f5f8f9;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+//字体
+.f-white {
+    color: #fff;
+}
+
+// 轮播
+.carousel-0 {
+    position: relative;
+    .mban-container {
+        height: 500px;
+        >a {
+            overflow: hidden;
+            width: 100%;
+            height: 500px;
+            display: block;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1900px;
+            height: 500px;
+            transform: translate(-50%, 0);
+        }
+    }
+    .mban-item {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    .mban-key {
+        .key {
+            background-color: #fff;
+            opacity: 1;
+            &:hover {
+                background-color: #02ada7;
+            }
+        }
+        .active {
+            opacity: 1;
+            background-color: #02ada7;
+        }
+    }
+    .jt {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        z-index: 10;
+        width: 40px;
+        height: 90px;
+        .u {
+            display: inline-block;
+            height: 3px;
+            width: 40px;
+            background-color: #fff;
+            transform: rotate(-60deg);
+            position: absolute;
+            top: 26px;
+        }
+        .d {
+            display: inline-block;
+            height: 3px;
+            width: 40px;
+            background-color: #fff;
+            transform: rotate(60deg);
+            position: absolute;
+            top: 60px;
+        }
+    }
+    .prev {
+        @extend .jt;
+        left: 10%;
+        &:hover {
+            background-color: rgba(0, 0, 0, .5);
+        }
+    }
+    .next {
+        @extend .jt;
+        right: 10%;
+        .u {
+            transform: rotate(60deg);
+        }
+        .d {
+            transform: rotate(-60deg);
+        }
+        &:hover {
+            background-color: rgba(0, 0, 0, .5);
+        }
+    }
+}
+
+.kjds-0 {
+    position: relative;
+    @include iCB();
+    img {
+        width: 100%;
+        height: 100%;
+    }
+    .k-title {
+        padding-top: 75px;
+        padding-bottom: 50px;
+        position: relative;
+        height: 40px;
+        font-size: 30px;
+        text-align: center;
+    }
+    .k-b-0 {
+        padding: 2px 50px;
+        height: 246px;
+        position: relative;
+        overflow: hidden;
+        @include iCB();
+    }
+    .k-b-1 {
+        min-height: 435px;
+        position: relative;
+        overflow: hidden;
+        >div {
+            float: left;
+        }
+        @include iCB();
+    }
+    .c-list {
+        width: 100%;
+        overflow: hidden;
+        padding-bottom: 4px;
+    }
+    .c-x {
+        position: relative;
+        width: 1500px;
+        @include iCB();
+        transition: transform .3s ease-out;
+    }
+    .jt {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        z-index: 10;
+        width: 25px;
+        height: 65px;
+        background-color: #ccc;
+        .u {
+            display: inline-block;
+            height: 3px;
+            width: 20px;
+            left: 2px;
+            background-color: #fff;
+            transform: rotate(-60deg);
+            position: absolute;
+            top: 22px;
+        }
+        .d {
+            display: inline-block;
+            height: 3px;
+            width: 20px;
+            left: 2px;
+            background-color: #fff;
+            transform: rotate(60deg);
+            position: absolute;
+            top: 38px;
+        }
+    }
+    .prev-0 {
+        @extend .jt;
+        left: 0;
+    }
+    .next-0 {
+        @extend .jt;
+        right: 0;
+        .u {
+            transform: rotate(60deg);
+        }
+        .d {
+            transform: rotate(-60deg);
+        }
+    }
+    .active {
+        color: #fff;
+        &:hover {
+            background-color: $blue-c;
+        }
+    }
+}
+
+.kjds-1 {
+    .k-title {
+        margin-bottom: 0px;
+        padding: 65px 0 58px 0;
+    }
+}
+
+.kjds-2 {
+    .k-title {
+        margin: 0 auto;
+        padding: 65px 0 58px 0;
+    }
+}
+
+.kjds-3 {
+    background-image: url(/imgs/kjds/bg-0.png);
+    background-size: cover;
+    height: 514px;
+    .k-title {
+        margin: 0 auto;
+        padding: 65px 0 58px 0;
+    }
+}
+
+//合作伙伴
+.kjds-4 {
+    border: 1px solid $gray-1-c;
+    margin-bottom: 100px;
+    @include iCB();
+    .p-item {
+        cursor: pointer;
+        float: left;
+        width: 240px;
+        height: 120px;
+        background-color: #fff;
+        border-left: 2px solid $gray-1-c;
+        border-bottom: 2px solid $gray-1-c;
+        margin-right: -2px;
+        .img {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+        }
+    }
+}
+
+.c-b {
+    @include iCB();
+}
+
+.d-i-b {
+    display: inline-block;
+}
+
+.course-0 {
+    width: 272px;
+    min-height: 236px;
+    background-color: #fff;
+    box-shadow: 0px 0 4px #d4d4d4;
+    float: left;
+    color: #333;
+    display: block;
+    text-decoration: none;
+    .c-img {
+        width: 100%;
+        height: 141px;
+        overflow: hidden;
+        position: relative;
+        img {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+        }
+        .s-learn {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(127, 188, 35, .9);
+            top: 0;
+            left: 0;
+            >span {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border: solid 2px #FFF;
+                text-align: center;
+                z-index: 10;
+                border-radius: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 18px;
+                width: 146px;
+                color: #fff;
+                text-decoration: none;
+                &:hover {
+                    background-color: #fff;
+                    color: rgb(127, 188, 35);
+                }
+            }
+        }
+        &:hover {
+            .s-learn {
+                display: block;
+            }
+        }
+    }
+    .c-title {
+        margin: 15px 0;
+        width: 100%;
+    }
+    .c-info {
+        font-size: 14px;
+        color: $gray-c;
+        @include iCB();
+    }
+    a {
+        color: #333;
+        display: block;
+    }
+    a:hover {
+        color: #0095CE;
+        text-decoration: underline;
+    }
+    &:hover {
+        color: #0095CE;
+        text-decoration: underline;
+        box-shadow: 0 2px 2px #d2d2d2;
+        .c-img {
+            img {
+                transform: scale(1.1);
+                opacity: 0.9;
+                transition: opacity .3s, transform .3s;
+            }
+        }
+    }
+}
+
+.course-1 {
+    @extend .course-0;
+    min-height: 210px;
+    .c-title {
+        margin: 5px 0;
+    }
+}
+
+.c-intr {
+    width: 285px;
+    height: 445px;
+    >img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.show-0 {
+    min-height: 527px;
+    @include iCB();
+    .ul-list {
+        width: 22.83%;
+        float: left;
+        min-height: 523px;
+        box-shadow: -1px 0px 3px #d2d2d2;
+        cursor: pointer;
+        >li {
+            height: 63px;
+            line-height: 63px;
+            padding-left: 20px;
+        }
+        .active {
+            background-color: $blue-c;
+            height: 84px;
+            line-height: 75px;
+            font-size: 30px;
+        }
+    }
+    .show-img {
+        position: relative;
+        width: 77.17%;
+        height: 525px;
+        >img {
+            width: 100%;
+            height: 100%;
+        }
+        .mban-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .active {
+            z-index: 1;
+        }
+    }
+}
+
+.show-1 {
+    color: #666;
+    padding-bottom: 100px;
+    @include iCB();
+    .show-img {
+        width: 70.5%;
+        height: 420px;
+        position: relative;
+        >img {
+            width: 100%;
+            height: 100%;
+        }
+        .show-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            padding-left: 10px;
+            height: 30px;
+            line-height: 30px;
+        }
+        .active {
+            background-color: #fff;
+        }
+        .lb-no {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 10;
+            height: 30px;
+            color: #fff;
+            line-height: 30px;
+            padding-right: 10px;
+            .key {
+                cursor: pointer;
+                width: 20px;
+                display: inline-block;
+                text-align: center;
+            }
+            .active {
+                background-color: #4a4a4a;
+            }
+        }
+    }
+    .show-list {
+        float: right;
+        width: 28%;
+        min-height: 420px;
+        box-shadow: 0px 0px 3px #d2d2d2;
+    }
+    .more {
+        float: right;
+        font-size: 12px;
+        color: $gray-c;
+        cursor: pointer;
+    }
+    .s-title {
+        height: 55px;
+        line-height: 55px;
+        padding: 0 20px;
+        background-color: $gray-1-c;
+    }
+    .ul-list {
+        cursor: pointer;
+        >li {
+            padding: 10px 20px;
+            height: 42px;
+            position: relative;
+            border-bottom: 1px dashed #f4f4f4;
+        }
+        >li:hover {
+            background-color: #f4f4f4;
+        }
+        .img {
+            width: 75px;
+            height: 100%;
+            float: left;
+        }
+        .r-info {
+            padding-left: 85px;
+        }
+        .active {
+            .text-of {
+                color: $blue-c;
+            }
+            background-color: #f4f4f4;
+        }
+        a {
+            color: #666;
+        }
+        a:hover {
+            text-decoration: none;
+            color: $blue-c;
+        }
+    }
+}
+
+.show-2 {
+    width: 50%;
+    float: left;
+    text-align: center;
+    @include iCB();
+    .block {
+        padding: 20px;
+        box-shadow: 0px 0px 3px #d2d2d2;
+        min-height: 152px;
+        width: 520px;
+        background-color: #fff;
+        text-align: left;
+    }
+    .js {
+        padding-left: 100px;
+    }
+    .img {
+        width: 86px;
+        width: 86px;
+        >img {
+            border-radius: 100%;
+        }
+    }
+    .name-0 {
+        font-size: 16px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+    }
+    .role-0 {
+        color: $blue-c;
+        font-size: 14px;
+    }
+}
+
+.show-3 {
+    @include iCB();
+    .c-info {
+        width: 63%;
+        height: 264px;
+        float: left;
+        background: rgba(255, 255, 255, 0.8);
+        >div {
+            padding: 40px 50px;
+            >p {
+                height: 30px;
+                line-height: 30px;
+            }
+        }
+    }
+    .c-qr {
+        width: 33.5%;
+        float: right;
+        height: 264px;
+        background: rgba(255, 255, 255, 0.8);
+        >div {
+            padding: 40px;
+            @include iCB();
+        }
+    }
+    .qr-code {
+        text-align: center;
+        font-size: 14px;
+        >p {
+            height: 30px;
+            line-height: 30px;
+        }
+        img {
+            height: 150px;
+            width: 150px;
+        }
+    }
+}
+
+.btn {
+    display: inline-block;
+    background-image: none;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+}
+
+.yellow-btn {
+    text-align: center;
+    min-width: 180px;
+    padding: 10px 0;
+    margin-top: 35px;
+    margin-bottom: 65px;
+    @include iBtnBgColor(#f8b551);
+    color: #fff;
+    font-size: 18px;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.mg-l25 {
+    margin-left: 25px;
+}
+
+.mg-l33 {
+    margin-left: 33px;
+}
+
+.c-menu {
+    position: absolute;
+    right: 15px;
+    top: 650px;
+    z-index: 100;
+    width: 100px;
+    color: #fff;
+    text-align: center;
+    .top {
+        width: 120px;
+        height: 40px;
+        line-height: 40px;
+        background: $blue-c;
+        transform: skew(-6deg) rotate(-6deg);
+        box-shadow: 1px 0px 3px #757575;
+        position: absolute;
+        top: -30px;
+        left: -10px;
+    }
+    .list-0 {
+        text-align: left;
+        font-size: 12px;
+        width: 115px;
+        .m {
+            width: 105px;
+            height: 30px;
+            line-height: 30px;
+            position: relative;
+            >div {
+                background-color: $blue-c;
+                border-bottom: 1px solid #02bab4;
+                margin-left: 10px;
+                padding-left: 10px;
+                cursor: pointer;
+                >i {
+                    margin-right: 5px;
+                    margin-top: -2px;
+                }
+            }
+        }
+        .active {
+            background-image: url(/imgs/kjds/bg-menu.png);
+            height: 55px;
+            width: 115px;
+            >div {
+                background-color: $blue-c;
+                position: absolute;
+                height: 35px;
+                width: 105px;
+                transform: skew(-6deg) rotate(-6deg);
+                box-shadow: 1px 3px 3px #696969;
+                position: absolute;
+                top: 10px;
+                left: -10px;
+                z-index: 10;
+                font-size: 18px;
+            }
+            .u {
+                position: absolute;
+                width: 95px;
+                background-color: $blue-c;
+                height: 25px;
+                left: 10px;
+                top: 0;
+                display: block;
+                z-index: 1;
+            }
+            .d {
+                position: absolute;
+                width: 95px;
+                background-color: $blue-c;
+                height: 25px;
+                left: 10px;
+                bottom: 0;
+                display: block;
+                z-index: 1;
+            }
+            i {
+                transform: scale(1);
+            }
+        }
+    }
+    .back-0 {
+        background-color: #e1f2f1;
+        color: #666;
+        height: 30px;
+        width: 95px;
+        margin-left: 10px;
+        line-height: 30px;
+        font-size: 12px;
+        cursor: pointer;
+        &:hover {
+            background-color: $blue-c;
+            color: #fff;
+        }
+    }
+}
+
+.c-menu-1 {
+    position: fixed;
+    top: 100px;
+    right: 220px;
+}
+
+//查看更多
+.read-more {
+    @include iCB();
+    a {
+        float: right;
+        color: $yellow-c;
+    }
+    .blue {
+        color: $blue-c;
+    }
+    padding-bottom: 10px;
+}
+
+
+/* 1024适配 */
+
+@media screen and (max-width: 1240px) {
+    .mg-l33 {
+        margin-left: 22px;
+    }
+    .mg-b15 {
+        margin-bottom: 10px;
+    }
+    .kjds-0 {
+        .mg-x0 {
+            margin: 0;
+        }
+    }
+    .kjds-4 {
+        .p-item {
+            width: 200px;
+            height: 100px;
+        }
+    }
+    .c-intr {
+        width: 259.4px;
+        height: 405px;
+    }
+    .course-1 {
+        min-height: 190px;
+        width: 224px;
+        .c-img {
+            height: 126px;
+        }
+    }
+    .course-2 {
+        min-height: 334px;
+        width: 394px;
+        .c-img {
+            height: 221.625px;
+        }
+        .c-info {
+            margin-bottom: 0;
+        }
+    }
+    .mg-l25 {
+        margin-left: 10px;
+    }
+    .show-1 {
+        .s-title {
+            height: 40px;
+            line-height: 40px;
+        }
+    }
+    .show-2 {
+        .block {
+            @include iCB();
+            width: 445px;
+        }
+    }
+    .show-3 {
+        .c-info {
+            height: 230px;
+            >div {
+                padding: 25px 50px;
+            }
+        }
+        .c-qr {
+            height: 230px;
+        }
+        .qr-code {
+            img {
+                height: 120px;
+                width: 120px;
+            }
+        }
+    }
+}

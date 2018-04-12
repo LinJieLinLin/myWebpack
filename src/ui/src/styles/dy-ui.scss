@@ -1,0 +1,365 @@
+@import './module/index.scss';
+@import './animation.scss';
+// ng 样式集合
+@include oNg();
+// 切换样式
+@include oSwitch();
+// 进度条
+@include oProgress();
+// 表单样式
+@include oForm();
+// 搜索样式
+@include oSearch();
+// 步骤样式
+@include oStep();
+// 表格样式
+@include oTable();
+// 按钮样式
+@include oBtn();
+// dropdown 样式
+@include oDropdown();
+// select 样式
+@include oSelect();
+.dy-link {
+    margin-bottom: 20px;
+    color: $fontCol;
+    >a {
+        font-size: 16px;
+        &:hover {
+            color: $themeCol;
+            text-decoration: none;
+        }
+    }
+}
+
+body {
+    color: $fontCol;
+    a {
+        // color: $fontCol;
+    }
+}
+
+.l-t {
+    left: 0;
+    top: 0;
+    right: auto;
+    bottom: auto;
+}
+
+.l-b {
+    left: 0;
+    right: auto;
+    top: auto;
+    bottom: 0;
+}
+
+.r-t {
+    left: auto;
+    right: 0;
+    top: 0;
+    bottom: auto;
+}
+
+.r-b {
+    left: auto;
+    right: 0;
+    top: auto;
+    bottom: 0;
+}
+
+// input hover
+input {
+    @include iHoverBorder();
+    &:disabled {
+        cursor: not-allowed;
+        border-color: transparent;
+    }
+}
+
+textarea {
+    min-height: 30px;
+    resize: vertical;
+    width: 100%;
+    border-radius: 4px;
+    padding: 5px 8px;
+    box-sizing: border-box;
+    border: 1px solid $borderCol;
+    @include iHoverBorder();
+    margin-right: 1px;
+    margin-left: 1px;
+    &:disabled {
+        cursor: not-allowed;
+        border-color: transparent;
+    }
+}
+
+// 主题字体色
+.c-theme {
+    color: $themeCol;
+}
+
+// 成功字体色
+.c-success {
+    color: $successCol;
+}
+
+// error提示字体色
+.c-error {
+    color: $errorCol;
+}
+
+// 警告提示字体色
+.c-warn {
+    color: $warnCol;
+}
+
+// old --------------
+// --------------------- 按钮样式 start ------------------------------
+.c-btn {
+    @include btnStyle($themeCol, white, 30px, 80px, 4px, 14px, transparent, #bcc5cc, white);
+}
+
+.c-btn-min {
+    //height: 30px;
+    //line-height: 30px;
+    //padding: 0 20px;
+    font-size: 12px;
+    @include btnHover(#297eeb, #297eeb, white);
+}
+
+.c-btn-normal {
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    width: 127px;
+    @include btnHover(#297eeb, #297eeb, white);
+}
+
+.c-btn-normal2 {
+    @include btnStyle(white, #6e8392, 36px, 127px, 4px, 14px);
+    border: 1px solid #6e8392;
+    @include btnHover(white, #297eeb, #297eeb);
+}
+
+.c-btn-big {
+    height: 42px;
+    line-height: 42px;
+    width: 345px;
+    font-size: 16px;
+    @include btnHover(#297eeb, #297eeb, white);
+}
+
+.c-btn-ban {
+    background-color: #bcc5cc;
+    border-color: #bcc5cc;
+    color: #ffffff;
+    cursor: not-allowed;
+    @include btnHover(#bcc5cc, #bcc5cc, white);
+}
+
+// --------------------- 按钮样式 end ------------------------------
+// --------------------- 文字链 start ------------------------------
+.c-link {
+    font-size: 14px;
+    color: #96a3ad;
+    vertical-align: baseline;
+    cursor: pointer;
+    &:hover {
+        color: $themeCol;
+        text-decoration: none;
+    }
+}
+
+// --------------------- 文字链 end ------------------------------
+// --------------------- 表单 start ------------------------------
+.c-input {
+    font-size: 12px;
+    color: #284050;
+    border-radius: 4px;
+    height: 38px;
+    line-height: 38px;
+    border: 1px solid #b5b5b5;
+    background-color: #ffffff;
+    padding-left: 10px;
+    @include plhdFixed(#b5b5b5);
+    &[disabled] {
+        background-color: #f1f1f1;
+        border-color: #ebebeb;
+        color: #d9d9d9;
+        cursor: not-allowed;
+    }
+}
+
+.c-input-min {
+    height: 30px;
+    line-height: 30px;
+}
+
+.c-input-big {
+    height: 44px;
+    line-height: 44px;
+}
+
+.c-input-fc {
+    color: #284050;
+    border-color: $themeCol;
+}
+
+.c-input-err {
+    border-color: #f05941;
+    color: #284050;
+}
+
+.c-input-ban {
+    background-color: #f1f1f1;
+    border-color: #ebebeb;
+    color: #d9d9d9;
+    cursor: not-allowed;
+    @include plhdFixed(#d9d9d9);
+}
+
+// --------------------- 表单 end ------------------------------
+// --------------------- 单选框 start ------------------------------
+.c-sig-all {
+    width: 14px;
+    height: 14px;
+    border: 1px solid #ebebeb;
+    position: relative;
+    border-radius: 100%;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: sub;
+}
+
+.c-sig-in {
+    position: absolute;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background-color: #4493f7;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+// --------------------- 单选框 end ------------------------------
+// --------------------- 复选框 start ------------------------------
+.c-mul-all {
+    width: 14px;
+    height: 14px;
+    border: 1px solid #ebebeb;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 2px;
+    vertical-align: sub;
+}
+
+.c-mul-in {
+    position: absolute;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #4493f7;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: -1px;
+    margin: auto;
+    border-radius: 2px;
+    &:after {
+        content: '';
+        display: inline-block;
+        color: white;
+        width: 4px;
+        height: 8px;
+        position: absolute;
+        transform: rotate(40deg);
+        top: 0;
+        bottom: 1px;
+        left: 1px;
+        right: 0;
+        margin: auto;
+        border-width: 0 1px 1px 0;
+        border-style: solid;
+        border-color: transparent white white transparent;
+    }
+}
+
+// --------------------- 复选框 end ------------------------------
+.c-sch-input {
+    display: inline-block;
+    border: 1px solid #ecf0f1;
+    >input {
+        border: none;
+        padding: 10px;
+        font-size: 14px;
+        line-height: 1;
+        width: 316px;
+    }
+    >i {
+        height: 37px;
+        line-height: 37px;
+        padding: 0 12px;
+        color: white;
+        background-color: #4493f7;
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
+
+//---------------- 登录弹窗样式 start------------------------------------
+.win-login-style {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    display: none;
+    z-index: 888;
+    .win-bd {
+        opacity: .5;
+        filter: alpha(opacity=50);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+    .my-wrap {
+        padding: 5px;
+        position: relative;
+        cursor: default;
+    }
+    .my-main {
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    .win-hd {
+        position: relative;
+    }
+    .close-ic {
+        position: absolute;
+        right: 61px;
+        top: 33px;
+        color: #425765;
+        z-index: 10;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .inner {
+        padding: 10px 20px;
+    }
+    .my-mask {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .jf-drag {
+        cursor: default;
+    }
+}

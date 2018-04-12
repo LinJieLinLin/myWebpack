@@ -1,0 +1,144 @@
+@import './module/index.scss';
+// reset
+@include oReset();
+// fs 12 to 40px
+@include oFsSet();
+// pd mg 5 to 40 ltbr;  pd-l10
+@include oPdMgSet(8, 5);
+// pd mg 8 ltbr eg: pd-l8
+@include oPdMgSet(1, 8);
+// rotate 0 to 360 eg: rot-90
+@include oRotate();
+// 头部组件占位样式
+body {
+    min-width: $winWidLim;
+    //  ::-webkit-scrollbar {
+    //     display: block;
+    //     background-color: #F6F7F8;
+    //     width: 8px;
+    // }
+    //  ::-webkit-scrollbar-track {
+    //     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    // }
+    //  ::-webkit-scrollbar-thumb {
+    //     background-color: #BCC5CC;
+    //     border-radius: 98px;
+    // }
+    -webkit-tap-highlight-color: transparent;
+    >header {
+        position: relative;
+        z-index: 10;
+        min-height: 60px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px 0 rgba(215, 220, 223, 0.50);
+    }
+}
+
+.loading-1 {
+    @include iLoading(load1)
+}
+
+// 图标默认样式
+i {
+    display: inline-block;
+}
+
+// line-height30
+.lh-30 {
+    height: 30px;
+    line-height: 30px;
+}
+
+// 设置iconfont锯齿
+.iconfont {
+    -webkit-text-stroke-width: 0.2px;
+    font-weight: 100;
+}
+
+// 等angularjs加载再显示
+.ng-cloak {
+    display: none;
+}
+
+// 清除浮动
+.c-b {
+    @include iCB();
+}
+
+.f-l {
+    float: left;
+}
+
+.f-r {
+    float: right;
+}
+
+.f-dpn {
+    display: none;
+}
+
+.f-dpb {
+    display: block;
+}
+
+.clear {
+    clear: both;
+}
+
+.f-clb {
+    clear: both;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.f-aclb:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+// 隐藏
+.hide {
+    display: none;
+}
+
+// 显示
+.show {
+    display: block;
+}
+
+.full-w {
+    width: 100%;
+}
+
+// 主体居中宽度 margin width
+.g-m-w {
+    margin: 0 auto;
+    width: $winWidMax;
+}
+
+// 处理文本过长
+.text-of {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+@media screen and (max-width:1240px) {
+    body {
+        min-width: 1024px;
+    }
+    .g-m-w {
+        width: 1000px;
+    }
+}

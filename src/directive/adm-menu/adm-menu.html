@@ -1,0 +1,38 @@
+<div class="adm-menu">
+    <ul class="tab-menu" ng-show="c.data.length">
+        <li ng-repeat="item in c.data track by $index" ng-show="item.show" ng-class="{active: item.isActive}">
+            <div>
+                <div class="menu-item" ng-click="f.switchTab(c.data,$index)" ng-class="{'no-icon':!item.icon,'no-ricon':!item.iconRight,disabled:item.disabled}" ng-hide="item.hide">
+                    <i class="i-l" ng-class="item.icon" ng-show="item.icon"></i>
+                    <div class="text-of" title="{{item.name}}">
+                        <span ng-bind="item.name"></span>
+                        <span ng-if="item.msgNum" class="msg-num">
+                                    <span ng-show="item.msgNum>99">
+                                        99+
+                                        </span>
+                        <span ng-hide="item.msgNum>99" ng-bind="item.msgNum"></span>
+                        </span>
+                    </div>
+                    <span ng-if="item.unRead" class="msg-tip"></span>
+                    <i class="i-r {{::item.iconRight}}" ng-class="{'i-r-90':item.showChild}" ng-show="item.iconRight"></i>
+                </div>
+                <div class="item-child" ng-style="item.style">
+                    <div class="menu-item menu-child" ng-repeat="child in item.children track by $index" ng-show="child.show" ng-click="f.switchTab(c.data,$parent.$index,$index)" ng-class="{'no-ricon':!child.iconRight,active: child.isActive,disabled:child.disabled}">
+                        <i class="i-l" ng-class="child.icon" ng-show="child.icon"></i>
+                        <div class="text-of" title="{{child.name}}">
+                            <span ng-bind="child.name"></span>
+                            <span ng-if="child.msgNum" class="msg-num">
+                                        <span ng-show="child.msgNum>99">
+                                            99+
+                                            </span>
+                            <span ng-hide="child.msgNum>99" ng-bind="child.msgNum"></span>
+                            </span>
+                        </div>
+                        <span ng-if="child.unRead" class="msg-tip"></span>
+                        <i class="i-r" ng-class="child.iconRight" ng-show="child.iconRight"></i>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

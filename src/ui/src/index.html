@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="RCP">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>大洋UI</title>
+    <meta name="description" content="UI库">
+    <meta name="keywords" content="UI">
+    <script src="/config-dy/config-dy.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+</head>
+
+<body ng-controller="mainCtrl" class="ng-cloak ui">
+    <div class="ui-t-head">
+        这是DY-UI库
+    </div>
+    <!-- <header>
+        <dy-header c="c.headerConfig"></dy-header>
+    </header> -->
+    <div class="g-m-w ui-body" ng-controller="uiCtrl">
+        <div class="ui-left">
+            <ul class="utm-ul">
+                <li ng-repeat="curTabTemp in d.contentList track by $index" ng-class="{'ui-t-chose': d.curTab === curTabTemp.name}" ng-click="f.tabClick(curTabTemp.name, curTabTemp.type)">
+                    <h2 ng-if="curTabTemp.type === 'T1'" ng-bind="curTabTemp.name"></h2>
+                    <span ng-if="curTabTemp.type === 'T2'" ng-bind="curTabTemp.name"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="ui-right" id="uiRight">
+            <div class="ui-t-content" ng-show="d.curTab === '变量、颜色'">
+                <p class="utc-title">设计风格-变量、颜色</p>
+                <table class="dy-table val">
+                    <thead>
+                        <tr>
+                            <th>变量名</th>
+                            <th>值</th>
+                            <th>备注</th>
+                            <th>eg</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in d.scssData track by $index">
+                            <td class="cp">{{::item.key}}</td>
+                            <td class="cp">{{::item.val}}</td>
+                            <td>{{::item.desc}}</td>
+                            <td style="background-color:{{::item.val}}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '操作图标'">
+                <p class="utc-title">设计风格-操作图标</p>
+                <div id="iconfontDemo"></div>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '基本布局'">
+                <p class="utc-title">控件-基本布局</p>
+                <p>
+                    此模块用于展示一些常用布局
+                </p>
+                <p class="utc-title-second">
+                    <span>垂直居中：</span>
+                </p>
+                <div class="ui-t-pos">
+                    这是一个200x200的div
+                    <div class="utp-abpos">
+                        这是一个100x100的div
+                    </div>
+                </div>
+                <p>（红色div垂直居中显示）调用posMid如下</p>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    .xx{
+                        @include posMid('宽度','高度');
+                    }
+                </script></code></pre>
+
+                <p class="utc-title-second">
+                    <span>栅格系统：</span>
+                </p>
+
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '进度条'">
+                <p class="utc-title">控件-进度条</p>
+                <div class="mg-y20 dy-progressbar">
+                    <div class="dy-progress">
+                        <div class="progress-bar" style="width: 60%;"></div>
+                    </div>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div class="dy-progress">
+                        <div class="progress-bar" style="width: 60%;"></div>
+                    </div>   
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === 'step条'">
+                <p class="utc-title">控件-step条</p>
+                <div class="dy-step mg-b20">
+                    <div class="step-done">
+                        <div>1</div>
+                        <span>提交订单</span>
+                    </div>
+                    <div class="step-active">
+                        <div>2</div>
+                        <span>去支付</span>
+                    </div>
+                    <div>
+                        <div>3</div>
+                        <span>购买成功</span>
+                    </div>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div class="dy-step">
+                            <div class="step-done">
+                                <div>1</div>
+                                <span>提交订单</span>
+                            </div>
+                            <div class="step-active">
+                                <div>2</div>
+                                <span>去支付</span>
+                            </div>
+                            <div>
+                                <div>3</div>
+                                <span>购买成功</span>
+                            </div>
+                        </div>
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '按钮'">
+                <p class="utc-title">控件-按钮</p>
+                <div class="mg-b20">
+                    <span class="utc-tip">min: </span>
+                    <div class="utc-btn-div">
+                        <button class="c-btn c-btn-min">button</button>
+                        <div class="utc-center">（正常）</div>
+                    </div>
+                    <div class="utc-btn-div">
+                        <button class="c-btn c-btn-min c-btn-ban" disabled="disabled">button</button>
+                        <div class="utc-center">（不可点击）</div>
+                    </div>
+                </div>
+                <div class="mg-b20">
+                    <span class="utc-tip">normal: </span>
+                    <div class="utc-btn-div">
+                        <button class="c-btn c-btn-normal">button</button>
+                        <div class="utc-center">（正常）</div>
+                    </div>
+                    <div class="utc-btn-div">
+                        <button class="c-btn c-btn-normal c-btn-ban" disabled="disabled">button</button>
+                        <div class="utc-center">（不可点击）</div>
+                    </div>
+                </div>
+                <div class="mg-b20">
+                    <span class="utc-tip">normal2: </span>
+                    <div class="utc-btn-div">
+                        <button class="c-btn c-btn-normal2">button</button>
+                        <div class="utc-center">（正常）</div>
+                    </div>
+                    <div class="utc-btn-div">
+                        <button class="c-btn c-btn-normal2 c-btn-ban" disabled="disabled">button</button>
+                        <div class="utc-center">（不可点击）</div>
+                    </div>
+                </div>
+                <div class="mg-b20">
+                    <span class="utc-tip">big: </span>
+                    <div class="utc-btn-div">
+                        <button class="c-btn c-btn-big">button</button>
+                        <div class="utc-center">（正常）</div>
+                    </div>
+                    <div class="utc-btn-div">
+                        <button class="c-btn c-btn-big c-btn-ban" disabled="disabled">button</button>
+                        <div class="utc-center">（不可点击）</div>
+                    </div>
+                </div>
+                <table class="ui-t-table">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>组合</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>min</th>
+                            <th>class="c-btn c-btn-min"</th>
+                        </tr>
+                        <tr>
+                            <th>normal</th>
+                            <th>class="c-btn c-btn-normal"</th>
+                        </tr>
+                        <tr>
+                            <th>normal2</th>
+                            <th>class="c-btn c-btn-normal2"</th>
+                        </tr>
+                        <tr>
+                            <th>big</th>
+                            <th>class="c-btn c-btn-big"</th>
+                        </tr>
+                        <tr>
+                            <th>不可点击</th>
+                            <th>class="(上述对应的类型)+c-btn-ban" 对于存在disabled属性元素无需加</th>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    ps: 对于在此改动小的可以添加class覆盖，改动大的可以用btnStyle重写
+                </p>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '按钮一'">
+                <p class="utc-title">控件-按钮一</p>
+                <div class="mg-y20">
+                    <button class="btn btn-lg">大型按钮</button>
+                    <button class="btn">正常</button>
+                    <button class="btn btn-sm">小型按钮</button>
+                    <button class="btn btn-sm" ng-disabled="1">小型按钮disabled</button>
+                </div>
+                <div class="mg-y20">
+                    <button class="btn btn-def">边框按钮</button>
+                    <button class="btn btn-def" ng-disabled="1">边框按钮disabled</button>
+                </div>
+                <div class="mg-y20">
+                    <button class="btn btn-err">错误按钮</button>
+                    <button class="btn btn-err" ng-disabled="1">错误按钮disabled</button>
+                </div>
+                <div class="mg-y20">
+                    <button class="btn btn-dis">禁用按钮</button>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div class="mg-y10">
+                            <button class="btn btn-lg">大型按钮</button>
+                            <button class="btn">正常</button>
+                            <button class="btn btn-sm">小型按钮</button>
+                            <button class="btn btn-sm" ng-disabled="1">小型按钮disabled</button>
+                    </div>
+                    <div class="mg-y10">
+                            <button class="btn btn-def">边框按钮</button>
+                            <button class="btn btn-def" ng-disabled="1">边框按钮disabled</button>
+                            <button class="btn btn-err">错误按钮</button>
+                            <button class="btn btn-err" ng-disabled="1">错误按钮disabled</button>
+                            <button class="btn btn-dis">禁用按钮</button>
+                    </div>
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '文字链'">
+                <p class="utc-title">控件-文字链</p>
+                <p>
+                    <span>文字链：</span>
+                    <span class="c-link">查看全部&gt;</span>
+                </p>
+                <table class="ui-t-table">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>组合</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>文字链</th>
+                            <th>class="c-link"</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '表单'">
+                <p class="utc-title">控件-表单</p>
+                <div class="mg-b20">
+                    <span class="utc-tip">尺寸: </span>
+                    <div class="utc-btn-div">
+                        <input class="c-input" placeholder="请输入内容" />
+                        <div class="utc-center">（默认尺寸）</div>
+                    </div>
+                    <div class="utc-btn-div">
+                        <input class="c-input c-input-min" placeholder="请输入内容" />
+                        <div class="utc-center">（小尺寸）</div>
+                    </div>
+                    <div class="utc-btn-div">
+                        <input class="c-input c-input-big" placeholder="请输入内容" />
+                        <div class="utc-center">（大尺寸）</div>
+                    </div>
+                </div>
+                <div class="mg-b20">
+                    <span class="utc-tip">状态: </span>
+                    <div class="utc-btn-div">
+                        <input class="c-input c-input-fc" placeholder="请输入内容" />
+                        <div class="utc-center">（输入中）</div>
+                    </div>
+                    <div class="utc-btn-div">
+                        <input class="c-input c-input-err" placeholder="请输入内容" />
+                        <div class="utc-center">（输入不合法）</div>
+                    </div>
+                    <div class="utc-btn-div">
+                        <input class="c-input" disabled="disabled" placeholder="请输入内容" />
+                        <div class="utc-center">（不能输入）</div>
+                    </div>
+                </div>
+                <table class="ui-t-table">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>组合</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>默认尺寸</th>
+                            <th>class="c-input"</th>
+                        </tr>
+                        <tr>
+                            <th>小尺寸</th>
+                            <th>class="c-input c-input-min"</th>
+                        </tr>
+                        <tr>
+                            <th>大尺寸</th>
+                            <th>class="c-input c-input-big"</th>
+                        </tr>
+                        <tr>
+                            <th>输入中</th>
+                            <th>class="c-input c-input-fc"</th>
+                        </tr>
+                        <tr>
+                            <th>输入错误</th>
+                            <th>class="c-input c-input-err"</th>
+                        </tr>
+                        <tr>
+                            <th>禁止输入</th>
+                            <th>class="c-input c-input-ban" 对于存在disabled属性元素无需加</th>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>ps: 尺寸跟状态可以组合使用</p>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '表单1'">
+                <p class="utc-title">控件-表单1</p>
+                <form name="uiForm" class="dy-form">
+                    <div>
+                        <label for="account">验证帐号</label>
+                        <input class="height-lg" id="account" name="account" type="text" placeholder="请输入内容" ng-model="d.account" ng-pattern="d.regExp.account" maxlength="30" required>
+                        <div class="form-msg" ng-messages="uiForm.account.$error">
+                            <div class="c-theme height-lg" ng-if="(uiForm.account.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                            <div class="c-error height-lg" ng-message="required">*</div>
+                            <div class="c-error height-lg" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的帐号！</div>
+                        </div>
+                    </div>
+                    <!-- <pre>{{uiForm.account.$error}}</pre> -->
+                    <div>
+                        <label for="tel">验证手机</label>
+                        <input id="tel" name="tel" type="text" placeholder="请输入内容" ng-model="d.tel" ng-pattern="d.regExp.tel" ng-minlength="11" maxlength="11" required>
+                        <div class="form-msg" ng-messages="uiForm.tel.$error">
+                            <div class="c-theme" ng-if="(uiForm.tel.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                            <div class="c-error" ng-message="required">*</div>
+                            <div class="c-error" ng-message="minlength"><i class="iconfont i-unpass1"></i>请输入11位手机号码！</div>
+                            <div class="c-error" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的手机号码！</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email">验证邮箱</label>
+                        <input class="height-sm" id="email" name="email" type="text" placeholder="请输入内容" ng-model="d.email" ng-pattern="d.regExp.email" maxlength="100" required>
+                        <div class="form-msg" ng-messages="uiForm.email.$error">
+                            <div class="c-theme height-sm" ng-if="(uiForm.email.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                            <div class="c-error height-sm" ng-message="required">*</div>
+                            <div class="c-error height-sm" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的邮箱地址！</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email1">验证邮箱（不可点击）</label>
+                        <input class="height-sm" id="email1" name="email1" type="text" placeholder="请输入内容" ng-model="d.email" ng-pattern="d.regExp.email" maxlength="100" ng-disabled="true" required>
+                        <div class="form-msg" ng-messages="uiForm.email1.$error">
+                            <div class="c-theme height-sm" ng-if="(uiForm.email1.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                            <div class="c-error height-sm" ng-message="required">*</div>
+                            <div class="c-error height-sm" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的邮箱地址！</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="score">验证分数</label>
+                        <input id="score" name="score" type="number" placeholder="请输入内容" ng-model="d.score" ng-pattern="d.regExp.score0" min="0" max="100" required>
+                        <div class="form-msg" ng-messages="uiForm.score.$error">
+                            <div class="c-theme" ng-if="(uiForm.score.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                            <div class="c-error" ng-message="required">*</div>
+                            <div class="c-error" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的分数！</div>
+                        </div>
+                    </div>
+                    <div class="label-top">
+                        <label for="textarea" class="label-textarea">textarea</label>
+                        <textarea name="textarea" id="textarea" cols="30" rows="3" placeholder="请输入内容" ng-model="d.textarea" maxlength="1000" ng-pattern="d.regExp.score0" required></textarea>
+                        <div class="form-msg" ng-messages="uiForm.textarea.$error">
+                            <div class="c-theme" ng-if="(uiForm.textarea.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                            <div class="c-error" ng-message="required">*</div>
+                            <div class="c-error" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的内容！</div>
+                        </div>
+                    </div>
+                    <button ng-click="" type="submit" class="btn">提交</button>
+                    <!-- <pre>{{uiForm.$error}}</pre> -->
+                </form>
+                <pre class="language-markup"><code class="language-markup"><script>
+                <form name="uiForm" class="dy-form">
+                    <div>
+                        <label for="account">验证帐号</label>
+                        <input class="height-lg" id="account" name="account" type="text" placeholder="请输入内容" ng-model="d.account" ng-pattern="d.regExp.account" maxlength="30" required>
+                        <div class="form-msg" ng-messages="uiForm.account.$error">
+                            <div class="c-theme height-lg" ng-if="(uiForm.account.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                            <div class="c-error height-lg" ng-message="required">*</div>
+                            <div class="c-error height-lg" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的帐号！</div>
+                        </div>
+                    </div>
+                <div>
+                    <label for="tel">验证手机</label>
+                    <input id="tel" name="tel" type="text" placeholder="请输入内容" ng-model="d.tel" ng-pattern="d.regExp.tel" ng-minlength="11" maxlength="11" required>
+                    <div class="form-msg" ng-messages="uiForm.tel.$error">
+                        <div class="c-theme" ng-if="(uiForm.tel.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                        <div class="c-error" ng-message="required">*</div>
+                        <div class="c-error" ng-message="minlength"><i class="iconfont i-unpass1"></i>请输入11位手机号码！</div>
+                        <div class="c-error" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的手机号码！</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="email">验证邮箱</label>
+                    <input class="height-sm" id="email" name="email" type="text" placeholder="请输入内容" ng-model="d.email" ng-pattern="d.regExp.email" maxlength="100" required>
+                    <div class="form-msg" ng-messages="uiForm.email.$error">
+                        <div class="c-theme height-sm" ng-if="(uiForm.email.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                        <div class="c-error height-sm" ng-message="required">*</div>
+                        <div class="c-error height-sm" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的邮箱地址！</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="email1">验证邮箱（不可点击）</label>
+                    <input class="height-sm" id="email1" name="email1" type="text" placeholder="请输入内容" ng-model="d.email" ng-pattern="d.regExp.email" maxlength="100" ng-disabled="true" required>
+                    <div class="form-msg" ng-messages="uiForm.email1.$error">
+                        <div class="c-theme height-sm" ng-if="(uiForm.email1.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                        <div class="c-error height-sm" ng-message="required">*</div>
+                        <div class="c-error height-sm" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的邮箱地址！</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="score">验证分数</label>
+                    <input id="score" name="score" type="number" placeholder="请输入内容" ng-model="d.score" ng-pattern="d.regExp.score0" min="0" max="100" required>
+                    <div class="form-msg" ng-messages="uiForm.score.$error">
+                        <div class="c-theme" ng-if="(uiForm.score.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                        <div class="c-error" ng-message="required">*</div>
+                        <div class="c-error" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的分数！</div>
+                    </div>
+                </div>
+                <div class="label-top">
+                    <label for="textarea" class="label-textarea">textarea</label>
+                    <textarea name="textarea" id="textarea" cols="30" rows="3" placeholder="请输入内容" ng-model="d.textarea" ng-pattern="d.regExp.score0" maxlength="1000" required></textarea>
+                    <div class="form-msg" ng-messages="uiForm.textarea.$error">
+                        <div class="c-theme" ng-if="(uiForm.textarea.$error|json)==='{}'"><i class="iconfont i-pass"></i></div>
+                        <div class="c-error" ng-message="required">*</div>
+                        <div class="c-error" ng-message="pattern"><i class="iconfont i-unpass1"></i>请输入正确的内容！</div>
+                    </div>
+                </div>
+                </form>
+                </script>
+                </code>
+                </pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '选择框'">
+                <p class="utc-title">多选</p>
+                <div class="mg-y20 lh-30">
+                    <div class="dy-checkbox dy-checkbox-lg mg-r20" ng-class="{active:item.select}" ng-repeat="item in [{},{},{},{}]" ng-click="item.select=!item.select"></div>
+                </div>
+                <div class="mg-y20 lh-30">
+                    <div class="dy-checkbox mg-r20" ng-class="{active:item.select}" ng-repeat="item in [{},{},{},{}]" ng-click="item.select=!item.select"></div>
+                </div>
+                <div class="mg-y20 lh-30">
+                    <div class="dy-checkbox dy-checkbox-sm mg-r20" ng-class="{active:item.select}" ng-repeat="item in [{},{},{},{}]" ng-click="item.select=!item.select"></div>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div class="dy-checkbox dy-checkbox-lg mg-r20" ng-class="{active:item.select}" ng-repeat="item in [{},{},{},{}]" ng-click="item.select=!item.select"></div>
+                    <div class="dy-checkbox mg-r20" ng-class="{active:item.select}" ng-repeat="item in [{},{},{},{}]" ng-click="item.select=!item.select"></div>
+                    <div class="dy-checkbox dy-checkbox-sm mg-r20" ng-class="{active:item.select}" ng-repeat="item in [{},{},{},{}]" ng-click="item.select=!item.select"></div>
+                </script></code></pre>
+                <p class="utc-title">单选</p>
+                <div class="mg-y20 lh-30">
+                    <div class="dy-radio dy-radio-lg" ng-class="{active:d.radio}" ng-click="d.radio=!d.radio"></div><span class="mg-x5">男</span>
+                    <div class="dy-radio dy-radio-lg disabled" ng-class="{active:!d.radio}" ng-click="d.radio=!d.radio"></div><span class="mg-x5">女</span>
+                </div>
+                <div class="mg-y20 lh-30">
+                    <div class="dy-radio" ng-class="{active:d.radio}" ng-click="d.radio=!d.radio"></div><span class="mg-x5">男</span>
+                    <div class="dy-radio" ng-class="{active:!d.radio}" ng-click="d.radio=!d.radio"></div><span class="mg-x5">女</span>
+                </div>
+                <div class="mg-y20 lh-30" ng-click="sigBtn = !sigBtn">
+                    <div class="dy-radio dy-radio-sm" ng-class="{active:d.radio}" ng-click="d.radio=!d.radio"></div><span class="mg-x5">男</span>
+                    <div class="dy-radio dy-radio-sm" ng-class="{active:!d.radio}" ng-click="d.radio=!d.radio"></div><span class="mg-x5">女</span>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div class="dy-radio dy-radio-lg" ng-class="{active:d.radio}" ng-click="d.radio=!d.radio"></div><span class="mg-x5">男</span>
+                    <div class="dy-radio" ng-class="{active:d.radio}" ng-click="d.radio=!d.radio"></div><span class="mg-x5">男</span>
+                    <div class="dy-radio dy-radio-sm" ng-class="{active:d.radio}" ng-click="d.radio=!d.radio"></div><span class="mg-x5">男</span>
+                </script></code></pre>
+                <p class="utc-title">单选一</p>
+                <div class="mg-y20">
+                    <div class="dy-switch dy-switch-lg mg-r20 disabled" ng-class="{active:d.switch}" ng-click="d.switch=!d.switch"></div>
+                    <div class="dy-switch mg-r20" ng-class="{active:d.switch}" ng-click="d.switch=!d.switch"></div>
+                    <div class="dy-switch dy-switch-sm mg-r20" ng-class="{active:d.switch}" ng-click="d.switch=!d.switch"></div>
+                    <div class="dy-switch dy-switch-ss" ng-class="{active:d.switch}" ng-click="d.switch=!d.switch"></div>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div class="dy-switch dy-switch-lg" ng-class="{active:d.switch}" ng-click="d.switch=!d.switch"></div>
+                    <div class="dy-switch" ng-class="{active:d.switch}" ng-click="d.switch=!d.switch"></div>
+                    <div class="dy-switch dy-switch-sm" ng-class="{active:d.switch}" ng-click="d.switch=!d.switch"></div>
+                    <div class="dy-switch dy-switch-ss" ng-class="{active:d.switch}" ng-click="d.switch=!d.switch"></div>
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '角标'">
+                <p class="utc-title">控件-角标</p>
+                <div class="ui-corner-red mg-b20">角标</div>
+                <table class="ui-t-table">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>组合</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>角标</th>
+                            <th>采用cnCreate重写 e.g class="@include cnCreate(51px,21px,red,white);"</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '单选框'">
+                <p class="utc-title">控件-单选框</p>
+                <span>单选</span>
+                <div class="c-sig-all" ng-click="sigBtn = !sigBtn">
+                    <div class="c-sig-in" ng-show="sigBtn"></div>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div class="c-sig-all">
+                        <div class="c-sig-in"></div>
+                    </div>
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '复选框'">
+                <p class="utc-title">控件-复选框</p>
+
+                <span>复选</span>
+                <div class="c-mul-all" ng-click="mulBtn = !mulBtn">
+                    <div class="c-mul-in" ng-show="mulBtn"></div>
+                </div>
+
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div class="c-mul-all">
+                        <div class="c-mul-in"></div>
+                    </div>
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '搜索框'">
+                <p class="utc-title">控件-搜索框</p>
+                <div class="mg-y20">
+                    <dy-search c="d.searchConfig"></dy-search>
+                </div>
+            </div>
+            <!-- directive -->
+            <div class="ui-t-content" ng-show="d.curTab === '时间插件'">
+                <p class="utc-title">组件-时间插件</p>
+                <div>
+                    <h3>日期时间选择器</h3>
+                    <input type="text" id="datetime" placeholder="yyyy-MM-dd HH:mm:ss">
+                    <pre class="language-markup"><code class="language-markup"><script>
+                    <input type="text" id="id" placeholder="yyyy-MM-dd HH:mm:ss">
+                </script></code></pre>
+                    <pre class="language-js"><code class="language-js"><script>
+                    laydate.render({
+                        elem: '#id',
+                        type: 'datetime'
+                    });
+                </script></code></pre>
+                    <input type="text" id="datetime1" placeholder="yyyy-MM-dd">
+                    <pre class="language-markup"><code class="language-markup"><script>
+                    <input type="text" id="id1" placeholder="yyyy-MM-dd">
+                </script></code></pre>
+                    <pre class="language-js"><code class="language-js"><script>
+                        laydate.render({
+                            elem: '#id1',
+                        });
+                </script></code></pre>
+                </div>
+                <p>详见：<a href="http://www.layui.com/laydate/?alone">http://www.layui.com/laydate/?alone</a></p>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '默认图'">
+                <p class="utc-title">组件-默认图</p>
+                <div>
+                    <p>
+                        img directive:
+                        <br> src标签应使用ng-src，否则angular捕抓不到图片的error错误
+                        <br> default: src错误时为空时使用默认图，为图片地址时使用地址里的图片
+                    </p>
+                    <h2>eg:</h2>
+                    <h2>默认样式</h2>
+                    <div>
+                        <img ng-src="/imgs/aikexue-logo.png">
+                    </div>
+                    <pre class="language-markup"><code class="language-markup"><script>
+                    <img ng-src="/imgs/aikexue-logo.png">
+                </script></code></pre>
+                    <h2>显示默认图</h2>
+                    <img class="img-demo0" ng-src="/imgs/aikexue-logo.pg">
+                    <pre class="language-markup"><code class="language-markup"><script>
+                    <img class="img-demo0" ng-src="/imgs/aikexue-logo.pg">
+                </script></code></pre>
+                    <p>更换默认图为其它图</p>
+                    <div><img ng-src="/imgs/aikexue-logo.pg" default="/imgs/aikexue-logo.png"></div>
+                    <pre class="language-markup"><code class="language-markup"><script>
+                    <img ng-src="/imgs/aikexue-logo.pg" default="/imgs/aikexue-logo.png">
+                </script></code></pre>
+                </div>
+                <div>
+                    <p>
+                        固定大小框内显示垂直居中的图
+                    </p>
+                    <ng-img c="{img:'imgs/t1.jpg',divClass:'img-demo0',imgClass:'user-avatar'}"></ng-img>
+                    <ng-img c="{img:'imgs/t1.jpg',divClass:'img-demo1',imgClass:'user-avatar'}"></ng-img>
+
+                    <ng-img c="{img:'imgs/t1.jpgerror',divClass:'img-demo1',imgClass:'user-avatar'}"></ng-img>
+                    <pre class="language-markup"><code class="language-markup"><script>
+                    <ng-img c="{img:'imgs/t1.jpg',divClass:'img-demo0'}"></ng-img>
+                </script></code></pre>
+                    <p>
+                        固定大小框内显示完整的图，会出现空白
+                    </p>
+                    <ng-img c="{img:'imgs/t1.jpg',divClass:'img-demo1',imgClass:'user-avatar',preview:true}"></ng-img>
+                    <pre class="language-markup"><code class="language-markup"><script>
+                    <ng-img c="{img:'imgs/t1.jpg',divClass:'img-demo1',imgClass:'user-avatar',preview:true}"></ng-img>
+                </script></code></pre>
+                </div>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '图片懒加载'">
+                <p class="utc-title">组件-图片懒加载</p>
+                <div ng-repeat="img in d.imgs track by $index" class="lazy-img-s">
+                    <div lazy-img class="" src="img" c="{id:'uiRight'}"></div>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                <div lazy-img class="lazy-img-s" src="d.imgs[0]" c="{id:'uiRight',url:''}" id="sb"></div>
+                <div lazy-img class="lazy-img-s" src="d.imgs[1]" c="{id:'uiRight'}" id="sb1"></div>
+                <div lazy-img class="lazy-img-s" src="d.imgs[2]" c="{id:'uiRight'}" id="sb2"></div>
+                <div lazy-img class="lazy-img-s" src="d.imgs[3]" c="{id:'uiRight'}" id="sb3"></div>
+            </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '播放器'">
+                <p class="utc-title">组件-音频播放器</p>
+                <button class="c-btn c-btn-normal" ng-click="f.playMusic()">全局播放</button>
+                <div class="audio-1" id="audio1">
+                </div>
+                <button class="c-btn c-btn-normal" ng-click="f.playMusic(1)">移动端播放条</button>
+                <div class="lin-a-min" id="audio2">
+                </div>
+                <p class="utc-title">组件-视频播放器</p>
+                <div class="video-1" id="video1">
+                </div>
+                <div class="video-2" id="video2">
+                </div>
+                <div class="video-3" style="width: 480px;height: 320px;" id="video3">
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div class="audio-1" id="audio1">
+                    </div>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    LinPlayer = {
+                        type: 'audio',
+                        fid: 'audio1',
+                        id: 'a1',
+                        src: 'http://192.168.3.32:1002/%E5%8F%B6%E9%87%8C%E3%80%81%E5%AE%89%E4%B9%9D-%E6%A2%A6%E9%87%8C%E6%B1%9F%E5%B1%B1.mp3',
+                        title: '我们都一样',
+                        style: 'width: 300px;',
+                        autoPlay: false,
+                    };
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div class="video-1" id="video1">
+                    </div>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    let vPlayer = LinPlayer({
+                        type: 'video',
+                        fid: 'video2',
+                        id: 'v2',
+                        src: 'http://192.168.3.32:1002/%E7%A5%9E%E5%A5%87%E7%9A%84%E5%8D%87%E5%8A%9B%E2%80%94%E2%80%94h264.mp4',
+                        autoPlay: false,
+                    });
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === 'drag拖拽'">
+                <p class="utc-title">组件-drag拖拽</p>
+                <div class="drag-0">
+                    <div drag style="position:fixed;">
+                        我是drag0 fixed;
+                    </div>
+                    <div drag="title" class="drag-1">
+                        <div class="title">我是title</div>
+                        <div>我是body</div>
+                    </div>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div drag="title" class="drag-1">
+                        <div class="title">我是title</div>
+                        <div>我是body</div>
+                    </div>
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '头部'">
+                <p class="utc-title">组件-头部(包含搜索组件，dropdown组件)</p>
+                <!-- 头部 -->
+                <header>
+                    <dy-header c="c.headerConfig"></dy-header>
+                </header>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <header>
+                        <dy-header c="c.headerConfig"></dy-header>
+                    </header>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        /**
+                        * @author linj
+                        * @description 
+                        * 头部组件
+                        * c:{
+                        * headerData: {
+                        * navList: nav连接列表,
+                        logo: {
+                        href: 图标连接,
+                        small: 小图标,
+                       }}
+                        * }
+                        */
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <dy-search class="f-r" c="d.searchConfig"></dy-search>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        /**
+                        * @author linj
+                        * @description 
+                        * 搜索组件
+                        * d.searchConfig = {
+                        *  maxlength: 50, 字数
+                        *  key: '', 搜索内容
+                        *  placeholder: ''placeholder显示内容
+                        *  matchList: [], 匹配列表
+                        *  matchFn: f.matchFn, 匹配函数
+                        *  cb: f.search, 搜索回调
+                        *  changeFn: f.searchChange, 搜索内容改变回调
+                        *  lightStyle: 搜索框是否使用主题色
+                        * };
+                        */
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <dy-dropdown c="d.teacherDownConfig"></dy-dropdown>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        /**
+                         * @author linj
+                         * @description 
+                         * dropdown组件
+                         * c:{data: [{
+                         name: '教学中心', 显示名称 1
+                         href: rcpAid.getUrl('教学中心'), 连接地址 0
+                         target: '', a标签的target link 0
+                         topLine: true, 是否显示上分割线 0
+                        }],
+                        type: 'link', link: a标签，连接，click：div标签，有点击事件
+                        clickFn: null, 点击事件
+                        hide: false, 是否隐藏
+                    }
+                    */
+                    </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '分页'">
+                <p class="utc-title">组件-分页</p>
+                <p class="utc-title">组件-loading</p>
+                <div class="mg-b20">无数据样式：</div>
+                <div class="" dy-load c="c.loadData1"></div>
+                <div class="mg-y40">加载数据样式（网络慢才显示loading）：</div>
+                <div dy-load c="c.loadData">
+                    <div ng-repeat="item in d.pageData track by $index">
+                        <span ng-bind="item.id"></span>
+                    </div>
+                </div>
+                <dy-page class="mg-y20" c='c.pageConfig'></dy-page>
+                <dy-page class="dy-page-sm mg-y20" c='c.pageConfig1'></dy-page>
+                <pre class="language-markup"><code class="language-markup"><script></script>
+                    <div dy-load c="c.loadData">
+                        <div ng-repeat="item in d.pageData track by $index">
+                            <span ng-bind="item.id"></span>
+                        </div>
+                    </div>
+                    <dy-page class="mg-y20" c='c.pageConfig'></dy-page>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        /**
+                        * @author linj
+                        * @description 
+                        * 分页组件
+                        * c.pageConfig = {
+                        * hideEnd: 是否隐藏最后两页
+                        * hideJump: 是否隐藏页面跳转
+                        * changeFn: 切换页面回调,
+                        * pageInfo: {
+                        *  pn: 页码
+                        *  ps: 每页数
+                        *  total: 总数
+                        * }页码信息,
+                        * showNum: 前面显示页码数,
+                        * };
+                        * c.pageConfig.init()可更新数据
+                        */
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        /**
+                        * [列表加载，加载中显示loading,加载完无数据显示默认无数据的图]
+                        * c:{
+                        * load: true显示loading
+                        * empty: true显示空数据
+                        * img: 背景图
+                        * tip: 无数据提示语
+                        * imgClass: 默认图class  img-0:无数据显示的图片垂直居中 img-1:无数据显示的图片水平居中 img-2:无数据显示的图片水平100%;
+                        * posClass: loading位置class，eg:c-fixed:浏览器垂直居中,c-absolute:加载位置为垂直居中,c-default:默认加载position top:10的位置
+                        * }
+                        * eg: <div dy-load c="c.loadData">
+                        */
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        let load = service.load.add(c.loadData.data, 'load');
+                        service.load.rm(c.loadData.data, load);
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '上传'">
+                <p class="utc-title">组件-上传-file</p>
+                <button class="btn btn-lg" ng-click="c.uploadFile.selectFile()">上传file</button>
+                <div class="c-b">
+                    <ng-img ng-repeat="img in d.uploadFile track by $index" class="mg-r10 f-l img-demo0" c="{img:img,imgClass:'user-avatar'}"></ng-img>
+                </div>
+                <upload-file c="c.uploadFile" class="swf-up-35"></upload-file>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        ie9下需要将
+                        <upload-file c="c.uploadFile"></upload-file>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        // 初始化配置
+                        c.uploadFile = {
+                            type: 'attach',
+                            data: {},
+                            private: true,
+                            recorded: true,
+                            onSuccess: (argFile, argData) => {
+                                if (!d.uploadFile) {
+                                    d.uploadFile = [];
+                                }
+                                d.uploadFile.push(argData.data);
+                                console.log(argFile, argData);
+                            },
+                            onProcess: (argFile, argRate, argSpeed, argUpload) => {
+                                console.log(argFile, argRate, argSpeed, argUpload);
+                            },
+                            onSelectFile: (argData, argUpload) => {
+                                console.log(argData, argUpload);
+                            },
+                        };
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        // ie9下需要将<upload-file c="c.uploadFile"></upload-file>悬浮到元素上面                        
+                        <button class="btn btn-lg" ng-click="c.uploadFile.selectFile()">上传file</button>
+                </script></code></pre>
+                <p class="utc-title">组件-上传-base64</p>
+                <button class="btn btn-lg" ng-click="f.uploadBase()">上传base</button>
+                <div class="c-b">
+                    <ng-img ng-repeat="img in d.upBaseImgs track by $index" class="mg-r10 f-l img-demo0" c="{img:img,imgClass:'user-avatar'}"></ng-img>
+                </div>
+                <upload-img-base ng-if="!d.isIE9" c="c.uploadBase"></upload-img-base>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <upload-img-base ng-if="!d.isIE9" c="c.uploadBase"></upload-img-base>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    // 初始化配置
+                    c.uploadBase = {
+                        showEdit: false,
+                        uploadNum: 0,
+                        // 是否取消上传
+                        upCancel: false,
+                        // 上传input ID
+                        id: 'avatar',
+                        width: 200,
+                        ratio: [1, 1],
+                        containerStyle: { width: '480px', height: '310px' },
+                        // 组件样式： 'fixed': 浮动弹窗   , 'course': 创建课程封面
+                        mode: 'fixed',
+                        // 返回$scope
+                        scope: null,
+                        cb: function(argData) {
+                            if (argData) {
+                                if (!d.upImgs) {
+                                    d.upBaseImgs = [];
+                                }
+                                d.upBaseImgs.push(argData);
+                            }
+                        }
+                    };
+                    // 调用
+                    uploadBase: () => {
+                        $timeout(function() {
+                            if (c.uploadBase.scope) {
+                                c.uploadBase.scope.selectImg();
+                            }
+                        });
+                    }
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <button class="btn btn-lg" ng-click="f.uploadBase()">上传base</button>
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === 'tab'">
+                <p class="utc-title">组件-tab</p>
+                <dy-tab class="mg-y30" c="c.tabConfig"></dy-tab>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        <dy-tab c="c.tabConfig"></dy-tab>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        <dy-tab c="c.tabConfig"></dy-tab>
+                </script></code></pre>
+                <dy-tab class="mg-y30" c="c.tabConfig1"></dy-tab>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        <dy-tab class="mg-t20" c="c.tabConfig1"></dy-tab>
+                </script></code></pre>
+                <dy-tab class="mg-y30 tab-gray" c="c.tabConfigDis"></dy-tab>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        <dy-tab class="mg-t20 tab-gray" c="c.tabConfig1"></dy-tab>
+                </script></code></pre>
+                <div class="menu-demo mg-y30">
+                    <dy-tab c="c.tabConfig2"></dy-tab>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        <dy-tab c="c.tabConfig2"></dy-tab>
+                </script></code></pre>
+                <div class="menu-demo mg-y30">
+                    <dy-tab c="c.tabConfig3"></dy-tab>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                        <dy-tab c="c.tabConfig3"></dy-tab>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    /**
+                    * @author linj
+                    * @description 
+                    * tab组件
+                    * c.tabConfig = {
+                    *  type: line:线状tab btn：按钮状tab menu: 菜单tab
+                    *  data: [
+                    *       name: 名称,
+                    *       isActive: 是否选中,
+                    *       unRead: 有未读数据（for 圈子）,
+                    *       msgNum: 消息数,
+                    *       hide：隐藏当前tab,
+                    *       icon: 图标 class,
+                    *       iconRight: 右边图标 class,
+                    *       disabled: true 禁用单个,不能点击,
+                    *   ] tab列表信息
+                    *   clickFn: tab点击回调事件
+                    * };
+                    */
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '下拉选择'">
+                <p class="utc-title">组件-下拉选择</p>
+                <div class="select-group">
+                    <dy-select c="c.dropdown0" class="select-lg"></dy-select>
+                    <dy-select c="c.dropdown1"></dy-select>
+                    <dy-select c="c.dropdown2" class="select-sm"></dy-select>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <dy-select c="c.dropdown1"></dy-select>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    /**
+                    * @author linj
+                    * @description 
+                    * select组件 同 dropdown
+                    * c:{
+                    * nowData: {
+                    *  name: ***
+                    * } 默认选中
+                    * data: [{
+                    name: '教学中心', 显示名称 1
+                    href: rcpAid.getUrl('教学中心'), 连接地址 0
+                    target: '', a标签的target link 0
+                    topLine: true, 是否显示上分割线 0
+                   }],
+                   parent: ''父级元素selector
+                   type: 'link', link: a标签，连接，click：div标签，有点击事件
+                   clickFn: null, 点击事件
+                   hide: false, 是否隐藏
+                   }
+                   */
+                </script></code></pre>
+                <div class="select-group">
+                    <dy-select c="c.dropdown0" class="select-lg"></dy-select>
+                    <dy-select c="c.dropdown1"></dy-select>
+                    <dy-select c="c.dropdown2" class="select-sm"></dy-select>
+                </div>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === 'dialog'">
+                <p class="utc-title">组件-dialog</p>
+                <div class="mg-y20">
+                    <button class="btn" ng-click="c.dialogConfig.show=true;">弹窗提示</button>
+                    <button class="btn" ng-click="c.dialogConfig1.show=true;">没有头底</button>
+                    <button class="btn" ng-click="c.dialogConfig2.show=true;">没有头部</button>
+                    <button class="btn" ng-click="c.dialogConfig7.show=true;">没有背景</button>
+                    <button class="btn" ng-click="c.dialogConfig8.show=true;">没有背景，背景不可点</button>
+                    <button class="btn" ng-click="c.dialogConfig9.show=true;">有背景，背景不可点</button>
+                    <button class="btn" ng-click="c.dialogConfig10.show=true;">没有头部，没有子html</button>
+                    <button class="btn" ng-click="f.t()">alert</button>
+                    <button class="btn" ng-click="f.t1()">confirm</button>
+                </div>
+                <div class="mg-y20">
+                    <button class="btn" ng-click="c.dialogConfig3.show=true;">左上</button>
+                    <button class="btn" ng-click="c.dialogConfig4.show=true;">左下</button>
+                    <button class="btn" ng-click="c.dialogConfig5.show=true;">右上,无背景</button>
+                    <button class="btn" ng-click="c.dialogConfig6.show=true;">右下,无背景</button>
+                </div>
+                <dy-dialog c="c.dialogConfig">
+                    <div class="pd-f20">
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                        <div class="pd-f20">10</div>
+                    </div>
+                </dy-dialog>
+                <dy-dialog c="c.dialogConfig1">
+                    <div class="pd-f20"> 没有头底</div>
+                </dy-dialog>
+                <dy-dialog c="c.dialogConfig2">
+                    <div class="pd-f20"> 没有头部</div>
+                </dy-dialog>
+                <dy-dialog c="c.dialogConfig3">
+                    <div class="pd-f20"> 左上</div>
+                </dy-dialog>
+                <dy-dialog c="c.dialogConfig4">
+                    <div class="pd-f20"> 左下</div>
+                </dy-dialog>
+                <dy-dialog c="c.dialogConfig5">
+                    <div class="pd-f20"> 右上</div>
+                </dy-dialog>
+                <dy-dialog c="c.dialogConfig6">
+                    <div class="pd-f20"> 右下</div>
+                </dy-dialog>
+                <dy-dialog c="c.dialogConfig7">
+                    <div class="pd-f20"> 没有背景</div>
+                </dy-dialog>
+                <dy-dialog c="c.dialogConfig8">
+                    <div class="pd-f20"> 没有有背景，背景不可点</div>
+                </dy-dialog>
+                <dy-dialog c="c.dialogConfig9">
+                    <div class="pd-f20"> 有背景，背景不可点</div>
+                </dy-dialog>
+                <dy-dialog c="c.dialogConfig10">
+                </dy-dialog>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <dy-dialog c="c.dialogConfig1">
+                        <div class="pd-f20"> 没有头底</div>
+                    </dy-dialog>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    /**
+                    * @author linj
+                    * @description 
+                    * dialog组件
+                    * c =  {
+                    *  title: 标题，不填不显示 header栏目
+                    *  hideModal: true 隐藏模态背景
+                    *  hideBg: true 隐藏全局背景，dialog外可点击
+                    *  hideOk: true 隐藏确定
+                    *  hideCancel: true 隐藏取消
+                    *  hideFooter: true 隐藏底部
+                    *  modalCancel: true 点击模态背景不隐藏
+                    *  content: 内容，没有时使用标签内的内容
+                    *  posClass: 位置class l-t l-b r-t r-b 不填则默认居中
+                    *  okCb: 确定回调
+                    *  cancel: 取消回调
+                    *  cancelMove: 取消移动到body下,默认移动到body下，保持在最高层
+                    *  show: true时显示，false时隐藏
+                    * }
+                    */
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === 'footer、fixedbar'">
+                <p class="utc-title">组件-footer、fixedbar</p>
+                <dy-fixedbar c="c.footerConfig"></dy-fixedbar>
+                <p>请看右边fixedbar，配置同footer</p>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '评分'">
+                <p class="utc-title">组件-评分</p>
+                <div ng-init="d.five = 3;">星星数：{{d.five}}</div>
+                <input type="number" ng-model="d.five">
+                <dy-star class="mg-y20" data="d.five" num="1"></dy-star>
+                <dy-star class="mg-y20" data="d.five" num="2"></dy-star>
+                <dy-star class="mg-y20" data="d.five" num="3"></dy-star>
+                <dy-star class="mg-y20" data="d.five" num="4"></dy-star>
+                <dy-star class="mg-y20" data="d.five" num="5"></dy-star>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <dy-star data="d.five" num=""></dy-star>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    /**
+                    * @author linj
+                    * @description 
+                    * 评分星星组件
+                    * data：数值变量
+                    * num: 星星总数
+                    */
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === 'progress进度条'">
+                <p class="utc-title">组件-progress进度条</p>
+                <div class="mg-y20">
+                    <input type="text" ng-model="d.progress">
+                </div>
+                <div class="mg-y20">
+                    <dy-progress data="d.progress" c="{type:'x'}"></dy-progress>
+                </div>
+                <div class="mg-y20">
+                    <dy-progress data="d.progress1" c="{type:'x'}"></dy-progress>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <dy-star data="d.five" num=""></dy-star>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === 'tips'">
+                <p class="utc-title">组件-tips</p>
+                <div class="mg-y20 tips-demo">
+                    <div dy-tips>
+                        <button class="btn">默认</button>
+                        <div class="tip">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br> 我是文字提示啊,
+                                <br>我是文字提示啊,<br>我是文字提示啊,<br> 我是文字提示啊,
+                                <br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </div>
+                    <div dy-tips>
+                        <button class="btn">上左</button>
+                        <div class="tip t-l">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </div>
+                    <dy-tips>
+                        <button class="btn">下左</button>
+                        <div class="tip b-l">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </dy-tips>
+                    <div dy-tips>
+                        <button class="btn">上右</button>
+                        <div class="tip t-r">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </div>
+                    <dy-tips>
+                        <button class="btn">下右</button>
+                        <div class="tip b-r">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </dy-tips>
+                    <div dy-tips>
+                        <button class="btn">右上</button>
+                        <div class="tip r-t">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br> 我是文字提示啊,
+                                <br>我是文字提示啊,<br>我是文字提示啊,<br> 我是文字提示啊,
+                                <br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </div>
+                    <div dy-tips>
+                        <button class="btn">右上</button>
+                        <div class="tip r-t">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br> 我是文字提示啊,
+                                <br>我是文字提示啊,<br>我是文字提示啊,<br> 我是文字提示啊,
+                                <br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mg-y20 tips-demo">
+                    <div dy-tips>
+                        <button class="btn">左上</button>
+                        <div class="tip l-t">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </div>
+                    <dy-tips>
+                        <button class="btn">左下</button>
+                        <div class="tip l-b">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </dy-tips>
+                    <div dy-tips>
+                        <button class="btn">右上</button>
+                        <div class="tip r-t">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </div>
+                    <dy-tips>
+                        <button class="btn">右下</button>
+                        <div class="tip r-b">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </dy-tips>
+                </div>
+                <div class="mg-y20 tips-demo" style="height:150px;background-color: #dde8f5;">
+                    <div class="pos-tip">
+                        <div dy-tips>
+                            <button class="btn">左上</button>
+                            <div class="tip l-t">
+                                <div>
+                                    我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                                </div>
+                            </div>
+                        </div>
+                        <dy-tips>
+                            <button class="btn">左下</button>
+                            <div class="tip l-b">
+                                <div>
+                                    我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                                </div>
+                            </div>
+                        </dy-tips>
+                        <div dy-tips>
+                            <button class="btn">右上</button>
+                            <div class="tip r-t">
+                                <div>
+                                    我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                                </div>
+                            </div>
+                        </div>
+                        <dy-tips>
+                            <button class="btn">右下</button>
+                            <div class="tip r-b">
+                                <div>
+                                    我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                                </div>
+                            </div>
+                        </dy-tips>
+                        <dy-tips>
+                            <button class="btn">下右</button>
+                            <div class="tip b-r">
+                                <div>
+                                    我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                                </div>
+                            </div>
+                        </dy-tips>
+                        <dy-tips c="{cancelAuto:true}">
+                            <button class="btn">下右禁用自适应</button>
+                            <div class="tip b-r">
+                                <div>
+                                    我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                                </div>
+                            </div>
+                        </dy-tips>
+                    </div>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <div dy-tips>
+                        <button class="btn">上左</button>
+                        <div class="tip t-l">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </div>
+                    <dy-tips>
+                        <button class="btn">下左</button>
+                        <div class="tip b-l">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </dy-tips>
+                    <div dy-tips>
+                        <button class="btn">上右</button>
+                        <div class="tip t-r">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </div>
+                    <dy-tips>
+                        <button class="btn">下右</button>
+                        <div class="tip b-r">
+                            <div>
+                                我是文字提示啊,<br>我是文字提示啊,<br>我是文字提示啊,<br>
+                            </div>
+                        </div>
+                    </dy-tips>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    /**
+                    * @author linj
+                    * @description 
+                    * tips组件
+                    * c:{
+                    * cancelAuto: true:关闭自动适应,
+                    * }
+                    */
+                </script></code></pre>
+            </div>
+            <div class="ui-t-content" ng-show="d.curTab === '轮播图'">
+                <p class="utc-title">组件-轮播图</p>
+                <div>
+                    <dy-slider c="c.sliderConfig"></dy-slider>
+                </div>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    <dy-slider c="c.sliderConfig"></dy-slider>
+                </script></code></pre>
+                <pre class="language-markup"><code class="language-markup"><script>
+                    /**
+                     * @author linj
+                     * @description 
+                     * 轮播组件
+                     * c:{
+                     * imgs: 轮播图片,
+                     * time：切换时间 s,
+                     * stayTime: 停留时间 s,
+                     * slideRight: true向右切换
+                     * }
+                     */
+                </script></code></pre>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/libs.js?bcdb2bd91d01d765bb2f"></script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+@import "../../ui/src/styles/module/index.scss";
+.adm-header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    z-index: 10;
+    height: 70px;
+    line-height: 70px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(215, 220, 223, 0.50);
+    font-size: 12px;
+    .link {
+        font-size: 14px;
+        &:hover {
+            color: $themeCol;
+        }
+    }
+    .header-info {
+        line-height: 1;
+        margin: 0 30px;
+        >h4 {
+            padding: 14px 0 10px 0;
+        }
+    }
+    .avatar {
+        border-radius: 30px;
+        height: 30px;
+        width: 30px;
+    }
+    .logout {
+        position: relative;
+        margin-right: 40px;
+        cursor: pointer;
+        &:hover {
+            color: $themeCol;
+        }
+        &::before {
+            margin: 0 10px;
+            color: $fontCol3;
+            content: "|";
+        }
+    }
+}

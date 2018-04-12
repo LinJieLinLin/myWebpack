@@ -1,0 +1,89 @@
+@import "../../ui/src/styles/module/index.scss";
+.adm-menu {
+    %active {
+        color: #fff;
+        background-color: #4B5269;
+    }
+    .tab-menu {
+        width: 100%;
+        font-size: 14px;
+        li {
+            position: relative;
+            cursor: pointer;
+            &:hover {
+                @extend %active;
+            }
+            .menu-child {
+                &:hover {
+                    background-color: #565E79;
+                }
+                &.active {
+                    background-color: $themeCol;
+                    &:hover {
+                        background-color: $themeCol;
+                    }
+                }
+            }
+        }
+        .menu-item {
+            position: relative;
+            padding-left: 62px;
+            padding-right: 40px;
+            padding-top: 14px;
+            padding-bottom: 14px;
+            text-align: left;
+            >div {
+                line-height: 30px;
+                height: 30px;
+            }
+        }
+        .no-icon {
+            padding-left: 0;
+        }
+        .no-ricon {
+            padding-right: 25px;
+            .msg-num {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translate(0, -50%);
+            }
+        }
+        .i-l {
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            z-index: 1;
+            transform: translate(0, -50%);
+        }
+        .i-r {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            z-index: 1;
+            transform: translate(0, -50%);
+        }
+        .i-r-90 {
+            transform: translate(0, -50%) rotate(90deg);
+        }
+        .active {
+            @extend %active;
+        }
+        .msg-tip {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            z-index: 1;
+            transform: translate(0, -50%);
+            width: 6px;
+            height: 6px;
+            background-color: $errorCol;
+            border-radius: 100%;
+        }
+    }
+    .item-child {
+        height: 0;
+        opacity: 0;
+        transition: all .12s ease;
+    }
+}

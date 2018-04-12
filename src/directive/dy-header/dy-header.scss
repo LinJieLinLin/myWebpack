@@ -1,0 +1,110 @@
+@import "../../ui/src/styles/module/index.scss";
+$height: 60px;
+$logoHeight: 40px;
+.dy-header {
+    position: relative;
+    z-index: 2;
+    height: $height;
+    background-color: #fff;
+    color: $fontCol;
+    font-size: 14px;
+    a {
+        color: #284050;
+        display: block;
+        &:hover {
+            color: $themeCol;
+        }
+    }
+    i {
+        color: $iconCol;
+        &:hover {
+            color: $themeCol;
+        }
+    }
+    nav {
+        float: left;
+        line-height: $height;
+        margin-right: 20px;
+    }
+    .chat-unread {
+        left: 8px;
+        top: -1px;
+        font-style: normal;
+        font-size: 12px;
+        transform: scale(.8);
+        padding: 0 4px;
+        position: absolute;
+        display: inline-block;
+        background-color: $errorCol;
+        min-width: 18px;
+        height: 18px;
+        line-height: 18px;
+        text-align: center;
+        border-radius: 9px;
+        box-sizing: border-box;
+        color: #fff;
+        &:hover {
+            color: #fff;
+        }
+    }
+    .logo {
+        margin-right: 20px;
+        float: left;
+        height: $logoHeight;
+        line-height: $height;
+        >img {
+            height: 100%;
+        }
+    }
+    .i-learning-student {
+        vertical-align: bottom;
+        margin-right: 2px;
+    }
+    .menu {
+        position: relative;
+        height: 30px;
+        margin-top: 15px;
+    }
+    .menu-chat {
+        position: relative;
+        &:hover {
+            .iconfont {
+                color: $themeCol;
+            }
+        }
+        .iconfont {
+            font-size: 20px;
+        }
+    }
+    .menu-info {
+        position: relative;
+        float: left;
+        margin-left: 10px;
+        height: 30px;
+        line-height: 30px;
+        cursor: pointer;
+        font-size: 12px;
+        .avatar {
+            border-radius: 100%;
+            height: 100%;
+            vertical-align: top;
+        }
+        .name {
+            display: inline-block;
+            max-width: 80px;
+        }
+        .rz {
+            color: #FE9D00;
+        }
+        .dy-dropdown {
+            width: 114px;
+            display: none;
+        }
+        &:hover {
+            .dy-dropdown {
+                display: block;
+                animation-name: fadeInUp;
+            }
+        }
+    }
+}

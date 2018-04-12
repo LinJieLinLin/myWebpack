@@ -1,0 +1,25 @@
+@import "../../ui/src/styles/module/index.scss";
+.dy-search {
+    width: 230px;
+    margin-top: 15px;
+    font-size: 12px;
+    .match-key {
+        min-height: 30px;
+        background-color: #fff;
+        border: 1px solid $borderCol;
+        border-top-width: 0px;
+        >div {
+            padding: 0 8px;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            &:hover {
+                background-color: #F2F2F2;
+            }
+        }
+    }
+}
+
+.dy-search-light {
+    width: 380px;
+}

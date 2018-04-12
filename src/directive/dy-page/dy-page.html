@@ -1,0 +1,21 @@
+<div class="dy-page">
+    <button class="btn btn-def" ng-disabled="c.pageInfo.pn===1||c.pageInfo.total===0" ng-click="f.changePage(c.pageInfo.pn-1)">
+        <i class="iconfont i-arrow-right rot-180"></i>
+    </button>
+    <button class="btn btn-def" ng-class="{select:$index+1===c.pageInfo.pn}" ng-repeat="num in d.pageList track by $index" ng-click="f.changePage(num)" ng-show="$index>=d.pageStart&&$index<=d.pageEnd&&(c.hideEnd||d.pageNum<=c.showNum||d.pageNum>c.showNum+$index-1)"
+        ng-bind="num">2</button>
+    <div class="f-l c-b" ng-show="!c.hideEnd&&d.pageNum>c.showNum">
+        <div class="f-l dot" ng-show="d.pageNum>c.showNum+2&&d.pageEnd!==d.pageNum-3">···</div>
+        <button class="btn btn-def" ng-class="{select:d.pageNum-1===c.pageInfo.pn}" ng-click="f.changePage(d.pageNum-1)" ng-bind="d.pageNum-1">2</button>
+        <button class="btn btn-def" ng-class="{select:d.pageNum===c.pageInfo.pn}" ng-click="f.changePage(d.pageNum)" ng-bind="d.pageNum">2</button>
+    </div>
+    <button class="btn btn-def" ng-click="f.changePage(c.pageInfo.pn+1)" ng-disabled="c.pageInfo.pn===d.pageNum||c.pageInfo.total===0">
+        <i class="iconfont i-arrow-right"></i>
+    </button>
+    <div class="jump" ng-hide="c.hideJump||d.pageNum<=c.showNum+2">
+        <span>跳到第</span>
+        <input name="jumpNum" type="number" ng-model="d.jumpNum" min="1" max="{{d.pageNum}}">
+        <span>页</span>
+        <button class="btn btn-def" ng-disabled="!d.jumpNum" ng-click="f.changePage(d.jumpNum);d.jumpNum=null;">Go</button>
+    </div>
+</div>

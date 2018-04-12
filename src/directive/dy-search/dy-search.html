@@ -1,0 +1,11 @@
+<div class="dy-search" ng-class="{'dy-search-light':c.lightStyle}">
+    <input type="text" class="input" maxlength="{{c.maxlength||50}}" ng-model-options="{debounce:500}" ng-model="c.key" ng-focus="d.showMatchList=true;" ng-change="c.changeFn(c.key)" ng-blur="d.showMatchList=false;" placeholder="{{::c.placeholder||'请输入搜索内容'}}"
+    />
+    <i class="iconfont i-search" ng-click="c.cb(c.key)"></i>
+    <div class="line"></div>
+    <div class="match-key" ng-show="d.showMatchList && c.changeFn && c.matchList.length">
+        <div ng-repeat="item in c.matchList track by $index" ng-click="c.matchFn(item)" ng-if="$index < 7" class="text-of">
+            <span ng-bind-html="item.title|matchText:c.key"></span>
+        </div>
+    </div>
+</div>

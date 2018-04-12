@@ -1,0 +1,30 @@
+<div class="dy-more-level-sel-style" ng-mouseenter="enterDiv()" ng-mouseleave="leftDiv()">
+    <div ng-class="{'more-level-show':true,'more-level-show-no':!clickedShow}"  title="{{clickedShow}}" ng-click="showClick()">
+        <span class="mll-span text-of" ng-bind="clickedShow || placeholder" class="text-of"></span>
+        <span class="mlst-tri"></span>
+    </div>
+    <div class="more-level-div" >
+        <div class="more-level-select" ng-show="isShow" >
+            <div ng-show="othStyle == 2" class="mll-show-div">
+                已选择：<span ng-bind="clickedShowTmp"></span>
+            </div>
+            <ul class="first-level-ul">
+                <li ng-repeat="curCity in allcityRoot track by $index" ng-click="recordClicked(curCity,-1)" ng-class="{'clicked-li': clickedAns.indexOf(curCity) != -1}">
+                    <span ng-bind="curCity"></span>
+                    <span class="li-arrow" ng-show="allcity[curCity] && allcity[curCity].length != 0">&gt;</span>
+                </li>
+            </ul>
+            <ul ng-hide="(clickedAns.indexOf(curAns) != clickedAns.lastIndexOf(curAns)) && ($index == clickedAns.lastIndexOf(curAns)) || !allcity[curAns] || !allcity[curAns].length"  ng-repeat="curAns in clickedAns track by $index"  class="other-level-ul" ng-class="{'oth-f-bg': $index === 0 && othStyle}" >
+                <li  ng-repeat="cur in allcity[curAns] track by $index"  ng-click="recordClicked(cur,$parent.$index)" ng-class="{'clicked-li': clickedAns[1+$parent.$index] == cur || realAns[1+$parent.$index] == cur}">
+                    <span class="li-arrow-other" ng-hide="!allcity[curAns+'@'+cur] || !allcity[curAns+'@'+cur].length">&gt;</span>
+                    <span ng-bind="cur" class="other-cur-name"></span>
+                    <div class="clear"></div>
+                </li>
+            </ul>
+            <div ng-show="othStyle==2" class="mll-btn-div">
+                <span class="mll-bd-u" ng-click="cancelClick()">取消</span>
+                <span class="mll-bd-s" ng-click="sureClick()">确定</span>
+            </div>
+        </div>
+    </div>
+</div>

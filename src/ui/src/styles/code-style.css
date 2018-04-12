@@ -1,0 +1,27 @@
+/* 为代码片写的样式  原路径../../rcp-common/styles/code-style.css */
+
+
+/* 文本过长自动换行 */
+
+body {
+    word-break: break-all;
+}
+
+
+/*处理在移动端的移动 */
+
+div.sourceCode {
+    overflow-x: inherit;
+}
+
+
+/* 处理背景 */
+
+pre.sourceCode {
+    display: inline-block;
+    min-width: 100%;
+}
+
+img {
+    max-width: 100%;
+}

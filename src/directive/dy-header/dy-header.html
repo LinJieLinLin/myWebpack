@@ -1,0 +1,51 @@
+<div class="dy-header g-m-w c-b">
+    <a ng-href="{{c.headerData.logo.href||'/'}}" class="logo">
+        <img ng-src="{{c.headerData.logo.small}}" alt="{{c.headerData.logo.msg||''}}" title="{{c.headerData.logo.msg||''}}" />
+    </a>
+    <nav ng-repeat="item in c.headerData.navList track by $index" class="f-l">
+        <a ng-href="{{item.link || ''}}" target="{{item.target || '_self'}}">
+                {{item.name}}
+            </a>
+        <div class="nav-c" ng-if="item.childs.length">
+            <a clas="text-of" ng-repeat="c in item.childs" ng-href="{{c.link || ''}}" target="{{c.target || '_self'}}">{{c.name}}</a>
+        </div>
+    </nav>
+    <div class="f-r menu">
+        <div ng-if="!d.currentUser.uid" class="c-b lh-30">
+            <a ng-href="{{link.login}}" id="login" class="f-l pd-l20">
+                <i class="iconfont i-learning-student"></i>马上登录
+            </a>
+            <span class="f-l mg-x10" style="color:#ececec;"> | </span>
+            <a ng-href="{{link.register}}" class="f-l">注册</a>
+        </div>
+        <div ng-if="d.currentUser.uid" class="c-b">
+            <div class="menu-info">
+                <img ng-src="{{d.currentUser.avatar}}" class="avatar" alt="{{d.currentUser.nickName}}" />
+                <span class="name text-of" title="{{d.currentUser.nickName}}" ng-bind="d.currentUser.nickName"></span>
+                <i class="iconfont i-certification" ng-class="{'rz':d.currentUser.certification}"></i>
+                <i class="iconfont i-arrow-down"></i>
+                <dy-dropdown class="dy-dropdown-center" c="d.userDownConfig"></dy-dropdown>
+            </div>
+            <div class="menu-info">
+                <span title="">我要开课</span>
+                <i class="iconfont i-arrow-down"></i>
+                <dy-dropdown class="dy-dropdown-center" c="d.teacherDownConfig"></dy-dropdown>
+            </div>
+        </div>
+    </div>
+    <div class="menu f-r mg-l30" ng-if="!d.isIE9">
+        <chat getscope="getscope"></chat>
+        <div class="c-b" ng-show="d.currentUser.uid">
+            <a class="chat-btn f-l lh-30 menu-chat">
+                <i class="iconfont i-conversation mg-r20"></i>
+                <i class="chat-unread" ng-show="!msgNum">99+{{msgNum > 99 ? '99+' : msgNum}}</i>
+                <i class="chat-unread point" ng-show="!msgNum && noticeMsgReceived"></i>
+            </a>
+            <a class="f-l lh-30 menu-chat" href="/space/alarm-center.html" target="_blank" ng-show="!unHandWarningNum">
+                <i class="iconfont i-alarm-center mg-r10"></i>
+                <i class="chat-unread">{{unHandWarningNum > 99 ? '99+' : unHandWarningNum}}</i>
+            </a>
+        </div>
+    </div>
+    <dy-search class="f-r" c="d.searchConfig"></dy-search>
+</div>

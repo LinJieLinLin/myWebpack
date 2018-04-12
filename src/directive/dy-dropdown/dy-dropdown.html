@@ -1,0 +1,8 @@
+<div class="dy-dropdown animated" ng-show="c.data.length" ng-class="{'hide':c.hide,'fadeInUp':!c.hide}">
+    <div ng-if="c.type==='link'">
+        <a class="lh-30 dp-item" ng-repeat="item in c.data track by $index" ng-class="{'top-line':item.topLine}" ng-bind="item.name" ng-href="{{item.href}}" target="{{item.target||'_self'}}"></a>
+    </div>
+    <div ng-if="c.type==='click'">
+        <div class="lh-30 dp-item" ng-repeat="item in c.data track by $index" ng-bind="item.name" ng-click="f.clickFn(item)"></div>
+    </div>
+</div>

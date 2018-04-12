@@ -1,0 +1,18 @@
+<div class="dy-dialog" ng-class="{'pos-r':c.hideBg}" ng-show="c.show" id="{{::d.id}}">
+    <div ng-hide="c.hideModal" class="d-bg" ng-click="f.close('modal')"></div>
+    <div class="d-main animated {{::c.posClass}}" drag="d-header" ng-class="{'zoomIn':c.show}">
+        <div class="d-header text-of" ng-show="c.title">
+            <span ng-bind="c.title"></span>
+            <i class="iconfont i-close" ng-click="f.close()"></i>
+        </div>
+        <div class="d-body mg-f20" ng-if="c.content">
+            <i ng-hide="c.title" class="iconfont i-close" ng-click="f.close()"></i>
+            <span ng-bind="c.content"></span>
+        </div>
+        <div class="d-body" ng-if="!c.content" ng-transclude></div>
+        <div class="d-footer" ng-hide="c.hideFooter">
+            <button ng-hide="c.hideCancel" class="btn btn-def" ng-click="f.close('cancel')">取消</button>
+            <button ng-hide="c.hideOk" class="btn" ng-click="f.close('ok')">确定</button>
+        </div>
+    </div>
+</div>

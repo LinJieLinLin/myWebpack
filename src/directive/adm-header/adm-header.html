@@ -1,0 +1,12 @@
+<div class="adm-header c-b">
+    <div class="f-l header-info">
+        <h4 class="ng-binding">管理中心</h4>
+        <h6 class="ng-binding">Management center</h6>
+    </div>
+    <a href="" class="f-l link">酷校首页</a>
+    <div class="f-r logout" ng-click="f.logout();">马上退出</div>
+    <div class="f-r">
+        <img ng-src="{{d.currentUser.avatar}}" class="avatar" alt="{{d.currentUser.nickName}}" />
+        <span class="name text-of" title="{{d.currentUser.nickName}}" ng-bind="d.currentUser.nickName"></span>
+    </div>
+</div>

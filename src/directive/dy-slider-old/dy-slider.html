@@ -1,0 +1,15 @@
+<div class="dy-slider" ng-class="c.class" ng-style="c.style">
+    <button type="button" ng-mouseenter="f.play('stop')" ng-mouseleave="f.play()" class="prev" ng-click="f.prev()">
+        <span class="u"></span>
+        <span class="d"></span>
+    </button>
+    <button type="button" ng-mouseenter="f.play('stop')" ng-mouseleave="f.play()" class="next" ng-click="f.next()">
+        <span class="u"></span>
+        <span class="d"></span>
+    </button>
+    <ul ng-style="::c.ulStyle">
+        <li ng-repeat="i in c.imgs track by $index" class="slide" ng-class="f.getClass($index)" ng-style="::d.liStyle">
+            <img ng-src="{{i}}" alt="$index" ng-style="::c.imgStyle">
+        </li>
+    </ul>
+</div>

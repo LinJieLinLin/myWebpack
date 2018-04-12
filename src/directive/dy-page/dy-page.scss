@@ -1,0 +1,106 @@
+@import "../../ui/src/styles/module/index.scss";
+.dy-page {
+    position: relative;
+    @include iCB();
+    color: $fontCol;
+    font-size: 14px;
+    .btn {
+        float: left;
+        margin: 0 3px;
+        min-width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+        padding: 0;
+    }
+    .btn-def {
+        &:hover {
+            border-color: $themeCol;
+        }
+        &[disabled] {
+            &:hover {
+                border-color: $borderCol;
+            }
+        }
+    }
+    .select {
+        border-width: 0px;
+        @include iBtnBgColor($themeCol);
+        color: #fff;
+    }
+    .dot {
+        height: 30px;
+        line-height: 30px;
+    }
+    .jump {
+        float: left;
+        font-size: 12px;
+        line-height: 30px;
+        margin-left: 15px;
+        >span {
+            float: left;
+        }
+        >input {
+            float: left;
+            width: 50px;
+            margin: 3px 5px 0 5px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            text-align: center;
+            text-indent: unset;
+            height: 24px;
+            border: 1px solid $borderCol;
+            @include iHoverBorder();
+        }
+        .btn {
+            margin-top: 3px;
+            margin-left: 5px;
+            border-radius: 20px;
+            height: 24px;
+            line-height: 24px;
+            min-width: 44px;
+        }
+    }
+}
+
+.dy-page-lg {
+    .btn {
+        min-width: 36px;
+        height: 36px;
+        line-height: 36px;
+    }
+    .dot {
+        height: 36px;
+        line-height: 36px;
+    }
+    .jump {
+        height: 36px;
+        line-height: 36px;
+        >input,
+        .btn {
+            margin-top: 6px;
+        }
+    }
+}
+
+.dy-page-sm {
+    .btn {
+        min-width: 24px;
+        height: 24px;
+        line-height: 24px;
+    }
+    .dot {
+        height: 24px;
+        line-height: 24px;
+    }
+    .jump {
+        height: 24px;
+        line-height: 24px;
+        >input,
+        .btn {
+            margin-top: 0;
+            height: 24px;
+            line-height: 24px;
+        }
+    }
+}

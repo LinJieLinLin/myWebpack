@@ -1,0 +1,117 @@
+@import "../../ui/src/styles/module/index.scss";
+.dy-dialog {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999999;
+    &.ng-hide {
+        opacity: 1;
+    }
+    &.pos-r {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        right: auto;
+    }
+    .d-bg {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        background-color: rgba(64, 64, 64, 0.60);
+    }
+    .d-main {
+        position: fixed;
+        z-index: 1000;
+        width: 500px;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, .3);
+        overflow: hidden;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+    }
+    .zoomIn {
+        opacity: 1;
+    }
+    .l-t {
+        left: 0;
+        top: 0;
+        right: auto;
+        bottom: auto;
+        transform: unset;
+    }
+    .l-b {
+        left: 0;
+        right: auto;
+        top: auto;
+        bottom: 0;
+        transform: unset;
+    }
+    .r-t {
+        left: auto;
+        right: 0;
+        top: 0;
+        bottom: auto;
+        transform: unset;
+    }
+    .r-b {
+        left: auto;
+        right: 0;
+        top: auto;
+        bottom: 0;
+        transform: unset;
+    }
+    .d-header {
+        height: 48px;
+        line-height: 48px;
+        padding-left: 16px;
+        background-color: #fff;
+        color: $fontCol;
+        padding-right: 46px;
+        border-bottom: 1px solid $borderCol;
+        box-sizing: border-box;
+    }
+    .d-body {
+        text-align: center;
+        font-size: 20px;
+        min-height: 20px;
+        // max-height: 600px;
+        overflow: auto;
+        .i-close {
+            padding: 8px;
+        }
+    }
+    .d-footer {
+        height: 60px;
+        line-height: 60px;
+        box-sizing: border-box;
+        border-top: 1px solid $borderCol;
+        text-align: right;
+        padding: 0 10px;
+        >button {
+            margin-left: 10px;
+        }
+    }
+    .i-close {
+        position: absolute;
+        top: 0%;
+        right: 0;
+        z-index: 1;
+        cursor: pointer;
+        padding-left: 10px;
+        padding-right: 16px;
+        color: $fontCol1;
+        transform: scale(.7);
+        &:hover {
+            color: $fontCol3;
+        }
+    }
+}

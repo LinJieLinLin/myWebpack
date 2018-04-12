@@ -1,0 +1,22 @@
+<div>
+    <div class="dy-number-spinner clearfix" ng-hide="vm.d.hasErr">
+        <button ng-click="vmP.f.addClick($event)" ng-disabled="vmP.config.value >= vmP.config.max" class="f-r btn btn-def dns-btn-r" type="button">
+            <i class="iconfont i-add"></i>
+        </button>
+        <div>
+            <button ng-click="vmP.f.subClick($event)" ng-disabled="vmP.config.value <= vmP.config.min"  class="f-l btn btn-def dns-btn-l"  type="button">
+                <i class="iconfont i-reduce"></i>
+            </button>
+
+            <div class="dns-input-div">
+                <input ng-model="vmP.config.value" ng-click="vmP.f.inputClick($event)" ng-focus="vmP.f.onFocus()"
+                       ng-blur="vmP.f.onBlur()" ng-change="vmP.f.onChange()" maxlength="10"/>
+            </div>
+        </div>
+    </div>
+    <div class="color-red" ng-show="vmP.d.hasErr"
+         ng-attr-title="Config Error: invalid value of range(min: {{vmP.config.min}}, max: {{vmP.config.max}}, value: {{vmP.config.value}})">
+        Config Error: invalid value of range(min: {{vmP.config.min}}, max: {{vmP.config.max}}, value: {{vmP.config.value}})
+    </div>
+</div>
+        

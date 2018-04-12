@@ -1,0 +1,27 @@
+@import "../../ui/src/styles/module/index.scss";
+.dy-upload {
+    &.swf-up {
+        position: absolute;
+        top: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    &.swf-up-71 {
+        position: absolute;
+        left: -71px;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    &.swf-up-35 {
+        position: absolute;
+        left: 35px;
+        top: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    &.swf-sty {
+        background-color: #fff;
+        opacity: 1;
+        filter: alpha(opacity=1);
+    }
+}

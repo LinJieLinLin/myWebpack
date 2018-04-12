@@ -1,0 +1,12 @@
+@import "../../ui/src/styles/module/index.scss";
+.dy-star {
+    position: relative;
+    i {
+        padding: 0 2.5px;
+        cursor: pointer;
+        color: $fontCol3;
+    }
+    .select-star {
+        color: $warnCol;
+    }
+}

@@ -1,0 +1,51 @@
+<div class="dy-fixedbar">
+    <div class="yj">
+        <i class="iconfont i-feed-back"></i>
+        <span>意见反馈</span>
+    </div>
+    <div class="kf" ng-class="{'one-service':d.customList.length>1,'d-b':d.customList.length>0}" title="联系客服" ng-click="f.consult()" ng-hide="d.isIE9">
+        <i class="iconfont i-consult"></i>
+        <span>联系客服</span>
+        <div class="l-ft" ng-hide="d.customList.length == 1">
+            <div class="kf-list">
+                <div class="title">请选择客服代表</div>
+                <div class="list">
+                    <div class="item" ng-repeat="c in d.customList track by $index" ng-show="$index<19" ng-click="f.consult(c)">
+                        <ng-img class="avatar" c="{img:c.attrs.basic.avatar}"></ng-img>
+                        <div class="text-of c-name">
+                            <span ng-bind="c.attrs.basic.nickName" title="{{c.attrs.basic.nickName}}">客服小强</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wx" ng-show="c.footerData.twoDimensionCode.img">
+        <i class="iconfont i-qr-code"></i>
+        <span>关注微信</span>
+        <div class="l-ft">
+            <div class="qr-code">
+                <div class="img">
+                    <img ng-src="{{c.footerData.twoDimensionCode.img}}" width="122" height="122" />
+                </div>
+                <span ng-bind="c.footerData.twoDimensionCode.name"></span>
+            </div>
+        </div>
+    </div>
+    <div class="dl" ng-show="c.footerData.qrAppDown.img">
+        <i class="iconfont i-phone"></i>
+        <span>App下载</span>
+        <div class="l-ft">
+            <div class="qr-code">
+                <div class="img">
+                    <img ng-src="{{c.footerData.qrAppDown.img}}" width="122" height="122" />
+                </div>
+                <span>{{c.footerData.qrAppDown.name}}</span>
+            </div>
+        </div>
+    </div>
+    <div ng-show="d.showTop" class="to-top" title="回到顶部" onclick="$('html,body').stop().animate({scrollTop:0},'fast');">
+        <i class="iconfont i-top"></i>
+        <span>回到顶部</span>
+    </div>
+</div>

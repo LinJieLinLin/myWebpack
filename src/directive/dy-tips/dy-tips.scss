@@ -1,0 +1,204 @@
+@import "../../ui/src/styles/module/index.scss";
+.dy-tips {
+    $paddingWidth: 10px;
+    $arrowWidth: 10px;
+    position: relative;
+    &:hover {
+        .tip {
+            opacity: 1;
+            visibility: unset;
+        }
+    }
+    .tip {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 100%;
+        right: auto;
+        left: 0;
+        top: auto;
+        padding: 0 0 $paddingWidth 0;
+        transition: opacity .5s ease;
+        >div {
+            position: relative;
+            box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.20);
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 12px;
+            line-height: 18px;
+            color: $fontCol;
+            min-width: 140px;
+            background-color: #fff;
+            &::before {
+                position: absolute;
+                z-index: 1;
+                transform: rotate(45deg);
+                background-color: #fff;
+                width: 10px;
+                height: 10px;
+                bottom: -5px;
+                left: $arrowWidth;
+                right: auto;
+                top: auto;
+                border-bottom: 1px solid $borderCol;
+                border-right: 1px solid $borderCol;
+                border-left-width: 0;
+                border-top-width: 0;
+                content: "";
+            }
+        }
+    }
+    .t-l {
+        bottom: 100%;
+        right: auto;
+        left: 0;
+        top: auto;
+        padding: 0 0 $paddingWidth 0;
+        >div {
+            &::before {
+                bottom: -5px;
+                left: $arrowWidth;
+                right: auto;
+                top: auto;
+                border-bottom: 1px solid $borderCol;
+                border-right: 1px solid $borderCol;
+                border-left-width: 0;
+                border-top-width: 0;
+            }
+        }
+    }
+    .t-r {
+        bottom: 100%;
+        left: auto;
+        right: 0;
+        top: auto;
+        padding: 0 0 $paddingWidth 0;
+        >div {
+            &::before {
+                bottom: -5px;
+                right: $arrowWidth;
+                left: auto;
+                top: auto;
+                border-bottom: 1px solid $borderCol;
+                border-right: 1px solid $borderCol;
+                border-left-width: 0;
+                border-top-width: 0;
+            }
+        }
+    }
+    .b-l {
+        top: 100%;
+        right: auto;
+        left: 0;
+        bottom: auto;
+        padding: $paddingWidth 0 0 0;
+        >div {
+            &::before {
+                top: -6px;
+                left: $arrowWidth;
+                right: auto;
+                bottom: auto;
+                border-top: 1px solid $borderCol;
+                border-left: 1px solid $borderCol;
+                border-right-width: 0;
+                border-bottom-width: 0;
+            }
+        }
+    }
+    .b-r {
+        top: 100%;
+        left: auto;
+        right: 0;
+        bottom: auto;
+        padding: $paddingWidth 0 0 0;
+        >div {
+            &::before {
+                top: -6px;
+                right: $arrowWidth;
+                left: auto;
+                bottom: auto;
+                border-top: 1px solid $borderCol;
+                border-left: 1px solid $borderCol;
+                border-right-width: 0;
+                border-bottom-width: 0;
+            }
+        }
+    }
+    .l-t {
+        bottom: auto;
+        right: 100%;
+        left: auto;
+        top: -$arrowWidth;
+        padding: 0 $paddingWidth 0 0;
+        >div {
+            &::before {
+                right: -6px;
+                top: $arrowWidth;
+                bottom: auto;
+                left: auto;
+                border-top: 1px solid $borderCol;
+                border-right: 1px solid $borderCol;
+                border-left-width: 0;
+                border-bottom-width: 0;
+            }
+        }
+    }
+    .l-b {
+        top: auto;
+        right: 100%;
+        left: auto;
+        bottom: 0;
+        padding: 0 $paddingWidth 0 0;
+        >div {
+            &::before {
+                right: -6px;
+                bottom: $arrowWidth;
+                top: auto;
+                left: auto;
+                border-top: 1px solid $borderCol;
+                border-right: 1px solid $borderCol;
+                border-left-width: 0;
+                border-bottom-width: 0;
+            }
+        }
+    }
+    .r-t {
+        bottom: auto;
+        left: 100%;
+        right: auto;
+        top: -$arrowWidth;
+        padding: 0 0 0 $paddingWidth;
+        >div {
+            &::before {
+                left: -6px;
+                top: $arrowWidth;
+                right: auto;
+                bottom: auto;
+                border-bottom: 1px solid $borderCol;
+                border-left: 1px solid $borderCol;
+                border-right-width: 0;
+                border-top-width: 0;
+            }
+        }
+    }
+    .r-b {
+        top: auto;
+        left: 100%;
+        right: auto;
+        bottom: 0;
+        padding: 0 0 0 $paddingWidth;
+        >div {
+            &::before {
+                left: -6px;
+                bottom: $arrowWidth;
+                right: auto;
+                top: auto;
+                border-bottom: 1px solid $borderCol;
+                border-left: 1px solid $borderCol;
+                border-right-width: 0;
+                border-top-width: 0;
+            }
+        }
+    }
+}

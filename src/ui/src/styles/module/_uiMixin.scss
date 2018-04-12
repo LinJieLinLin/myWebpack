@@ -1,0 +1,733 @@
+/**
+* 切换样式
+**/
+
+@mixin oSwitch() {
+    .dy-switch {
+        display: inline-block;
+        position: relative;
+        height: $def;
+        width: 60px;
+        border-radius: 60px;
+        border: 1px solid $fontCol3;
+        background-color: $fontCol3;
+        cursor: pointer;
+        user-select: none;
+        vertical-align: middle;
+        &::before {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            z-index: 1;
+            transform: translate(0, -50%);
+            height: 27px;
+            width: 27px;
+            border-radius: 100%;
+            background-color: #fff;
+            margin: 0 2px;
+            content: "";
+        }
+        &.active {
+            border: 1px solid $themeCol;
+            background-color: $themeCol;
+            &::before {
+                top: 50%;
+                left: auto;
+                right: 0;
+                background-color: #fff;
+                content: "";
+            }
+        }
+        &.disabled {
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: .65;
+        }
+        &.dy-switch-lg {
+            height: $lg;
+            width: 70px;
+            &::before {
+                width: 34px;
+                height: 34px;
+            }
+        }
+        &.dy-switch-sm {
+            height: $sm;
+            width: 40px;
+            &::before {
+                width: 18px;
+                height: 18px;
+            }
+        }
+        &.dy-switch-ss {
+            height: 14px;
+            width: 28px;
+            &::before {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+    .dy-radio {
+        position: relative;
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 1px solid $borderCol;
+        border-radius: 100%;
+        cursor: pointer;
+        user-select: none;
+        vertical-align: middle;
+        &::before {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 1;
+            width: 8px;
+            height: 8px;
+            border-radius: 100%;
+            background-color: #fff;
+            margin: auto;
+            content: "";
+        }
+        &.active {
+            border-color: $themeCol;
+            &::before {
+                background-color: $themeCol;
+            }
+        }
+        &.disabled {
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: .65;
+        }
+        &.dy-radio-lg {
+            height: 28px;
+            width: 28px;
+            &::before {
+                width: 14px;
+                height: 14px;
+            }
+        }
+        &.dy-radio-sm {
+            height: 12px;
+            width: 12px;
+            &::before {
+                width: 6px;
+                height: 6px;
+            }
+        }
+    }
+    .dy-checkbox {
+        position: relative;
+        display: inline-block;
+        width: $sm;
+        height: $sm;
+        border: 1px solid $borderCol;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: #fff;
+        vertical-align: middle;
+        user-select: none;
+        &.active {
+            background-color: $themeCol;
+        }
+        &.disabled {
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: .65;
+        }
+        &::before {
+            position: absolute;
+            transform: rotate(40deg);
+            top: 0;
+            bottom: 3px;
+            left: 2px;
+            right: 0;
+            margin: auto;
+            color: white;
+            width: 6px;
+            height: 10px;
+            border-width: 0 2px 2px 0;
+            border-style: solid;
+            border-color: transparent white white transparent;
+            content: "";
+        }
+        &.dy-checkbox-lg {
+            height: 28px;
+            width: 28px;
+            &::before {
+                width: 8px;
+                height: 16px;
+                bottom: 4px;
+                left: 2px;
+                border-width: 0 3px 3px 0;
+            }
+        }
+        &.dy-checkbox-sm {
+            width: 14px;
+            height: 14px;
+            &::before {
+                width: 4px;
+                height: 8px;
+                border-width: 0 1px 1px 0;
+            }
+        }
+    }
+}
+
+
+/**
+* 进度条样式
+**/
+
+@mixin oProgress() {
+    .dy-progress {
+        background-color: rgba(0, 0, 0, 0.04);
+        width: 100%;
+        overflow: hidden;
+        height: 2px;
+        border-radius: 100px;
+        .progress-bar {
+            background-color: $themeCol;
+            transition: width .6s ease;
+            height: 100%;
+            color: #fff;
+            height: 100%;
+            width: 0;
+            border-radius: 100px;
+        }
+    }
+}
+
+
+/**
+* 通用表单样式
+**/
+
+@mixin oForm() {
+    %input,
+    .input {
+        color: $fontCol1;
+        border: 1px solid $borderCol;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        text-indent: 10px;
+        border-radius: 4px;
+        width: 100%;
+        &::-webkit-inner-spin-button {
+            height: $def;
+        }
+    }
+    .dy-form {
+        position: relative;
+        input {
+            @extend %input;
+        }
+        >div {
+            padding-left: 120px;
+            padding-right: 200px;
+            position: relative;
+            margin-bottom: 20px;
+            color: $fontCol1;
+            label {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translate(0, -50%);
+                text-align: right;
+                width: 100px;
+                cursor: pointer;
+            }
+        }
+        .form-msg {
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            z-index: 1;
+            transform: translate(0, -50%);
+            width: 190px;
+            i {
+                vertical-align: middle;
+                margin-right: 5px;
+            }
+        }
+        .label-top {
+            label {
+                top: 0;
+                transform: none;
+                height: $def;
+                line-height: $def;
+            }
+            .form-msg {
+                top: 0;
+                transform: none;
+                height: $def;
+                line-height: $def;
+            }
+        }
+    }
+    .height-lg {
+        height: $lg;
+        line-height: $lg;
+        font-size: 16px;
+        &::-webkit-inner-spin-button {
+            height: $lg;
+        }
+    }
+    .height-sm {
+        height: $sm;
+        line-height: $sm;
+        font-size: 12px;
+        &::-webkit-inner-spin-button {
+            height: $lg;
+        }
+    }
+}
+
+
+/**
+* 搜索样式
+**/
+
+@mixin oSearch() {
+    // 搜索框样式
+    .dy-search {
+        position: relative;
+        height: 30px;
+        >input {
+            width: 100%;
+            box-sizing: border-box;
+            padding-right: 30px;
+            height: 100%;
+            border: 1px solid $borderCol;
+        }
+        .i-search {
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            bottom: 1px;
+            z-index: 1;
+            width: 30px;
+            text-align: center;
+            line-height: 28px;
+            cursor: pointer;
+            border-bottom-right-radius: 4px;
+            border-top-right-radius: 4px;
+            border-left: 1px solid $borderCol;
+            @include iBtnBgColor(#fff);
+            box-sizing: border-box;
+            &:hover {
+                color: $themeCol;
+            }
+        }
+    }
+    .dy-search-light {
+        .i-search {
+            right: 0;
+            top: 0;
+            bottom: 0;
+            @include iBtnBgColor($themeCol);
+            color: #fff;
+            border-left: 0px solid $borderCol;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+}
+
+
+/**
+* 步骤样式
+**/
+
+@mixin oStep() {
+    .dy-step {
+        position: relative;
+        @include iCB();
+        >div {
+            position: relative;
+            width: 34%;
+            height: 52px;
+            line-height: 52px;
+            background-color: $fontCol3;
+            float: left;
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            >div {
+                position: absolute;
+                left: -32px;
+                top: 50%;
+                z-index: 1;
+                transform: translate(0, -50%);
+                height: 64px;
+                width: 64px;
+                border-radius: 64px;
+                border: 1px solid #fff;
+                color: #fff;
+                display: inline-block;
+                line-height: 64px;
+                text-align: center;
+                background-color: $fontCol3;
+                font-size: 34px;
+            }
+        }
+        >div:last-child {
+            width: 32%;
+            border-top-right-radius: 52px;
+            border-bottom-right-radius: 52px;
+        }
+        .step-active {
+            background-color: $themeCol;
+            >div {
+                background-color: $themeCol;
+            }
+        }
+        .step-done {
+            background-color: #B4D4FC;
+            >div {
+                background-color: #B4D4FC;
+            }
+        }
+    }
+}
+
+
+/**
+* 表格样式
+**/
+
+@mixin oTable() {
+    .dy-table {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        thead {
+            tr {
+                background-color: #F8F8F8;
+            }
+            th {
+                padding: 5px 0;
+                border: 1px solid $borderCol;
+            }
+        }
+        tbody {
+            td {
+                padding: 5px 0;
+                border: 1px solid $borderCol;
+                text-align: center;
+            }
+        }
+    }
+    .dy-table-1 {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        thead {
+            tr {
+                background-color: #F8F8F8;
+                height: 44px;
+            }
+        }
+        tbody {
+            tr:hover {
+                background-color: #f5f5f5
+            }
+        }
+        th,
+        td {
+            padding: 13px 0;
+            border-bottom: 1px solid $borderCol;
+        }
+    }
+}
+
+
+/**
+ * 默认按钮样式
+ */
+
+@mixin oBtn() {
+    .btn {
+        height: $def;
+        line-height: $def;
+        display: inline-block;
+        padding: 0 10px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        user-select: none;
+        @include iBtnBgColor($themeCol);
+        color: #fff;
+        border: 1px solid $themeCol;
+        border-radius: 4px;
+        outline: none;
+        >i {
+            color: #fff;
+        }
+        &[disabled] {
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: .65;
+        }
+    }
+    .btn-def {
+        @include iBtnBgColor(#fff, -1, 0, 4);
+        border-color: $borderCol;
+        color: $fontCol;
+        border-width: 1px;
+        >i {
+            color: $fontCol;
+        }
+        &[disabled] {
+            @include iBtnBgColor(#fff, 0);
+        }
+    }
+    .btn-dis {
+        @include iBtnBgColor($fontCol3, 0);
+        cursor: not-allowed;
+        border-color: $fontCol3;
+    }
+    .btn-err {
+        @include iBtnBgColor($errorCol);
+        border-color: $errorCol;
+    }
+    .btn-lg {
+        height: $lg;
+        line-height: $lg;
+        padding: 0 15px;
+        font-size: 16px;
+    }
+    .btn-sm {
+        height: $sm;
+        line-height: $sm;
+        padding: 0 5px;
+        font-size: 12px;
+    }
+    .btn-group {
+        >button {
+            border-radius: 0;
+            border-right-width: 0;
+            border-left-width: 0;
+            &:first-child {
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+                border-left-width: 1px;
+            }
+            &:last-child {
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
+                border-right-width: 1px;
+            }
+        }
+    }
+}
+
+
+/**
+* 下拉样式
+**/
+
+@mixin oDropdown() {
+    // 下拉样式
+    .dy-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: auto;
+        z-index: 10;
+        cursor: pointer;
+        background-color: #fff;
+        border: 1px solid $borderCol;
+        border-radius: 4px;
+        min-width: 100%;
+        text-align: left;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.20);
+        overflow: auto;
+        >div {
+            overflow: auto;
+        }
+        .dp-item {
+            font-size: 12px;
+            overflow: hidden;
+            padding-left: 10px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            &:hover {
+                background-color: $hoverBgCol;
+                color: $themeCol;
+            }
+        }
+        .top-line {
+            border-top: 1px solid $borderCol;
+        }
+    }
+    .dy-dropdown-center {
+        left: auto;
+        right: 0;
+        text-align: center;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+        .dp-item {
+            padding-left: 0;
+        }
+    }
+}
+
+
+/**
+ * 默认下拉选择样式
+ */
+
+@mixin oSelect() {
+    .dy-select {
+        position: relative;
+        width: 160px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        background-color: #fff;
+        .select-input {
+            position: relative;
+            height: $def;
+            line-height: $def;
+            padding-left: 10px;
+            padding-right: 30px;
+            border: 1px solid $borderCol;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+            &:hover {
+                color: $themeCol;
+                >i {
+                    color: $themeCol;
+                }
+            }
+            >i {
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translate(0, -50%) rotate(90deg) scale(0.8);
+                text-align: center;
+                width: 30px;
+            }
+            .expand-i {
+                transform: translate(0, -50%) rotate(270deg) scale(0.8);
+            }
+        }
+    }
+    .select-lg {
+        .select-input {
+            height: $lg;
+            line-height: $lg;
+            font-size: 16px;
+            >i {
+                transform: translate(0, -50%) rotate(90deg);
+            }
+            .expand-i {
+                transform: translate(0, -50%) rotate(270deg);
+            }
+        }
+    }
+    .select-sm {
+        .select-input {
+            height: $sm;
+            line-height: $sm;
+            font-size: 12px;
+            >i {
+                transform: translate(0, -50%) rotate(90deg) scale(0.65);
+            }
+            .expand-i {
+                transform: translate(0, -50%) rotate(270deg) scale(0.65);
+            }
+        }
+    }
+    .select-group {
+        .dy-select {
+            display: inline-block;
+        }
+    }
+}
+
+
+/**
+ * 设置上传相关,编辑评测
+ * @return {[type]}
+ */
+
+@mixin oUploadStyle() {
+    .percent-bar {
+        width: 400px;
+        height: 30px;
+        border: 1px solid #27dea3;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+        >span {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #4493f7;
+        }
+        >div {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            line-height: 30px;
+            text-align: center;
+            color: #444;
+        }
+        .control-text {
+            position: absolute;
+            z-index: 1;
+            left: 100%;
+            top: 0;
+            width: 40px;
+            height: 30px;
+            line-height: 30px;
+        }
+    }
+    .control-text {
+        margin-left: 20px;
+        color: #2da4ff;
+        cursor: pointer;
+    }
+    .upload-cancel {
+        position: absolute;
+        top: 0;
+        right: -80px;
+        z-index: 1;
+        height: 30px;
+        line-height: 30px;
+    }
+    // 下载预览按钮
+    .control-text {
+        margin-left: 20px;
+        color: #2da4ff;
+        cursor: pointer;
+        vertical-align: baseline;
+    }
+    .line-height-30 {
+        min-height: 30px;
+        line-height: 30px;
+    }
+    // 换行
+    .name-break {
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+}

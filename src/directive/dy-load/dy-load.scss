@@ -1,0 +1,76 @@
+.load-data {
+    position: relative;
+    min-height: 100px;
+    // 无数据时最小高度
+    &.load-mh {
+        min-height: 300px;
+    }
+    //加载position top:10的位置
+    .c-default {
+        position: absolute;
+        top: 10%;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+    }
+    //加载位置为垂直居中
+    %loadCenter,
+    .c-absolute {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translate(0, -50%);
+        z-index: 1;
+    }
+    //加载位置为浏览器垂直居中
+    .c-fixed {
+        @extend %loadCenter;
+        position: fixed;
+    }
+    // 无数据显示的图片垂直居中
+    .img-0 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        text-align: center;
+        color: #989898;
+        >img {
+            height: auto;
+            width: auto;
+            max-width: 100%;
+            display: block;
+            padding-bottom: 20px;
+        }
+    }
+    // 无数据显示的图片水平居中
+    .img-1 {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        z-index: 0;
+        transform: translate(-50%, 0);
+        text-align: center;
+        color: #989898;
+        >img {
+            height: auto;
+            width: auto;
+            max-width: 100%;
+            display: block;
+            padding-bottom: 20px;
+        }
+    }
+    // 无数据显示的图片水平100%;
+    .img-2 {
+        text-align: center;
+        color: #989898;
+        >img {
+            height: auto;
+            width: 100%;
+            display: block;
+            padding-bottom: 20px;
+        }
+    }
+}
