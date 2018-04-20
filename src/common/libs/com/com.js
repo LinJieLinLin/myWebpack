@@ -31,11 +31,16 @@ let COM = {
         }
     },
     tips: {
+        // 数据配置
         msgObj: {},
+        // 数据队列
+        msgArray: [],
+        // 是否正在运行
+        running: false,
         /**
          * argMsg: 显示内容
-         * argTime: 显示时间 s
          * argType: warn error info success
+         * argTime: 显示时间 s
          */
         alert: function(argMsg, argType, argTime = 1) {
             // 默认3s后移动队列
@@ -47,53 +52,75 @@ let COM = {
             if (this.msgObj[argMsg]) {
                 return;
             }
-            this.msgObj[argMsg] = true;
-            // console.log(document.getElementById('dyGTips'));
-            if (!document.getElementById('dyGTips')) {
-                let dialog = document.createElement('div');
-                dialog.setAttribute('id', 'dyGTips');
-                dialog.setAttribute('class', 'dy-g-tips');
-                dialog.innerHTML = `<div class="t-m animated"><i class="iconfont"></i>
-                <span class="msg">${msg}</span>
-                <div>`;
-                document.body.appendChild(dialog);
+            this.msgObj[argMsg] = {
+                msg: argMsg,
+                type: argType,
+                time: temTime || argTime
+            };
+            this.msgArray.push(argMsg);
+            // 显示alert
+            let showAlert = (argData) => {
+                // console.log(document.getElementById('dyGTips'));
+                if (!document.getElementById('dyGTips')) {
+                    let dialog = document.createElement('div');
+                    dialog.setAttribute('id', 'dyGTips');
+                    dialog.setAttribute('class', 'dy-g-tips');
+                    dialog.innerHTML = `
+                    <div class="t-m animated"><i class="iconfont"></i>
+                        <span class="msg">${argData.msg}</span>
+                    <div>`;
+                    document.body.appendChild(dialog);
+                }
+                let dialog = document.getElementById('dyGTips');
+                let msg = dialog.querySelector('.msg');
+                let iClass = '';
+                switch (argData.type) {
+                    case 'info':
+                        iClass = 'iconfont i-jubaoguanli-selected c-theme';
+                        break;
+                    case 'error':
+                        iClass = 'iconfont i-unpass1 c-error';
+                        break;
+                    case 'warn':
+                        iClass = 'iconfont i-shelved c-warn';
+                        break;
+                    case 'success':
+                        iClass = 'iconfont i-pass c-success';
+                        break;
+                    default:
+                        iClass = 'iconfont';
+                        break;
+                }
+                if (iClass && dialog.querySelector('i')) {
+                    dialog.querySelector('i').setAttribute('class', iClass);
+                }
+                COM.rmClass(dialog.querySelector('.t-m'), 'bounceOutUp');
+                COM.addClass(dialog.querySelector('.t-m'), 'bounceInDown');
+                setTimeout(() => {
+                    COM.rmClass(dialog.querySelector('.t-m'), 'bounceInDown');
+                    COM.addClass(dialog.querySelector('.t-m'), 'bounceOutUp');
+                }, (argTime - 1) * 1000 || 2000)
+                msg.innerText = argData.msg;
+            };
+            // 运行队列
+            let runAlert = () => {
+                let temTimer = setTimeout(() => {
+                    this.msgObj[this.msgArray[0]] = null;
+                    clearTimeout(temTimer);
+                    this.msgArray.splice(0, 1);
+                    if (this.msgArray.length) {
+                        showAlert(this.msgObj[this.msgArray[0]]);
+                        runAlert();
+                    } else {
+                        this.running = false;
+                    }
+                }, (temTime || argTime) * 1000);
             }
-            let dialog = document.getElementById('dyGTips');
-            let msg = dialog.querySelector('.msg');
-            let iClass = '';
-            switch (argType) {
-                case 'info':
-                    iClass = 'iconfont i-jubaoguanli-selected c-theme';
-                    break;
-                case 'error':
-                    iClass = 'iconfont i-unpass1 c-error';
-                    break;
-                case 'warn':
-                    iClass = 'iconfont i-shelved c-warn';
-                    break;
-                case 'success':
-                    iClass = 'iconfont i-pass c-success';
-                    break;
-                default:
-                    iClass = 'iconfont';
-                    break;
+            if (!this.running) {
+                this.running = true;
+                showAlert(this.msgObj[this.msgArray[0]]);
+                runAlert();
             }
-            if (iClass && dialog.querySelector('i')) {
-                dialog.querySelector('i').setAttribute('class', iClass);
-            }
-            COM.rmClass(dialog.querySelector('.t-m'), 'bounceOutUp');
-            COM.addClass(dialog.querySelector('.t-m'), 'bounceInDown');
-            setTimeout(() => {
-                COM.rmClass(dialog.querySelector('.t-m'), 'bounceInDown');
-                COM.addClass(dialog.querySelector('.t-m'), 'bounceOutUp');
-            }, (argTime - 1) * 1000 || 2000)
-            msg.innerText = argMsg;
-            let t = (temTime || argTime) * 1000 + 1000;
-            console.log(t);
-            let temTimer = setTimeout(() => {
-                this.msgObj[argMsg] = false;
-                clearTimeout(temTimer);
-            }, (temTime || argTime) * 1000);
         }
     },
     /**

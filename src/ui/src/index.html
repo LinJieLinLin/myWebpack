@@ -949,6 +949,7 @@
                     * tab组件
                     * c.tabConfig = {
                     *  type: line:线状tab btn：按钮状tab menu: 菜单tab
+                    *  numType: '默认为空，'ab':1000显示1k 10000显示1W'
                     *  data: [
                     *       name: 名称,
                     *       isActive: 是否选中,
@@ -1013,7 +1014,7 @@
                     <button class="btn" ng-click="c.dialogConfig9.show=true;">有背景，背景不可点</button>
                     <button class="btn" ng-click="c.dialogConfig10.show=true;">没有头部，没有子html</button>
                     <button class="btn" ng-click="f.alert()">按顺序alert</button>
-                    <button class="btn" ng-click="f.alert()">confirm</button>
+                    <button class="btn" ng-click="f.confirm()">confirm</button>
                 </div>
                 <div class="mg-y20">
                     <button class="btn" ng-click="c.dialogConfig3.show=true;">左上</button>

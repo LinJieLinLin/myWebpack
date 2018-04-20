@@ -32,11 +32,16 @@ window.DY.controller('uiCtrl', function($scope, $rootScope, service, $filter, $t
     //     tabClick: 'tab点击切换',
     // };
     let f = $scope.f = {
+        // 全局提示
         alert: () => {
             service.dialog.alert('我是提示语info', 'info');
             service.dialog.alert('我是提示语success', 'success');
             service.dialog.alert('我是提示语warn', 'warn');
             service.dialog.alert('我是提示语error', 'error');
+        },
+        // 全局确认框
+        confirm: () => {
+            service.dialog.alert('我是提示语info', 'info');
         },
         /**
          * tab点击切换

@@ -1,7 +1,11 @@
+git branch
 git pull
 cd src/directive
+git branch
 git pull
 cd ../ui
+git branch
 git pull
 cd ../common
+git branch
 git pull

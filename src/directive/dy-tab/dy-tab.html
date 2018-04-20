@@ -7,10 +7,13 @@
             <!-- 未读提示 -->
             <span ng-if="item.unRead" class="msg-tip"></span>
             <span ng-if="item.msgNum" class="msg-num">
-                <span ng-show="item.msgNum>99">
-                    99+
-                    </span>
-            <span ng-hide="item.msgNum>99" ng-bind="item.msgNum"></span>
+                <span ng-show="item.msgNum>99&&!c.numType">
+                   99+
+                </span>
+            <span ng-show="item.msgNum<100&&!c.numType" ng-bind="item.msgNum"></span>
+            <span ng-show="c.numType=='ab'&&item.msgNum<1000" ng-bind="item.msgNum"></span>
+            <span ng-show="c.numType=='ab'&&item.msgNum>999&&item.msgNum<10000" ng-bind="((item.msgNum/1000)|number:1)+'k'"></span>
+            <span ng-show="c.numType=='ab'&&item.msgNum>=10000" ng-bind="((item.msgNum/1000)|number:1)+'w'"></span>
             </span>
         </li>
     </ul>

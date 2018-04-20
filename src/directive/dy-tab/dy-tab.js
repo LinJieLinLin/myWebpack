@@ -9,6 +9,7 @@ if (!window.DIR) {
  * tab组件
  * c.tabConfig = {
  *  type: line:线状tab btn：按钮状tab menu: 菜单tab
+ *  numType: '默认为空，'ab':1000显示1k 10000显示1W'
  *  data: [
  *       name: 名称,
  *       isActive: 是否选中,

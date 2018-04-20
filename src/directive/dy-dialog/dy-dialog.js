@@ -87,7 +87,7 @@ DIR.directive('dyDialog', function() {
                     if (eLeft < 0) {
                         eLeft = 0;
                     }
-                    e.css({ left: eLeft + 'px', top: eTop + 'px', transform: 'unset' });
+                    e.css({ left: eLeft + 'px', top: eTop + 'px', transform: 'none' });
                 }
             };
             $scope.init = () => {

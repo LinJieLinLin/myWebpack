@@ -1,5 +1,4 @@
 /* eslint-disable */
-require('./old/jf-v1.0.js');
 DYC.factory('dialog', function() {
     /**
      * 显示错误提示
@@ -31,7 +30,7 @@ DYC.factory('dialog', function() {
 
         /**
          * @param options. 与 showErrorTip options 参数相同
-         * 传递给 jF.alert 的参数
+         * 传递给 alert 的参数
          */
         var ErrorTip = function(options) {
             this.options = options = options || {};
@@ -167,11 +166,7 @@ DYC.factory('dialog', function() {
     })();
     return {
         alert: function(argMsg, artType, artTime) {
-            // jf.alert(argMsg, artType,artTime);
-            rcpAid.tips.alert(argMsg, artType, artTime);
-        },
-        confirm: function(str, opts, defineCallback, cancelCallback) {
-            jf.confirm(str, opts, defineCallback, cancelCallback);
+            rcpAid.tips.alert(argMsg, artType || 'info', artTime);
         },
         getErrorTipper: errorTip.getInstance,
         showErrorTip: errorTip.showErrorTip
