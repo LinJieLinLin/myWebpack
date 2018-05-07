@@ -10,11 +10,12 @@ before_install:
   - ls
   - pwd
 install:
-  - yarn
+  - yarn -v
 script:
-  - npm run build
+  - npm -v
 after_script:
   - cd dist
+  - ls
   - git init
   - git config user.name "LinJieLinLin"
   - git config user.email "993353454@qq.com"
@@ -26,7 +27,3 @@ after_script:
 branches:
   only:
     - master
-env:
- global:
-  - GH_URL: "github.com/LinJieLinLin/myWebpack.git"
-  - secure: "Y2wDmNbsAnGj05E5iuNn0vAXLr9XHP43Q0KXOQxyTtLF72pWIqFEBR5ukEJ+DPJ8mXk0J4uX+vrEv37g1WX/zBLC4aE0wTFakatPqObW5Su/I5HzwrPOH1zscgtQ1NdyLFcohOE3oF5n6AAccRONxGbC6xebtWkYzfIOIboWaSVs/GqQawK027gctCzYCLGVtr3gcdqRCtqFrK423vBTPX6mzC8fEQWI211t2TD+DV1IDli1l85gCB6yhmeuhLbJg/26YqlHv0c0aK71x0qeQdPBocgmSAlxsRamEBxRmYJeKQh5gfPKyXyDPG03Wz8oMERxByy/uHlfFn4wHB2+UTgEUvIuWy/NIHBBJwLXkh6tnKxKwuxIvAlT+a2kvUyjJaB7ZjDbAFApZ/PfQkII8PdGHDlN4AhTFRtafjpbX1q+hSXyrMMRKthJs/WuPqu5iLCdQWEhOVgLi1B5dd7uI2MJsrrku5xBnYMY5rutqm5q20XUYr+YRfO2GkCWiLCFIG9uFyL5L3/9ChI0G4lOP8VJVnTnkx+2jRKR/SBUpkO+wKdNirDMUCINgEPZdJZ2PYNnvlje0LrB3qFj+pLzdjox37RSaMBBoyO9Htblv7l0ujTKrG5N1ra7wscTd9/UrbZ6XUyX4qAUUB7h4it5CmKyHJdmwi/GYDByb7CFSLk="
