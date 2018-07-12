@@ -70,8 +70,8 @@ module.exports = {
         }, {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
             loader: 'url-loader',
-            //图片加载器，雷同file-loader，更适合图片，可以将较小的图片转成base64，减少http请求
-            //如下配置，将小于18192byte的图片转成base64码
+            // 图片加载器，雷同file-loader，更适合图片，可以将较小的图片转成base64，减少http请求
+            // 如下配置，将小于18192byte的图片转成base64码
             query: {
                 limit: 18192,
                 name: utils.assetsPath('imgs/[name].[ext]')
@@ -95,11 +95,11 @@ module.exports = {
             target: {
                 image: resolve('src/common/sprite/sprite.png'),
                 css: [
-                    [resolve('src/common/sprite/sprite.scss'), { format: 'handlebars_based_template' }]
+                    [resolve('src/common/sprite/sprite.scss'), { format: 'class' }]
                 ]
             },
             customTemplates: {
-                'handlebars_based_template': 'image-sprite-tmpl.handlebars'
+                'class': 'image-sprite-tmpl.handlebars'
             },
             apiOptions: {
                 cssImageRef: '/common/sprite.png'
