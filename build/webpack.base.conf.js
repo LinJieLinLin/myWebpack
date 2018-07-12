@@ -4,8 +4,7 @@ let utils = require('./utils');
 let config = require('../config');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-// 雪碧图组件要在屡有:v6.9之前的nodejs版本改
-// let sprite = require('sprite-webpack-plugin');
+var SpritesmithPlugin = require('webpack-spritesmith');
 let cssConfig = require('./css-loader.conf');
 let minimist = require('minimist');
 let argv = minimist(process.argv.slice(2));
@@ -28,7 +27,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.json'],
         // 指定node_modules路径，防止向上查找
-        modules: [resolve('node_modules')],
+        modules: [resolve('node_modules'), 'spritesmith-generated'],
         // 配置路径映射
         alias: {
             '@': resolve('src'),
@@ -88,12 +87,24 @@ module.exports = {
     },
     'plugins': [
         // 雪碧图
-        // new sprite({
-        //     'source': resolve('src/common/static/sprite/common'),
-        //     'imgPath': resolve('src/common/static/sprite'),
-        //     'cssPath': resolve('src/common/static/sprite'),
-        //     'baseName': 'common',
-        // }),
+        new SpritesmithPlugin({
+            src: {
+                cwd: resolve('src/common/sprite'),
+                glob: '*.png'
+            },
+            target: {
+                image: resolve('src/common/sprite/sprite.png'),
+                css: [
+                    [resolve('src/common/sprite/sprite.scss'), { format: 'handlebars_based_template' }]
+                ]
+            },
+            customTemplates: {
+                'handlebars_based_template': 'image-sprite-tmpl.handlebars'
+            },
+            apiOptions: {
+                cssImageRef: '/common/sprite.png'
+            }
+        }),
         // 加载jq
         new webpack.ProvidePlugin({
             $: 'jquery',
